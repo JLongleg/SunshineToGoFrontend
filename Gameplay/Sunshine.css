@@ -1,0 +1,85 @@
+/* css: body und Sprite-Animation*/
+
+body {
+    background: url("Background_airport.png") no-repeat;
+    background-size: cover;
+    text-align: center;
+    background-color: #99d9ea;
+    color: darkblue; 
+}
+
+
+/*Root Pseudo-Klasse*/
+:root {
+    /*Charakter-Größe*/
+    --pixel-size: 5;
+}
+
+/*Spielfeld, weißer Rahmen*/
+.Spielfeld {
+    position: relative; /*muss etwas anderes als "static" sein, damit andere "absolute"-Positionen funktionieren*/
+    border: 8px white dotted;
+    width: 500px;
+    height: 500px;
+    margin: auto; /*Position in Mitte der Seite*/
+}
+
+
+/*Box mit Character, grüner Rahmen*/
+.Character {
+    border: 8px green dotted;
+    position: absolute;
+    top: 150px;  /*grüne Box hat 150px Abstand zur oberen Seite des weißen Rahmens*/
+    left: 30px;
+    /*Cropping*/
+    width: calc(32px * var(--pixel-size));
+    height: calc(32px * var(--pixel-size)); /*prev: height: 32px*/
+    overflow: hidden;
+}
+
+/* Größe des Koffers unter dem Charakter <img class="CharacterShadow" */
+/* Der Koffer bleibt immer unter dem (hoffentlich beliebig austauschbaren) Charakter*/
+.CharacterShadow {
+    width: calc(32px * var(--pixel-size));
+    height: calc(32px * var(--pixel-size));
+}
+
+/* Animation von <img class="CharacterSpriteSheet1" */
+.CharacterSpriteSheet1 {
+    animation: moveSpritesheet 2s steps(4) infinite; 
+    /* moveSpritesheet (@Regel unten) sorgt dafür, dass unterschiedliche Teile des Spritesheets im Fokus stehen, Rest wird gecroppt*/
+    /*2s=Zeit eines Durchlaufs, steps(4)=4 Bilder/Schritte pro Reihe, infinite Wiederholung*/
+    width: calc(128px * var(--pixel-size)); /*128px=(4 frames * jeweils 32px)*/
+    position: absolute;
+    left: 0px; /*Charakter-Bild hat 0px Abstand zu grünem Rahmen*/
+}
+
+/*Utility class "pixelart" verhindert, dass das Charakterbild unscharf wird*/
+.pixelart {
+    image-rendering: pixelated;
+}
+
+/*Optionale Klassen, die dank der anderen Zeilen des Spritesheets andere Varianten des Charakters ermöglichen*/
+/*Wenn keine dieser optionalen Klassen im html hinzugefügt wurde, wird die erste Zeile des Spritesheets animiert (Augen neutral)*/
+.eyes-right {
+    top: calc(-32px * var(--pixel-size));
+}
+
+.eyes-up {
+    top: calc(-64px * var(--pixel-size));
+}
+
+.eyes-left {
+    top: calc(-96px * var(--pixel-size));
+}
+
+/* @keyframes-Regel kontrolliert die Schritte in der CSS-Animationssequenz, indem es das Bild horizontal bewegt*/
+@keyframes moveSpritesheet {
+    /*Translate3d bewegt hier das Bild auf der x-Achse von 0px zu -100px, also das Spritesheet-Bild bewegt sich nach links*/
+    from {
+        transform: translate3d(0px,0,0)
+    }
+    to {
+        transform: translate3d(-100%,0,0)
+    }
+}
