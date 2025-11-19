@@ -1,0 +1,41 @@
+/* https://www.w3schools.com/howto/howto_js_rangeslider.asp */
+
+.slidecontainer {
+  width: 100%; 
+}
+
+/* Der Slider */
+.slider {
+  -webkit-appearance: none;  
+  appearance: none;
+  width: 100%; 
+  height: 25px; 
+  background: #d3d3d3; 
+  outline: none; 
+  opacity: 0.7; 
+  -webkit-transition: .2s; 
+  transition: opacity .2s;
+}
+
+/* balken abdunkeln */
+.slider:hover {
+  opacity: 1; 
+}
+
+/* Den default Look ändern, indem man die Engine mit webkit überschreibt */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* überschreiben */
+  appearance: none;
+  width: 30px; /* Breite vom Slider */
+  height: 30px; /* Höhe vom Slider */
+  background: #ddff03; /* Farbe */
+  cursor: pointer; /* Cursor on hover */
+}
+
+/* Einmal für Mozila */
+.slider::-moz-range-thumb {
+  width: 30px; /* Breite vom Slider */
+  height: 30px; /* Höhe vom Slider */
+  background: #e1ff01; /* Farbe */
+  cursor: pointer; /* Cursor on hover */
+}

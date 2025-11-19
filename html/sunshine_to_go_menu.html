@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunshine To Go</title>
+    
+
+    <!-- Audio für das Menu -->
+
+</head>
+
+<body>
+
+    <h1>Sunshine To Go</h1>
+    <nav class="menu_liste_position">
+        <ul class="menu_liste">
+            <div class="zeilenabstandButton">
+                <li><button onclick="startGame()">Spiel Starten</button> </li>
+            </div>
+
+            <!-- 
+            Was im Fenster vorgeht in Optionen
+            -->
+
+            <dialog id="fensterOptionen">
+                <p>Optionen</p>
+                <p>Multimedia</p>
+
+                <section>
+                    <!---Audioregler-->
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        <audio controls autoplay loop id="waldSound">
+                            <source src="../mp3/waldgeraeusche.flac" type="audio/flac">
+                        </audio>
+                    </div>
+                </section>
+                <br>
+                <br>
+                <p>Grafikqualität</p>
+                <p>Spracheinstellung</p>
+                <!-- Optional wenn wir noch Zeit haben -->
+                <button onclick="optionenSchliessen()">Schließen</button>
+            </dialog>
+
+            <!--    
+            Das öffnet das fenster fensterOptionen 
+            -->
+
+            <div class="zeilenabstandButton">
+                <li><button onclick="fensterOeffnen()">Optionen</button> </li>
+            </div>
+
+            <!-- Hier ist der Fortschritt vom Videospiel hinterlegt -->
+
+            <div class="zeilenabstandButton">
+                <li><a href="../html/fortschritt.html"><button onclick="showInfo()">Fortschritt</button></a></li>
+            </div>
+
+            <div class="zeilenabstandButton">
+                <li><button onclick="showHighscores()">Bestenliste</button> </li>
+            </div>
+
+            <div class="zeilenabstandButton">
+                <li><button onclick="showCredits()">Mitwirkende</button> </li>
+            </div>
+
+            <div>
+                <li><button onclick="schliesseDieseAnwendung()">Spiel beenden</button> </li>
+            </div>
+
+        </ul>
+    </nav>
+
+
+    <link rel="stylesheet" href="../CSS/main_menu.css">
+    <link rel="stylesheet" href="../CSS/soundregler.css">
+    <script src="../JavaScript/closeWindow.js"></script>
+    <script src="../JavaScript/menuSound.js"></script>
+</body>
+
+</html>

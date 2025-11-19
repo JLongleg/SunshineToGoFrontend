@@ -1,0 +1,24 @@
+.menu_liste {
+    border-style: solid;
+    border: 2px solid #000000;
+    padding: 15px 5px;
+    text-align: center;
+    list-style-type: none;
+    overflow: hidden;
+    background-color: #f09414a3;
+}
+
+.menu_liste_position {
+    margin-left: 250px;
+    margin-right: 250px;
+    padding: 25px;
+}
+
+.zeilenabstandButton {
+    padding-bottom: 5px;
+}
+
+.dialog {
+    text-align: center;
+    border-style: calc();
+}
