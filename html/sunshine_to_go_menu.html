@@ -18,13 +18,17 @@
         <ul class="menu_liste">
             <div class="zeilenabstandButton">
                 <li><button onclick="startGame()">Spiel Starten</button> </li>
+                <li><button id="startGameButton" type="button">Start Game</button> </li>
             </div>
 
             <!-- 
             Was im Fenster vorgeht in Optionen
             -->
+            <div class="zeilenabstandButton">
+                <li><button id="startOptions">Optionen</button> </li>
+            </div>
 
-            <dialog id="fensterOptionen">
+            <dialog id="fensterWindowOptionen">
                 <p>Optionen</p>
                 <p>Multimedia</p>
 
@@ -42,16 +46,13 @@
                 <p>Grafikqualität</p>
                 <p>Spracheinstellung</p>
                 <!-- Optional wenn wir noch Zeit haben -->
-                <button onclick="optionenSchliessen()">Schließen</button>
+                <button id="closeOptionsButton">Schließen</button>
             </dialog>
 
             <!--    
             Das öffnet das fenster fensterOptionen 
             -->
 
-            <div class="zeilenabstandButton">
-                <li><button onclick="fensterOeffnen()">Optionen</button> </li>
-            </div>
 
             <!-- Hier ist der Fortschritt vom Videospiel hinterlegt -->
 
@@ -74,10 +75,11 @@
         </ul>
     </nav>
 
+    <!-- Hier könnte ihre CSS oder JS Dabei stehen -->
 
     <link rel="stylesheet" href="../CSS/main_menu.css">
     <link rel="stylesheet" href="../CSS/soundregler.css">
-    <script src="../JavaScript/closeWindow.js"></script>
+    <script src="../JavaScript/allButtons.js"></script>
     <script src="../JavaScript/menuSound.js"></script>
 </body>
 
