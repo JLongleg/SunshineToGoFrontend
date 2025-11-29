@@ -5,30 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sunshine To Go</title>
-    
+
 
     <!-- Audio für das Menu -->
 
 </head>
 
 <body>
-
+<!------------- Menu Bereich ab hier --------------->     
+<div id="menuBereichHTML"> 
     <h1>Sunshine To Go</h1>
     <nav class="menu_liste_position">
         <ul class="menu_liste">
             <div class="zeilenabstandButton">
-                <li><button onclick="startGame()">Spiel Starten</button> </li>
-                <li><button id="startGameButton" type="button">Start Game</button> </li>
+                
+                <li><a href="../html/Gameplay.html"><button id="startGameButton" type="button">Start Game</button></a></li>
             </div>
 
             <!-- 
             Was im Fenster vorgeht in Optionen
             -->
             <div class="zeilenabstandButton">
-                <li><button id="startOptions">Optionen</button> </li>
+                <li><button id="startOnClickOptions">Optionen</button> </li>
             </div>
 
-            <dialog id="fensterWindowOptionen">
+            <dialog id="openWindowOptionsButton">
                 <p>Optionen</p>
                 <p>Multimedia</p>
 
@@ -46,41 +47,151 @@
                 <p>Grafikqualität</p>
                 <p>Spracheinstellung</p>
                 <!-- Optional wenn wir noch Zeit haben -->
-                <button id="closeOptionsButton">Schließen</button>
+                <button id="closeWindowOptionsButton">Schließen</button>
             </dialog>
 
             <!--    
             Das öffnet das fenster fensterOptionen 
             -->
 
-
             <!-- Hier ist der Fortschritt vom Videospiel hinterlegt -->
 
             <div class="zeilenabstandButton">
-                <li><a href="../html/fortschritt.html"><button onclick="showInfo()">Fortschritt</button></a></li>
+                <li><button>Fortschritt</button></li>
             </div>
 
             <div class="zeilenabstandButton">
-                <li><button onclick="showHighscores()">Bestenliste</button> </li>
+                <li><button id="buttonBestenliste">Bestenliste</button> </li>
             </div>
 
             <div class="zeilenabstandButton">
-                <li><button onclick="showCredits()">Mitwirkende</button> </li>
+                <li><button>Mitwirkende</button> </li>
             </div>
-
+            
+            <!-- Spiel beenden button -->
             <div>
-                <li><button onclick="schliesseDieseAnwendung()">Spiel beenden</button> </li>
+                <li><button id="endGameButton" type="button">Spiel beenden</button></li>
             </div>
-
         </ul>
     </nav>
+</div>
+<!------------- Gameplay Bereich ab hier --------------->
+<div> 
+    <h1>Gameplay</h1>
+    <button>Zurück zum Menü</button>
+</div>
+<!------------- Fortschritt Bereich ab hier --------------->
+<div> 
+    <pre>
+    Variablennamen -> Einigung für das Spiel = 
+    
+    Kommentare: Drüber über den Code schreiben was dieser macht
 
-    <!-- Hier könnte ihre CSS oder JS Dabei stehen -->
+    Wenn wir etwas aus einer Bibiolthek nutzen wollen, müssen wir das angeben.
+
+    Camen case
+
+    so wenig wie möglich Const eher Let, mit den Worten "Let it be"!
+
+    Das wird das Main Menu für die Sunshine To Go Seite
+    - dazu brauchen wir ein Buttons die jeweils Dinge starten       [ ]
+    - Optionen die Spieleinstellungen verändern                     [ ]
+    - Bereich des Fortschritt's anzeigt                             [ ]
+    - Bereich der Highscores anzeigt                                [ ]
+    - Bereich der Credits anzeigt                                   [ ]
+    - Ein ansprechendes Design                                      [ ]
+    - Knopf fürs beenden vom Spiel                                  [x]
+    - Handy tauglich machen                                         [ ]
+    - Grafikqualität einstellen (Niedrig, Mittel, Hoch)  (Optional) [ ]
+
+    Gameplay: es gibt 3 Schwierigkeitsgrade (leicht, mittel, schwer)? (Optional)
+
+    Museum ist (option)
+    
+    Es gibt die Auswahl von 3 Städten
+    (x,y,z) muss man eine auswählen,
+    wie groß die Gradzahl ist bekommt
+    man Minuspunkte. Man könnte von 
+    den drei Optionen eine mit 0 Punkte
+    eine etwas schlechtere Option mit
+    -1 und ganz weit weg von der Antwort
+    -2 Punkte.
+    
+    Programm muss am Ende wissen, wie viele Punkte man hätte sammeln können.
+
+    Ranking System aus Gold, Silber, Bronze und dem Trostpreis
+
+    1. Platz: Gold
+    2. Platz: Silber
+    3. Platz: Bronze
+    4. Platz: Trostpreis
+
+    1 richtiges Treffen und 1 Updatetreffen.
+
+
+             S
+             A
+            LUT
+             M
+            O N
+            D  E
+            DONT
+          JE SUIS
+          LA  LAN
+          G U E  É
+         L O Q U E N
+        TE      QUESA
+       B  O  U  C  H  E
+      O        P A R I S
+     T I R E   ET   TIRERA
+    T O U             JOURS
+   AUX                  A  L
+ LEM                      ANDS   - Apollinaire
+
+Verlauf:
+
+BugListe:
+- Wenn ich versuche, auf eine neue HTML Seite zuzugreifen
+und ich dann wieder zurück gehe, kann ich das Fenster nicht
+schließen. Die Fehlermeldung: Skripte können nur Fenster
+schließen, die von einem Skript geöffnet wurden. 
+Taucht in der Console auf.                                      [ ]
+
+
+
+    </pre>
+        <!--    
+            Pre ist die Funktion,
+            womit man keine Zeilen
+            umbrüche extra mit
+            <br> machen muss.  - -
+        -->  
+</div>
+<!------------- Bestenliste Bereich ab hier --------------->
+<div id="bestenListeBereichHTML"> 
+            <h1>Bestenliste</h1>
+        <ol style="text-align: left; padding-left: 60px;">
+            <li>Spieler 1 - 500 Pkt</li>
+            <li>Spieler 2 - 450 Pkt</li>
+            <li>Spieler 3 - 300 Pkt</li>
+        </ol>
+        
+        <button id="buttonMenuZeigen">Zurück zum Menü</button>
+</div>
+<!------------- Mitwirkende Bereich ab hier --------------->
+<div> 
+    
+</div>
+<!-- Hier könnte ihre CSS oder JS Dabei stehen (verlinkung) -->
+<div>
+
 
     <link rel="stylesheet" href="../CSS/main_menu.css">
     <link rel="stylesheet" href="../CSS/soundregler.css">
     <script src="../JavaScript/allButtons.js"></script>
     <script src="../JavaScript/menuSound.js"></script>
+    <script src="../JavaScript/bereichWechseln.js"></script>
+</div>
 </body>
 
 </html>
