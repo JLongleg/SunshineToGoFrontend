@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punktespiel</title>
+</head>
+<body>
+    <script>
+
+// Das sind die Optionen A B und C mit zufälligen Werten (-30 bis 30)
+
+// Math.floor -> macht, dass die Kommazahlen abgerundet werden auf
+// eine ganze Zahl
+
+// Math.random -> generiert eine Zufallszahl zwischen 0 und 1
+
+// Formel für Zufallszahlen zwischen min und max (inklusive) 
+// +1 wird benötigt, damit auch die max Zahl mit drin ist
+
+// Formel mathematisch ausgedrückt:
+// Interval = max - min
+// Zufallszahl = Math.random() * Interval
+// Ergebnis = min + Zufallszahl
+// Beispiel: min = -30, max = 30
+// Interval = 30 - (-30) = 60
+// 60 + 1 für die Inklusivität = 61
+// Math.random ist 0.0 bis 1.0 
+// Math.floor rundet ab auf ganze Zahl
+// Math.floor(Math.random() * (max - min + 1)) + min
+
+// Markushilfe: Eine Funktion ist ein Thermomix für Code
+// und return gibt das Ergebnis zurück
+
+        function getZufallInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+// Der aktuelle Punktestand
+let startWert = 0;
+
+// Anzahl der Runden
+const maxRunde = 3;
+
+console.log("Mögen die Flugspiele beginnen!");
+console.log(`Deine Punktzahl ${startWert}`);
+console.log(`Kevin!`);
+
+// Spiel Schleife = loop (3 Runden)
+// Eine for Schleife, die schaut immer wieder ist
+// Runde kleiner, als die maxRunde. Sonst unterbricht 
+// sie die Schleife.
+
+//Markushilfe: for (Anfangswert; Bedingung o. Türsteher-Frage; Schrittweite)
+for (let runde = 1; runde <= maxRunde; runde++) {
+    console.log(`\n Runde ${runde}`);
+
+    // Key-Value-Paare für A, B und C
+    // Markushilfe: Schrank -> Schublade -> Funktion
+        const entscheidungsmöglichkeit = {
+    A: getZufallInt(-30, 30),
+    B: getZufallInt(-30, 30),
+    C: getZufallInt(-30, 30)
+    };
+
+    // Die richtige Antwort ist eine zufällige Wahl zwischen A, B und C
+    // Array mit den möglichen Antworten :D
+    const möglicheAntwort = ['A', 'B', 'C'];
+    const richtigeAntwort = möglicheAntwort[getZufallInt(0, 2)];
+
+    console.log(`die richtige Antwort wäre ${richtigeAntwort}`);
+
+    // SIMULATION DER SPIELER-EINGABE vom PC
+
+    const spielerEntscheidung = möglicheAntwort[getZufallInt(0, 2)];
+    const wertDerEntscheidung = entscheidungsmöglichkeit[spielerEntscheidung];
+
+    console.log(`Spieler wählt: ${spielerEntscheidung}(Wert: ${wertDerEntscheidung})`);
+
+    if (spielerEntscheidung === richtigeAntwort) {
+        console.log(`Richtig! Die richtige Antwort war ${richtigeAntwort}.`);
+        console.log(`Rechnung: ${startWert} + (${wertDerEntscheidung})`);
+        
+        // Die richtige Antwort wird addiert
+        startWert += wertDerEntscheidung; 
+    } else {
+        console.log(`Falsch! Die richtige Antwort wäre ${richtigeAntwort} gewesen.`);
+        console.log(`Rechnung: ${startWert} - (${wertDerEntscheidung})`);
+        
+        // Die falsche Antwort wird subtrahiert (mit dem Anfangswert minus gerechnet)
+        startWert -= wertDerEntscheidung;
+    }
+}
+
+    </script>
+</body>
+</html>
+
+<!--
+
+0 sW
+
+0 10 20
+
+1r: 10
+
+0 + 10 = 10
+
+Ein System, wo man Punkte verliert bis man auf Null kommt dann ist das Spiel zu Ende
+
+this. einbauen.
+
+-->

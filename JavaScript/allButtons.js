@@ -1,17 +1,48 @@
-// Einmal umprogrammiert nach der Schule (check)
-// Hier sind alle Buttons hinterlegt und was sie machen, wenn man sie Klickt
-// const allButtons.js
-// funktion JS = ID
+// Js definierte Buttons für alle Menubereiche
+// funktion JS(Verschwinden/Auftauchen) <= AddEvent(klicken) <= ID (Button)
+// Definierte Buttons:
 
 const buttonStartGame = document.getElementById("startGameButton");
 const buttonStartBestenliste = document.getElementById("buttonBestenliste");
 const buttonClickOptions = document.getElementById("startOnClickOptions");
-const fensterWindowOp = document.getElementById("openWindowOptionsButton");
-const buttonCloseOptionsWindow = document.getElementById("closeWindowOptionsButton");
 const buttonCloseGame = document.getElementById("endGameButton");
-const buttonMenuAnzeigen = document.getElementById("buttonMenuZeigen"); 
+const buttonOpenFortschritt = document.getElementById("fortschrittButton");
+const buttonClickMitwirkende = document.getElementById("btnMitwirkende");
 
-//--------------------------------------------------------------
+// Div-Bereiche für die Sichtbarkeit bestimmen:
+
+const menuS = document.getElementById("menuBereichHTML");
+const fortschrittS = document.getElementById("fortschrittBereichHTML");
+const bestenlisteS = document.getElementById("bestenListeBereichHTML");
+const gameplayS = document.getElementById("gameplayBereichHTML");
+const mitwirkendeS = document.getElementById("mitwirkendeBereichHTML");
+
+// Button für das Optionsfenster 
+const fensterWindowOp = document.getElementById("openWindowOptionID");
+const buttonCloseOptionsWindow = document.getElementById("closeWindowOptionsButton");
+
+// Ein Button für alle Bereiche, der nur einmal erstellt werden muss. [x]
+// Nimm aktuelle Seite und lass sie verschwinden.
+// benötigt eine Klasse, weil es häufiger verwendet wurde. [X]
+
+const alleMenuButtonsGoBack = document.querySelectorAll(".zumMenuButton");
+
+function funcZumMenu() {
+
+    if (menuS) menuS.style.display = "block";
+    if (fortschrittS) fortschrittS.style.display = "none";
+    if (bestenlisteS) bestenlisteS.style.display = "none";
+    if (gameplayS) gameplayS.style.display = "none";
+    if (mitwirkendeS) mitwirkendeS.style.display = "none";
+
+    if (menuS) menuS.style.display = "block";
+}
+
+alleMenuButtonsGoBack.forEach(einzelnerButton => {
+    einzelnerButton.addEventListener("click", funcZumMenu);
+});
+
+//--------------------- Spezial-Funktionen------------------------------------
 
 //funktionen für die Buttons die gedrückt wurden
 // Optionensfenster wird angezeigt
@@ -29,26 +60,44 @@ buttonCloseGame.addEventListener("click", () => {
     window.close();
 })
 
-// div, also Bereich "Bestenliste wird angezeigt"
+//------------------addEventListener für die Buttons--------------------------
 
+// Bereich "Bestenliste wird angezeigt"
 buttonStartBestenliste.addEventListener("click", () => {
     zeigBestenliste()
 })
 
-buttonMenuAnzeigen.addEventListener("click", () => {
-    zeigMenu()
+// Zeig Fortschritt, wenn man den Knopf gedrückt hat.
+buttonOpenFortschritt.addEventListener("click", () => {
+    zeigFortschritt()
 })
 
-//--------------------------------------------------------------
+buttonClickMitwirkende.addEventListener("click", () => {
+    zeigMitwirkende()
+})
 
-// Alle Seiten die verschwinden oder auftauchen.
+//------Funktionen für die Sichtbarkeit von Div-Seiten-----------------------
+
+// Alle Funktionen für Sichtwechsel
+// Verschwinden / Auftauchen der Div-Bereiche
 
 function zeigBestenliste() {
-    document.getElementById("menuBereichHTML").style.display = "none";
-    document.getElementById("bestenListeBereichHTML").style.display = "block";
+    bestenlisteS.style.display = "block";
+    menuS.style.display = "none";
 }
 
 function zeigMenu() {
-    document.getElementById("menuBereichHTML").style.display = "block";
-    document.getElementById("bestenListeBereichHTML").style.display = "none";
+    bestenlisteS.style.display = "none";
+    menuS = "block";
 }
+
+function zeigFortschritt() {
+    fortschrittS.style.display = "block";
+    menuS.style.display = "none";
+}
+
+function zeigMitwirkende() {
+    mitwirkendeS.style.display = "block";
+    menuS.style.display = "none";
+}
+
