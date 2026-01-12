@@ -1,0 +1,25 @@
+/*  ========================================= 
+    Hier werden die einzelnen Bereiche
+    (Seiten = Div) verborgen, damit sie beim
+    Start nicht angezeigt werden.
+    =========================================  */
+
+#mitwirkendeBereichHTML {
+    display:none;
+}
+
+#bestenListeBereichHTML {
+    display:none;
+}
+
+#fortschrittBereichHTML {
+    display:none;
+}
+
+#gameplayBereichHTML {
+    display:none;
+}
+
+#mitwirkendeBereichHTML {
+    display:none;
+}

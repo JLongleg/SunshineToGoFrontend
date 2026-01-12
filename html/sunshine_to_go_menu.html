@@ -5,80 +5,236 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sunshine To Go</title>
-    
 
     <!-- Audio für das Menu -->
 
 </head>
 
 <body>
+    <!------------- Menu Bereich ab hier ------------------->
+    <div id="menuBereichHTML">
+        <!-- Überschrift -->
+        <h1 class="titelVonMenu">Sunshine To Go</h1>
 
-    <h1>Sunshine To Go</h1>
-    <nav class="menu_liste_position">
-        <ul class="menu_liste">
-            <div class="zeilenabstandButton">
-                <li><button onclick="startGame()">Spiel Starten</button> </li>
+        <!-- Ab hier fangen die Bildknöpfe an -->
+
+        <div class="container">
+
+            <figure id="startGameButton" class="bild">
+                <img src="../bilder/menu_bilder/gameplay.png" alt="Spiel-Start-Bild">
+                <figcaption><strong>Spiel<br>Starten</strong></figcaption>
+            </figure>
+
+            <figure id="startOnClickOptions" class="bild">
+                <img src="../bilder/menu_bilder/option.png" alt="Optionen-Bild">
+                <figcaption><strong>Optionen</strong></figcaption>
+            </figure>
+
+            <figure id="fortschrittButton" class="bild">
+                <img src="../bilder/menu_bilder/fortschritt.png" alt="Fortschritt-Bild">
+                <figcaption><strong>Fort-<br>schritt</strong></figcaption>
+            </figure>
+
+            <figure id="buttonBestenliste" class="bild">
+                <img src="../bilder/menu_bilder/bestenliste.png" alt="Bestenliste-Bild">
+                <figcaption><strong>Besten-<br>liste</strong></figcaption>
+            </figure>
+
+            <figure id="btnMitwirkende" class="bild">
+                <img src="../bilder/menu_bilder/mitwirkende.png" alt="Mitwirkende-Bild">
+                <figcaption><strong>Mit-<br>wirkende</strong></figcaption>
+            </figure>
+
+            <figure class="bild" id="endGameButton">
+                <img src="../bilder/menu_bilder/beenden.png" alt="Beenden-Bild">
+                <figcaption><strong>Beenden</strong></figcaption>
+            </figure>
+
+        </div>
+    </div>
+
+    <!----------- Was im Fenster vorgeht in Optionen ------->
+    <dialog id="openWindowOptionID">
+        <p>Optionen</p>
+        <p>Multimedia</p>
+
+        <section>
+            <!---Audioregler-->
+            <div class="slidecontainer">
+                <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                <audio controls autoplay loop id="waldSound">
+                    <source src="../mp3/waldgeraeusche.flac" type="audio/flac">
+                </audio>
             </div>
+        </section>
 
-            <!-- 
-            Was im Fenster vorgeht in Optionen
-            -->
+        <br>
+        <br>
+        <p>Grafikqualität</p>
+        <p>Spracheinstellung</p>
 
-            <dialog id="fensterOptionen">
-                <p>Optionen</p>
-                <p>Multimedia</p>
+        <!-- Optional wenn wir noch Zeit haben -->
+        <button id="closeWindowOptionsButton">Schließen</button>
+    </dialog>
 
-                <section>
-                    <!---Audioregler-->
-                    <div class="slidecontainer">
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        <audio controls autoplay loop id="waldSound">
-                            <source src="../mp3/waldgeraeusche.flac" type="audio/flac">
-                        </audio>
-                    </div>
-                </section>
-                <br>
-                <br>
-                <p>Grafikqualität</p>
-                <p>Spracheinstellung</p>
-                <!-- Optional wenn wir noch Zeit haben -->
-                <button onclick="optionenSchliessen()">Schließen</button>
-            </dialog>
+    <!------------- Gameplay Bereich ab hier --------------->
+    <div id="gameplayBereichHTML">
+        <h1>Gameplay</h1>
+        <button class="zumMenuButton">Zurück zum Menu</button>
+    </div>
 
-            <!--    
-            Das öffnet das fenster fensterOptionen 
-            -->
+    <!------------- Fortschritt Bereich ab hier ------------>
+    <div id="fortschrittBereichHTML">
+        <pre>
+    Variablennamen -> Einigung für das Spiel = 
+    
+    Kommentare: Drüber über den Code schreiben was dieser macht
 
-            <div class="zeilenabstandButton">
-                <li><button onclick="fensterOeffnen()">Optionen</button> </li>
-            </div>
+    Wenn wir etwas aus einer Bibiolthek nutzen wollen, müssen wir das angeben.
 
-            <!-- Hier ist der Fortschritt vom Videospiel hinterlegt -->
+    Camen case
 
-            <div class="zeilenabstandButton">
-                <li><a href="../html/fortschritt.html"><button onclick="showInfo()">Fortschritt</button></a></li>
-            </div>
+    so wenig wie möglich Const eher Let, mit den Worten "Let it be"!
 
-            <div class="zeilenabstandButton">
-                <li><button onclick="showHighscores()">Bestenliste</button> </li>
-            </div>
+    Das wird das Main Menu für die Sunshine To Go Seite:
+    - dazu brauchen wir ein Buttons der jeweils Dinge starten           [x]
+    - Aus onclick, jedem Button eine Funktion zuordnen                  [x]
+    - Knopf fürs beenden vom Spiel (Dabei Sicherheitsaspekte            
+    von HTML beachten)                                                  [x]
+    - Div's welche die einzelnen Bereiche abdeckt                       [x]
+    - Abstraktion von Menu-button Funktionen   (Schwierigkeitsgrade 3)  [x]
+    - Optionen die Spieleinstellungen verändern                         [In Entwicklung]
+    - Bereich des Fortschritt's anzeigt                                 [In Entwicklung]
+    - Bereich der Highscores anzeigt                                    [In Entwicklung]
+    - Bereich der Credits anzeigt                                       [In Entwicklung]
+    - Ein ansprechendes Design                                          [In Entwicklung]
+    - Abstraktion von MenuBtn, wohin es gehen soll                      [in Entwicklung]
+    - Punktesystem                                                      [in Entwicklung] 
+    - Ranking (wie viele Punkte habe ich geschafft)                     [in Entwicklung]
+    - Handy tauglich machen                                             [fraglich ist...]
+    - Gameplay: es gibt 3 Schwierigkeitsgrade (leicht, mittel, schwer)? (Optional)
+    - Grafikqualität einstellen (Niedrig, Mittel, Hoch)  (Optional)     (Optional)
+    - Getter und Setter einfügen                                        [ ]
+    - Moduleart aufbau                                                  [ ]
+    - Design die anderen Menus                                          [ ]
+    - Schrift wird nicht kleiner, wenn das Fenster kleiner wird         [ ]
+    
+    Es gibt die Auswahl von 3 Städten
+    (x,y,z) muss man eine auswählen,
+    wie groß die Gradzahl ist bekommt
+    man Minuspunkte. Man könnte von 
+    den drei Optionen eine mit 0 Punkte
+    eine etwas schlechtere Option mit
+    -1 und ganz weit weg von der Antwort
+    -2 Punkte.
+    
+    Programm muss am Ende wissen, wie viele Punkte man hätte sammeln können.
 
-            <div class="zeilenabstandButton">
-                <li><button onclick="showCredits()">Mitwirkende</button> </li>
-            </div>
+    Ranking System aus Gold, Silber, Bronze und dem Trostpreis
 
-            <div>
-                <li><button onclick="schliesseDieseAnwendung()">Spiel beenden</button> </li>
-            </div>
+    1. Platz: Gold
+    2. Platz: Silber
+    3. Platz: Bronze
+    4. Platz: Trostpreis
 
-        </ul>
-    </nav>
+    1 richtiges Treffen und 1 Updatetreffen.
 
 
-    <link rel="stylesheet" href="../CSS/main_menu.css">
-    <link rel="stylesheet" href="../CSS/soundregler.css">
-    <script src="../JavaScript/closeWindow.js"></script>
-    <script src="../JavaScript/menuSound.js"></script>
+             S
+             A
+            LUT
+             M
+            O N
+            D  E
+            DONT
+          JE SUIS
+          LA  LAN
+          G U E  É
+         L O Q U E N
+        TE      QUESA
+       B  O  U  C  H  E
+      O        P A R I S
+     T I R E   ET   TIRERA
+    T O U             JOURS
+   AUX                  A  L
+ LEM                      ANDS   - Apollinaire
+
+Verlauf:
+
+BugListe:
+- Wenn ich versuche, auf eine neue HTML Seite zuzugreifen
+und ich dann wieder zurück gehe, kann ich das Fenster nicht
+schließen. Die Fehlermeldung: Skripte können nur Fenster
+schließen, die von einem Skript geöffnet wurden. 
+Taucht in der Console auf.                                      [x]
+
+<h1>
+    Punktesystem -- Überlegung
+</h1>
+
+
+Idee für die Punkte:
+Bestimmen:
+-	Punkte für die Stadt mit der Temperatur
+-	StadtTemperatur = Stadt die man auswählt =ST
+-	Startpunkt = 0
+-	Abweichungstemperatur = AbT
+Wenn falsch, dann bekommt man (Stadt – Abweichung der Temperatur)
+
+Beispiel
+
+Scenario 1: 0 -> falsche Antwort = Abweichung -> 0 - AbT 
+Scenario 2: 0-> richtige Antwort = Punktezahl der ST 
+Scenario 3: 
+
+Wenn ich eins der falschen Angaben genommen habe, würde die jeweils falsche Angabe – (das ausgewählte)
+
+Mittelwert erfassen von Minuspunkte vs. Pluspunkte gerechte Punkteverteilung, damit man nicht sofort verloren hat.
+
+-------------
+
+</pre>
+
+        <button class="zumMenuButton">Zurück zum Menu</button>
+
+        </pre>
+        <!--    
+            Pre ist die Funktion,
+            womit man keine Zeilen
+            umbrüche extra mit
+            <br> machen muss.  - -
+        -->
+    </div>
+
+    <!------------- Bestenliste Bereich ab hier ------------>
+    <div id="bestenListeBereichHTML">
+        <h1>Bestenliste</h1>
+        <ol style="text-align: left; padding-left: 60px;">
+            <li>Spieler 1 - 500 Pkt</li>
+            <li>Spieler 2 - 450 Pkt</li>
+            <li>Spieler 3 - 300 Pkt</li>
+        </ol>
+
+        <button class="zumMenuButton">Zurück zum Menu</button>
+
+    </div>
+
+    <!------------- Mitwirkende Bereich ab hier ============-->
+    <div id="mitwirkendeBereichHTML">
+        <p>Lena, Jan und Markus</p>
+        <button class="zumMenuButton">Zurück zum Menu</button>
+    </div>
+
+    <!-- Hier könnte ihre CSS oder JS Dabei stehen (verlinkung) -->
+    <div>
+        <link rel="stylesheet" href="../CSS/optionsfenster.css">
+        <link rel="stylesheet" href="../CSS/sichtbarkeit.css">
+        <link rel="stylesheet" href="../CSS/soundregler.css">
+        <link rel="stylesheet" href="../CSS/container_fuer_menubilder.css">
+        <script src="../JavaScript/allButtons.js"></script>
+        <script src="../JavaScript/menuSound.js"></script>
+    </div>
+
 </body>
 
 </html>
