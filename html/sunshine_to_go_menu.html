@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sunshine To Go</title>
-
-    <!-- Audio für das Menu -->
-
 </head>
-
 <body>
-    <!------------- Menu Bereich ab hier ------------------->
+    <!--
+    ==============================================================
+                        Menu Bereich ab hier 
+    ==============================================================
+    -->
     <div id="menuBereichHTML">
         <!-- Überschrift -->
         <h1 class="titelVonMenu">Sunshine To Go</h1>
@@ -52,38 +52,45 @@
 
         </div>
     </div>
-
-    <!----------- Was im Fenster vorgeht in Optionen ------->
+    <!--
+    =========================================================
+                Was im Fenster vorgeht in Optionen
+    ==========================================================
+    -->
     <dialog id="openWindowOptionID">
-        <p>Optionen</p>
-        <p>Multimedia</p>
-
-        <section>
-            <!---Audioregler-->
-            <div class="slidecontainer">
-                <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                <audio controls autoplay loop id="waldSound">
-                    <source src="../mp3/waldgeraeusche.flac" type="audio/flac">
-                </audio>
-            </div>
-        </section>
-
-        <br>
-        <br>
-        <p>Grafikqualität</p>
-        <p>Spracheinstellung</p>
-
-        <!-- Optional wenn wir noch Zeit haben -->
-        <button id="closeWindowOptionsButton">Schließen</button>
+        <div class="dialogStyle">
+            <h1 class="Optionstitle">Optionen</h1>
+            <section>
+                <!---Audioregler-->
+                <div class="slidecontainer">
+                    <p>Soundregler:</p>
+                    <input type="range" min="0" max="100" value="50" class="slider" id="myRange">
+                    <audio autoplay loop id="waldSound">
+                        <source src="../mp3/waldgeraeusche.flac" type="audio/flac">
+                    </audio>
+                </div>
+            </section>
+            <p>Spracheinstellung:</p>
+            <!-- Optional wenn wir noch Zeit haben -->
+            <button id="closeWindowOptionsButton">Schließen</button>
+        </div>
+        <div class="dialogStyle2">
+            <img src="../bilder/optionsBilder/Ticket.png" </div>
     </dialog>
-
-    <!------------- Gameplay Bereich ab hier --------------->
+    <!--
+    ===========================================================
+                    Gameplay Bereich ab hier 
+    ===========================================================
+    -->
     <div id="gameplayBereichHTML">
         <h1>Gameplay</h1>
         <button class="zumMenuButton">Zurück zum Menu</button>
     </div>
-
-    <!------------- Fortschritt Bereich ab hier ------------>
+    <!--
+    ==========================================================
+                    Fortschritt Bereich ab hier 
+    ==========================================================
+    -->
     <div id="fortschrittBereichHTML">
         <pre>
     Variablennamen -> Einigung für das Spiel = 
@@ -113,7 +120,8 @@
     - Ranking (wie viele Punkte habe ich geschafft)                     [in Entwicklung]
     - Handy tauglich machen                                             [fraglich ist...]
     - Gameplay: es gibt 3 Schwierigkeitsgrade (leicht, mittel, schwer)? (Optional)
-    - Grafikqualität einstellen (Niedrig, Mittel, Hoch)  (Optional)     (Optional)
+    - Grafikqualität einstellen (Niedrig, Mittel, Hoch)                 (Optional)
+    - Nutzername eingeben für die Speicherung der Punkte                (Optional)
     - Getter und Setter einfügen                                        [ ]
     - Moduleart aufbau                                                  [ ]
     - Design die anderen Menus                                          [ ]
@@ -205,8 +213,11 @@ Mittelwert erfassen von Minuspunkte vs. Pluspunkte gerechte Punkteverteilung, da
             <br> machen muss.  - -
         -->
     </div>
-
-    <!------------- Bestenliste Bereich ab hier ------------>
+    <!--
+    ========================================================
+                Bestenliste Bereich ab hier 
+    ========================================================
+    -->
     <div id="bestenListeBereichHTML">
         <h1>Bestenliste</h1>
         <ol style="text-align: left; padding-left: 60px;">
@@ -218,14 +229,20 @@ Mittelwert erfassen von Minuspunkte vs. Pluspunkte gerechte Punkteverteilung, da
         <button class="zumMenuButton">Zurück zum Menu</button>
 
     </div>
-
-    <!------------- Mitwirkende Bereich ab hier ============-->
+    <!--
+    =======================================================
+                Mitwirkende Bereich ab hier
+    =======================================================
+    -->
     <div id="mitwirkendeBereichHTML">
         <p>Lena, Jan und Markus</p>
         <button class="zumMenuButton">Zurück zum Menu</button>
     </div>
-
-    <!-- Hier könnte ihre CSS oder JS Dabei stehen (verlinkung) -->
+    <!--
+    =======================================================
+    Hier könnte ihre CSS oder JS Dabei stehen (verlinkung) 
+    =======================================================
+    -->
     <div>
         <link rel="stylesheet" href="../CSS/optionsfenster.css">
         <link rel="stylesheet" href="../CSS/sichtbarkeit.css">
@@ -234,7 +251,5 @@ Mittelwert erfassen von Minuspunkte vs. Pluspunkte gerechte Punkteverteilung, da
         <script src="../JavaScript/allButtons.js"></script>
         <script src="../JavaScript/menuSound.js"></script>
     </div>
-
 </body>
-
 </html>

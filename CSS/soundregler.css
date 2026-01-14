@@ -2,12 +2,15 @@
 
 .slidecontainer {
   width: 100%; 
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 /* Der Slider */
 .slider {
   -webkit-appearance: none;  
-  appearance: none;
+  appearance: number;
   width: 100%; 
   height: 25px; 
   background: #d3d3d3; 
