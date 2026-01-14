@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Title</title>
+  <!-- <link rel="stylesheet" href="style.css"> -->
+
+  <!-- Von https://threejs.org/manual/#en/installation -->
+  <!-- SETUP Three.js -->
+  <script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.181.2/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.181.2/examples/jsm/",
+    "a3model": "https://cdn.jsdelivr.net/npm/a3model@1.0.8/src/index.js",
+    "three/examples/jsm/renderers/CSS2DRenderer": "https://cdn.jsdelivr.net/npm/three@0.181.2/examples/jsm/renderers/CSS2DRenderer.js"
+  }
+}
+</script>
+
+
+
+
+
+  <!-- Accessibility Referenz-->
+
+  <style>
+
+  /* Importing the a3model's (for accessibility) css file
+  source: https://www.w3schools.com/cssref/atrule_import.php */
+
+    @import url("https://cdn.jsdelivr.net/npm/a3model@1.0.8/src/index.css");
+
+    
+
+  </style>
+
+
+
+</head>
+
+<body>
+
+
+  <div id="a3canvas"> <!-- Accessibility -->
+
+    <canvas id="webgl"></canvas> <!-- Accessibility -->
+
+  </div> <!-- Accessibility -->
+
+  <!-- Muted for Accessibility Test
+     <script type="module" src="main.js" defer></script> 
+     -->
+
+  <script type="module" src="main.js" defer></script>
+
+  <!-- Ende Accessibility Teil 2-->
+
+  <!-- Muted für Accessibility Test 
+  Sunshine Game
+  <script type="module" src="main.js"></script>
+  -->
+
+</body>
+
+</html>
