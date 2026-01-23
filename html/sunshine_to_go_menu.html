@@ -21,7 +21,7 @@
         <div class="container">
 
             <figure id="startGameButton" class="bild">
-                <img src="../bilder/menu_bilder/gameplay.png" alt="Spiel-Start-Bild">
+                <a href="../html/spiel_spielen.html"><img src="../bilder/menu_bilder/gameplay.png" alt="Spiel-Start-Bild"></a>
                 <figcaption><strong>Spiel<br>Starten</strong></figcaption>
             </figure>
 
@@ -49,12 +49,11 @@
                 <img src="../bilder/menu_bilder/beenden.png" alt="Beenden-Bild">
                 <figcaption><strong>Beenden</strong></figcaption>
             </figure>
-
         </div>
     </div>
     <!--
     =========================================================
-                Was im Fenster vorgeht in Optionen
+                Was im Optionenfenster vorgeht
     ==========================================================
     -->
     <dialog id="openWindowOptionID">
@@ -75,7 +74,7 @@
             <button id="closeWindowOptionsButton">Schließen</button>
         </div>
         <div class="dialogStyle2">
-            <img src="../bilder/optionsBilder/Ticket.png" </div>
+            <img src="../bilder/optionsBilder/Ticket.png"></div>
     </dialog>
     <!--
     ===========================================================
@@ -122,11 +121,22 @@
     - Gameplay: es gibt 3 Schwierigkeitsgrade (leicht, mittel, schwer)? (Optional)
     - Grafikqualität einstellen (Niedrig, Mittel, Hoch)                 (Optional)
     - Nutzername eingeben für die Speicherung der Punkte                (Optional)
+    - Spiele zusammenkriegen                                            [ ] j
+    - Pausemenu erstellen                                               [ ] m !
+    - Figur erstellen Blender                                           [ ] m
+    - Moduleart aufbau -> bei localen Daten                             [x] m
+    - Design die anderen Menus                                          [ ] m 
+    - Schrift wird nicht kleiner, wenn das Fenster kleiner wird         [ ] m
+    - Lokaler speicher = persisten                                      [x] m !
+    - Try, Catch und ...                                                [ ]
     - Getter und Setter einfügen                                        [ ]
-    - Moduleart aufbau                                                  [ ]
-    - Design die anderen Menus                                          [ ]
-    - Schrift wird nicht kleiner, wenn das Fenster kleiner wird         [ ]
+
+    Barrierefreiheit:
+    - Darkmode
+    - Colourblindfilter
     
+
+
     Es gibt die Auswahl von 3 Städten
     (x,y,z) muss man eine auswählen,
     wie groß die Gradzahl ist bekommt
@@ -205,13 +215,13 @@ Mittelwert erfassen von Minuspunkte vs. Pluspunkte gerechte Punkteverteilung, da
 
         <button class="zumMenuButton">Zurück zum Menu</button>
 
-        </pre>
         <!--    
             Pre ist die Funktion,
             womit man keine Zeilen
             umbrüche extra mit
-            <br> machen muss.  - -
+            <br> machen muss.  - - - 
         -->
+
     </div>
     <!--
     ========================================================
@@ -244,12 +254,15 @@ Mittelwert erfassen von Minuspunkte vs. Pluspunkte gerechte Punkteverteilung, da
     =======================================================
     -->
     <div>
+        <!--CSS-->
         <link rel="stylesheet" href="../CSS/optionsfenster.css">
         <link rel="stylesheet" href="../CSS/sichtbarkeit.css">
         <link rel="stylesheet" href="../CSS/soundregler.css">
         <link rel="stylesheet" href="../CSS/container_fuer_menubilder.css">
+        <!--JS-->
         <script src="../JavaScript/allButtons.js"></script>
-        <script src="../JavaScript/menuSound.js"></script>
+        <script type="module" src="../JavaScript/menuSound.js"></script>
+        <script src="../JavaScript/localStorage.js"></script>
     </div>
 </body>
 </html>

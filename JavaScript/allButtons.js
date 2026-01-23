@@ -2,12 +2,18 @@
 // funktion JS(Verschwinden/Auftauchen) <= AddEvent(klicken) <= ID (Button)
 // Definierte Buttons:
 
+//--- Bereich HAUPTMENU ---
 const buttonStartGame = document.getElementById("startGameButton");
 const buttonStartBestenliste = document.getElementById("buttonBestenliste");
 const buttonClickOptions = document.getElementById("startOnClickOptions");
 const buttonCloseGame = document.getElementById("endGameButton");
 const buttonOpenFortschritt = document.getElementById("fortschrittButton");
 const buttonClickMitwirkende = document.getElementById("btnMitwirkende");
+
+//--- Bereich INGAME ---
+// Gameplay Bereich:
+const buttonPauseMenu = document.getElementById("pausenMenuButton")
+
 
 // Div-Bereiche für die Sichtbarkeit bestimmen:
 
@@ -17,9 +23,13 @@ const bestenlisteS = document.getElementById("bestenListeBereichHTML");
 const gameplayS = document.getElementById("gameplayBereichHTML");
 const mitwirkendeS = document.getElementById("mitwirkendeBereichHTML");
 
-// Button für das Optionsfenster 
+// Button für das Optionsfenster
 const fensterWindowOp = document.getElementById("openWindowOptionID");
 const buttonCloseOptionsWindow = document.getElementById("closeWindowOptionsButton");
+
+// Pausen Menu öffnen
+
+const pausenMenuOp = document.getElementById("pausenMenu")
 
 // Ein Button für alle Bereiche, der nur einmal erstellt werden muss. [x]
 // Nimm aktuelle Seite und lass sie verschwinden.
@@ -34,8 +44,6 @@ function funcZumMenu() {
     if (bestenlisteS) bestenlisteS.style.display = "none";
     if (gameplayS) gameplayS.style.display = "none";
     if (mitwirkendeS) mitwirkendeS.style.display = "none";
-
-    if (menuS) menuS.style.display = "block";
 }
 
 alleMenuButtonsGoBack.forEach(einzelnerButton => {
@@ -50,6 +58,7 @@ buttonClickOptions.addEventListener("click", () => {
     fensterWindowOp.showModal();
 });
 
+
 // Optionsfenster wird geschlossen
 buttonCloseOptionsWindow.addEventListener("click", () => {
     fensterWindowOp.close();
@@ -58,23 +67,29 @@ buttonCloseOptionsWindow.addEventListener("click", () => {
 // Anwendung beenden
 buttonCloseGame.addEventListener("click", () => {
     window.close();
-})
+});
+
+// --- Bereich InGame ---
+// Funktion für das Pause Menu
+buttonPauseMenu.addEventListener("click", () => {
+ pausenMenuOp.showModal();
+});
 
 //------------------addEventListener für die Buttons--------------------------
 
 // Bereich "Bestenliste wird angezeigt"
 buttonStartBestenliste.addEventListener("click", () => {
     zeigBestenliste()
-})
+});
 
 // Zeig Fortschritt, wenn man den Knopf gedrückt hat.
 buttonOpenFortschritt.addEventListener("click", () => {
     zeigFortschritt()
-})
+});
 
 buttonClickMitwirkende.addEventListener("click", () => {
     zeigMitwirkende()
-})
+});
 
 //------Funktionen für die Sichtbarkeit von Div-Seiten-----------------------
 
