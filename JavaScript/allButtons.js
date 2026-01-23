@@ -1,40 +1,52 @@
-// Js definierte Buttons für alle Menubereiche
-// funktion JS(Verschwinden/Auftauchen) <= AddEvent(klicken) <= ID (Button)
-// Definierte Buttons:
+/*
+==========================================================
+    Routing-Funktion zwischen Menu und Gameplay
+==========================================================
+*/
 
-//--- Bereich HAUPTMENU ---
-const buttonStartGame = document.getElementById("startGameButton");
-const buttonStartBestenliste = document.getElementById("buttonBestenliste");
-const buttonClickOptions = document.getElementById("startOnClickOptions");
+if (window.location.pathname.includes("sunshine_to_go_menu.html")) {
+    console.log("Willkommen im Menubereich");
+    imMenu() /* Menubereich */
+}
+
+else if (window.location.pathname.includes("spiel_spielen.html")) {
+    console.log("Willkommen im Gameplaybereich");
+    imGameplay() /* Gameplaybereich */
+}
+
+/*
+==========================================================
+    Menubereich 
+    ===========
+==========================================================
+*/
+
+    function imMenu() {
+
+// Bereich HAUPTMENU 
 const buttonCloseGame = document.getElementById("endGameButton");
+const buttonStartBestenliste = document.getElementById("buttonBestenliste");
 const buttonOpenFortschritt = document.getElementById("fortschrittButton");
 const buttonClickMitwirkende = document.getElementById("btnMitwirkende");
 
-//--- Bereich INGAME ---
-// Gameplay Bereich:
-const buttonPauseMenu = document.getElementById("pausenMenuButton")
-
-
 // Div-Bereiche für die Sichtbarkeit bestimmen:
-
 const menuS = document.getElementById("menuBereichHTML");
 const fortschrittS = document.getElementById("fortschrittBereichHTML");
 const bestenlisteS = document.getElementById("bestenListeBereichHTML");
 const gameplayS = document.getElementById("gameplayBereichHTML");
 const mitwirkendeS = document.getElementById("mitwirkendeBereichHTML");
 
-// Button für das Optionsfenster
-const fensterWindowOp = document.getElementById("openWindowOptionID");
-const buttonCloseOptionsWindow = document.getElementById("closeWindowOptionsButton");
 
-// Pausen Menu öffnen
+/*
+============================================================
+    Universal Button um zurück zum Menu zu kommen
+============================================================
+*/
 
-const pausenMenuOp = document.getElementById("pausenMenu")
-
-// Ein Button für alle Bereiche, der nur einmal erstellt werden muss. [x]
+// Hinweise
+// Ein Button für alle Bereiche, der nur einmal erstellt werden muss. 
 // Nimm aktuelle Seite und lass sie verschwinden.
-// benötigt eine Klasse, weil es häufiger verwendet wurde. [X]
-
+// benötigt eine Klasse, weil es häufiger verwendet wurde. 
 const alleMenuButtonsGoBack = document.querySelectorAll(".zumMenuButton");
 
 function funcZumMenu() {
@@ -50,60 +62,70 @@ alleMenuButtonsGoBack.forEach(einzelnerButton => {
     einzelnerButton.addEventListener("click", funcZumMenu);
 });
 
-//--------------------- Spezial-Funktionen------------------------------------
+/*
+============================================================
+    AddEventListener für die Button's
+============================================================
+*/
 
-//funktionen für die Buttons die gedrückt wurden
+// Bereich "Bestenliste" wird angezeigt
+buttonStartBestenliste.addEventListener("click", () => {
+    zeigBestenliste()
+});
+
+// Bereich "Fortschritt" wird angezeigt
+buttonOpenFortschritt.addEventListener("click", () => {
+    zeigFortschritt()
+});
+
+// Bereich "Mitwirkende" wird angezeigt
+buttonClickMitwirkende.addEventListener("click", () => {
+    zeigMitwirkende()
+});
+
+/*
+============================================================
+    Optionsfenster
+============================================================
+*/
+
+const buttonClickOptions = document.getElementById("startOnClickOptions");
+const fensterWindowOp = document.getElementById("openWindowOptionID");
+
 // Optionensfenster wird angezeigt
 buttonClickOptions.addEventListener("click", () => {
     fensterWindowOp.showModal();
 });
 
+// Optionsfenster schließen
+
+const buttonCloseOptionsWindow = document.getElementById("closeWindowOptionsButton");
 
 // Optionsfenster wird geschlossen
 buttonCloseOptionsWindow.addEventListener("click", () => {
     fensterWindowOp.close();
 });
 
-// Anwendung beenden
+/*
+============================================================
+    Anwendung beenden
+============================================================
+*/
+
 buttonCloseGame.addEventListener("click", () => {
     window.close();
 });
 
-// --- Bereich InGame ---
-// Funktion für das Pause Menu
-buttonPauseMenu.addEventListener("click", () => {
- pausenMenuOp.showModal();
-});
-
-//------------------addEventListener für die Buttons--------------------------
-
-// Bereich "Bestenliste wird angezeigt"
-buttonStartBestenliste.addEventListener("click", () => {
-    zeigBestenliste()
-});
-
-// Zeig Fortschritt, wenn man den Knopf gedrückt hat.
-buttonOpenFortschritt.addEventListener("click", () => {
-    zeigFortschritt()
-});
-
-buttonClickMitwirkende.addEventListener("click", () => {
-    zeigMitwirkende()
-});
-
-//------Funktionen für die Sichtbarkeit von Div-Seiten-----------------------
-
-// Alle Funktionen für Sichtwechsel
-// Verschwinden / Auftauchen der Div-Bereiche
+/*
+============================================================
+    Sichtbarkeit der Div's = ButtonClick => Seitenwechsel
+    Menubereich zu navigieren (nur eine HTML Datei)
+============================================================
+*/
 
 function zeigBestenliste() {
     bestenlisteS.style.display = "block";
     menuS.style.display = "none";
-}
-
-function zeigMenu() {
-    bestenlisteS.style.display = "none";
-    menuS = "block";
 }
 
 function zeigFortschritt() {
@@ -116,3 +138,46 @@ function zeigMitwirkende() {
     menuS.style.display = "none";
 }
 
+}// Ende vom Menubereich
+
+/*
+==========================================================
+    Gameplaybereich
+    ===============
+==========================================================
+*/
+
+function imGameplay() {
+
+// !Wichtiger Hinweis! für meine JS Datei, da bei der Abfrage
+// von zwei unterschiedlichen Dialogen in Menu und Gameplay ist
+// es wichtig, dass die Dialoge aus der vorherigen Seite
+// nicht = NULL ist, da sonst eine Fehlermeldung entsteht. 
+// Wurde mit der Routingfunktion behoben S. oben [x]
+
+
+// Button für das PausenMenu
+
+const buttonPauseMenu = document.getElementById("pausenMenuButton");
+
+// Pausen Menu öffnen !!!!!!!
+const pausenMenuOp = document.getElementById("pausenMenu");
+
+// Optionsfenster
+
+buttonPauseMenu.addEventListener("click", () => {
+pausenMenuOp.showModal();
+});
+
+if (buttonPauseMenu !== null && pausenMenuOp !== null) {
+    
+    const pausenMenuOp = document.getElementById("pausenMenu");
+
+    buttonPauseMenu.addEventListener("click", () => {
+        if(pausenMenuOp) {
+            pausenMenuOp.showModal();
+        }
+    });
+}
+
+}  // Aus dem Gameplaybereich
