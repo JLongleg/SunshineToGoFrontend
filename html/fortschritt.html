@@ -1,0 +1,218 @@
+<!-- Designm, sowie Dokumentation zusammen mit KI erstellt und überarbeitet -->
+
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunshine To Go - Projekt Dokumentation</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <audio autoplay loop id="endSound">
+        <source src="../mp3/218204__valentinsosnitskiy__ending.mp3" type="audio/mp3">
+    </audio>
+    <!-- Quellen -->
+
+
+    <div class="container">
+
+        <header>
+            <h1>Sunshine To Go</h1><br><a href="../html/sunshine_to_go_menu.html"><button>Zurück zum Menü</button></a>
+            <p>Projekt-Dokumentation & Entwicklungsstand</p>
+        </header>
+
+        <section class="card">
+            <h2>Coding Conventions</h2>
+            <div class="code-rules">
+                <div class="rule-item">
+                    <strong>Variablen</strong>
+                    Verwendung von <code>CamelCase</code>.
+                </div>
+                <div class="rule-item">
+                    <strong>Deklaration</strong>
+                    So wenig <code>const</code> wie möglich, eher <code>let</code>.
+                </div>
+                <div class="rule-item">
+                    <strong>Kommentare</strong>
+                    Über den Code schreiben, was dieser macht.
+                </div>
+                <div class="rule-item">
+                    <strong>Bibliotheken</strong>
+                    Nutzung muss explizit angegeben werden.
+                </div>
+                <div class="rule-item">
+                    <strong>Zuständigkeit von <br> ThreeJS, Modelling</strong>
+                    <code>Lena</code>
+                </div>
+                <div class="rule-item">
+                    <strong>Zuständigkeit von Datenbank, Server</strong>
+                    <code>Jan</code>
+                </div>
+                <div class="rule-item">
+                    <strong>Zuständigkeit von<br>JS, HTML, CSS</strong>
+                    <code>Markus</code>
+                </div>
+                <div class="rule-item">
+                    <strong>Variablen</strong>
+                    Verwendung von <code>CamelCase</code>.
+                </div>
+            </div>
+            <br>
+            <button class="btnHome">Home</button>
+        </section>
+
+        <section class="card">
+            <h2>Entwicklungs-Status</h2>
+            <ul class="task-list">
+                <li>Start-Buttons erstellen <span class="label status-done">Erledigt</span></li>
+                <li>Onclick Funktionen zuordnen <span class="label status-done">Erledigt</span></li>
+                <li>Beenden-Knopf <span class="label status-done">Erledigt</span></li>
+                <li>Layout Divs <span class="label status-done">Erledigt</span></li>
+                <li>Abstraktion Menu-Button-Zurück <span class="label status-done">Erledigt</span></li>
+                <li>Modulare Datenstruktur (Sound) <span class="label status-done">Erledigt</span></li>
+                <li>Lokaler Speicher (Persistent) <span class="label status-done">Erledigt</span></li>
+                <li>3 Charakter erstellen <span class="label status-done">Erledigt</span></li>
+                <li>Server aufsetzen <span class="label status-done">Erledigt</span></li>
+                <li>Wetterdaten <span class="label status-done">Erledigt</span></li>
+                <li>3D Umgebungswelt <span class="label status-done">Erledigt</span></li>
+                <li>Fortschrittsanzeige <span class="label status-done">Erledigt</span></li>
+                <li><span>-</span></li>
+                <li>Optionen (Spieleinstellungen) <span class="label status-wip">In Arbeit</span></li>
+                <li>Highscore Bereich <span class="label status-wip">In Arbeit</span></li>
+                <li>Punktesystem & Ranking <span class="label status-wip">In Arbeit</span></li>
+                <li>Design & Menüs <span class="label status-wip">In Arbeit</span></li>
+                <li>Pause-Menü <span class="label status-wip">In Arbeit</span></li>
+                <li><span>-</span></li>
+                <li>Handy-Tauglichkeit <span class="label status-open">Offen</span></li>
+            </ul><br>
+            <button class="btnHome">Home</button>
+        </section>
+
+        <section class="card">
+            <h2>Spielmechanik & Punktesystem</h2>
+
+            <h3>Ablauf</h3>
+            <p>Es gibt eine Auswahl von 3 Städten (x, y, z). Der Spieler muss ein verwirrten Passagier navigieren.</p>
+
+            <h3>Punkteberechnung</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Szenario</th>
+                        <th>Logik</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Richtige Antwort</td>
+                        <td>Punktezahl der Stadt (ST)</td>
+                    </tr>
+                    <tr>
+                        <td>Falsche Antwort</td>
+                        <td><code>Stadt - Abweichungstemperatur (AbT)</code></td>
+                    </tr>
+                    <tr>
+                        <td>Strafe</td>
+                        <td>Ausgewählte falsche Angabe minus Zielwert</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Ranking System</h3>
+
+            <ul>
+                <li>🥇 <strong>1. Platz:</strong> Gold</li>
+                <li>🥈 <strong>2. Platz:</strong> Silber</li>
+                <li>🥉 <strong>3. Platz:</strong> Bronze</li>
+                <li>🎗️ <strong>4. Platz:</strong> Trostpreis</li>
+            </ul>
+            <br>
+            <button class="btnHome">Home</button>
+        </section>
+
+        <section class="card" style="border-left: 5px solid red;">
+            <h2 style="border-left: none; padding: 0; color: #b91c1c;">Bug Report</h2>
+            <div style="background: #fef2f2; padding: 15px; border-radius: 8px;">
+                <strong>Problem:</strong> Fenster lässt sich nach Navigation nicht schließen.<br>
+                <strong>Status:</strong> <span class="label status-done">Gefunden [x]</span><br>
+                <strong>Erklärung:</strong> Dies ist ein Sicherheitsfeature des Browsers. Eine Seite kann sich nicht
+                selbst schließen, wenn der Nutzer sie manuell geöffnet hat (nur Popups, die per Script geöffnet wurden,
+                dürfen per Script geschlossen werden).
+            </div>
+        </section>
+        <section class="card" style="border-left: 5px solid red;">
+            <h2 style="border-left: none; padding: 0; color: #b91c1c;">Bug Report</h2>
+            <div style="background: #fef2f2; padding: 15px; border-radius: 8px;">
+                <strong>Problem:</strong> <br>
+                <strong>Status:</strong> <span class="label status-done">Gefunden [x]</span><br>
+                <strong>Erklärung:</strong> JavaScript lässt es nicht zu, dass zwei HTML-Datein, in einer JS Datei
+                verarbeitet werden.
+            </div>
+        </section>
+        <section class="card" style="border-left: 5px solid red;">
+            <h2 style="border-left: none; padding: 0; color: #b91c1c;">Bug Report</h2>
+            <div style="background: #fef2f2; padding: 15px; border-radius: 8px;">
+                <strong>Problem:</strong> Mehrere CSS-Datein in einer CSS-Datei verwalten, führt zu massiven Problemen
+                in der Auflösung <br>
+                <strong>Status:</strong> <span class="label status-wip">Alternative [x]</span><br>
+                <strong>Erklärung:</strong> Auseinandersetzung mit DOM gescheitert, es wurde auf einfaches HTML
+                Seitenwechsel, mit jeweils unterschiedlichen CSS Datein gewechselt
+            </div>
+        </section>
+        <section class="card" style="border-left: 5px solid red;">
+            <h2 style="border-left: none; padding: 0; color: #b91c1c;">Bug Report</h2>
+            <div style="background: #fef2f2; padding: 15px; border-radius: 8px;">
+                <strong>Problem:</strong> Fenster lässt sich nach Navigation nicht schließen.<br>
+                <strong>Fehlermeldung:</strong> <em>"Scripts may close only the windows that were opened by
+                    it."</em><br>
+                <strong>Status:</strong> <span class="label status-done">Gefunden [x]</span><br>
+                <strong>Erklärung:</strong> Dies ist ein Sicherheitsfeature des Browsers. Eine Seite kann sich nicht
+                selbst schließen, wenn der Nutzer sie manuell geöffnet hat (nur Popups, die per Script geöffnet wurden,
+                dürfen per Script geschlossen werden).
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Apollinaire Calligram</h2>
+            <div class="poem-container">
+                <pre class="art">
+             S
+             A
+            LUT
+             M
+            O N
+            D  E
+            DONT
+          JE SUIS
+          LA  LAN
+          G U E  É
+         L O Q U E N
+        TE      QUESA
+       B  O  U  C  H  E
+      O        P A R I S
+     T I R E   ET   TIRERA
+    T O U            JOURS
+   AUX                  A  L
+  LEM                    ANDS
+</pre>
+                <p style="margin-top:20px; font-style: italic;">- Apollinaire</p>
+            </div>
+            <br>
+            <button class="btnHome">Home</button>
+        </section>
+
+    </div>
+
+
+
+    <link rel="stylesheet" href="../CSS/fortschritt.css">
+    <script src="../JavaScript/allButtons_Options_Functions.js"></script>
+<script type="module" src="../JavaScript/menuSound.js"></script>
+</body>
+
+</html>

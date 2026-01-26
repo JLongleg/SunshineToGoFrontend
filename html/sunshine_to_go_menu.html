@@ -1,3 +1,5 @@
+<!--- Menu komplett selbst gestaltet -->
+
 <!DOCTYPE html>
 <html lang="de">
 
@@ -35,7 +37,9 @@
             </figure>
 
             <figure id="fortschrittButton" class="bild">
-                <img src="../bilder/menu_bilder/fortschritt.png" alt="Fortschritt-Bild">
+                <a href="../html/fortschritt.html"><img src="../bilder/menu_bilder/gameplay.png"
+                        alt="Spiel-Start-Bild">
+                <img src="../bilder/menu_bilder/fortschritt.png" alt="Fortschritt-Bild"></a>
                 <figcaption><strong>Fort-<br>schritt</strong></figcaption>
             </figure>
 
@@ -49,7 +53,7 @@
                 <figcaption><strong>Mit-<br>wirkende</strong></figcaption>
             </figure>
 
-            <figure class="bild" id="endGameButton">
+            <figure id="endGameButton" class="bild">
                 <img src="../bilder/menu_bilder/beenden.png" alt="Beenden-Bild">
                 <figcaption><strong>Beenden</strong></figcaption>
             </figure>
@@ -71,11 +75,11 @@
                     <p>Soundregler:</p>
                     <input type="range" min="0" max="100" value="50" class="slider" id="myRange">
                     <audio autoplay loop id="waldSound">
-                        <source src="../mp3/waldgeraeusche.flac" type="audio/flac">
+                        <source src="../mp3/453712__kyles__airport-crowd-light-small-waiting-shopping-mall-barcelona-pa-message-spanish.flac" type="audio/wav">
+                        <!-- -->
                     </audio>
                 </div>
             </section>
-            <p>Spracheinstellung:</p>
             <!-- Optional wenn wir noch Zeit haben -->
             <button id="closeWindowOptionsButton">Schließen</button>
         </div>
@@ -83,157 +87,6 @@
             <img src="../bilder/optionsBilder/Ticket.png">
         </div>
     </dialog>
-
-    <!--
-    ===========================================================
-                    Gameplay Bereich ab hier 
-    ===========================================================
-    -->
-
-    <div id="gameplayBereichHTML">
-        <h1>Gameplay</h1>
-        <button class="zumMenuButton">Zurück zum Menu</button>
-    </div>
-
-    <!--
-    ==========================================================
-                    Fortschritt Bereich ab hier 
-    ==========================================================
-    -->
-
-    <div id="fortschrittBereichHTML">
-        <pre>
-    Variablennamen -> Einigung für das Spiel = 
-    
-    Kommentare: Drüber über den Code schreiben was dieser macht
-
-    Wenn wir etwas aus einer Bibiolthek nutzen wollen, müssen wir das angeben.
-
-    Camen case
-
-    so wenig wie möglich Const eher Let, mit den Worten "Let it be"!
-
-    Das wird das Main Menu für die Sunshine To Go Seite:
-    - dazu brauchen wir ein Buttons der jeweils Dinge starten           [x]
-    - Aus onclick, jedem Button eine Funktion zuordnen                  [x]
-    - Knopf fürs beenden vom Spiel (Dabei Sicherheitsaspekte            
-    von HTML beachten)                                                  [x]
-    - Div's welche die einzelnen Bereiche abdeckt                       [x]
-    - Abstraktion von Menu-button Funktionen   (Schwierigkeitsgrade 3)  [x]
-    - Optionen die Spieleinstellungen verändern                         [In Entwicklung]
-    - Bereich des Fortschritt's anzeigt                                 [In Entwicklung]
-    - Bereich der Highscores anzeigt                                    [In Entwicklung]
-    - Bereich der Credits anzeigt                                       [In Entwicklung]
-    - Ein ansprechendes Design                                          [In Entwicklung]
-    - Abstraktion von MenuBtn, wohin es gehen soll                      [in Entwicklung]
-    - Punktesystem                                                      [in Entwicklung] 
-    - Ranking (wie viele Punkte habe ich geschafft)                     [in Entwicklung]
-    - Handy tauglich machen                                             [fraglich ist...]
-    - Gameplay: es gibt 3 Schwierigkeitsgrade (leicht, mittel, schwer)? (Optional)
-    - Grafikqualität einstellen (Niedrig, Mittel, Hoch)                 (Optional)
-    - Nutzername eingeben für die Speicherung der Punkte                (Optional)
-    - Spiele zusammenkriegen                                            [ ] j
-    - Pausemenu erstellen                                               [ ] m !
-    - Figur erstellen Blender                                           [ ] m
-    - Moduleart aufbau -> bei localen Daten                             [x] m
-    - Design die anderen Menus                                          [ ] m 
-    - Schrift wird nicht kleiner, wenn das Fenster kleiner wird         [ ] m
-    - Lokaler speicher = persisten                                      [x] m !
-    - Try, Catch und ...                                                [ ]
-    - Getter und Setter einfügen                                        [ ]
-
-    Barrierefreiheit:
-    - Darkmode
-    - Colourblindfilter
-    
-
-
-    Es gibt die Auswahl von 3 Städten
-    (x,y,z) muss man eine auswählen,
-    wie groß die Gradzahl ist bekommt
-    man Minuspunkte. Man könnte von 
-    den drei Optionen eine mit 0 Punkte
-    eine etwas schlechtere Option mit
-    -1 und ganz weit weg von der Antwort
-    -2 Punkte.
-    
-    Programm muss am Ende wissen, wie viele Punkte man hätte sammeln können.
-
-    Ranking System aus Gold, Silber, Bronze und dem Trostpreis
-
-    1. Platz: Gold
-    2. Platz: Silber
-    3. Platz: Bronze
-    4. Platz: Trostpreis
-
-    1 richtiges Treffen und 1 Updatetreffen.
-
-
-             S
-             A
-            LUT
-             M
-            O N
-            D  E
-            DONT
-          JE SUIS
-          LA  LAN
-          G U E  É
-         L O Q U E N
-        TE      QUESA
-       B  O  U  C  H  E
-      O        P A R I S
-     T I R E   ET   TIRERA
-    T O U             JOURS
-   AUX                  A  L
- LEM                      ANDS   - Apollinaire
-
-Verlauf:
-
-BugListe:
-- Wenn ich versuche, auf eine neue HTML Seite zuzugreifen
-und ich dann wieder zurück gehe, kann ich das Fenster nicht
-schließen. Die Fehlermeldung: Skripte können nur Fenster
-schließen, die von einem Skript geöffnet wurden. 
-Taucht in der Console auf.                                      [x]
-
-<h1>
-    Punktesystem -- Überlegung
-</h1>
-
-
-Idee für die Punkte:
-Bestimmen:
--	Punkte für die Stadt mit der Temperatur
--	StadtTemperatur = Stadt die man auswählt =ST
--	Startpunkt = 0
--	Abweichungstemperatur = AbT
-Wenn falsch, dann bekommt man (Stadt – Abweichung der Temperatur)
-
-Beispiel
-
-Scenario 1: 0 -> falsche Antwort = Abweichung -> 0 - AbT 
-Scenario 2: 0-> richtige Antwort = Punktezahl der ST 
-Scenario 3: 
-
-Wenn ich eins der falschen Angaben genommen habe, würde die jeweils falsche Angabe – (das ausgewählte)
-
-Mittelwert erfassen von Minuspunkte vs. Pluspunkte gerechte Punkteverteilung, damit man nicht sofort verloren hat.
-
--------------
-
-</pre>
-
-        <button class="zumMenuButton">Zurück zum Menu</button>
-
-        <!--    
-            Pre ist die Funktion,
-            womit man keine Zeilen
-            umbrüche extra mit
-            <br> machen muss.  - - - 
-        -->
-
-    </div>
 
     <!--
     ========================================================
@@ -276,10 +129,10 @@ Mittelwert erfassen von Minuspunkte vs. Pluspunkte gerechte Punkteverteilung, da
         <link rel="stylesheet" href="../CSS/optionsfenster.css">
         <link rel="stylesheet" href="../CSS/sichtbarkeit.css">
         <link rel="stylesheet" href="../CSS/soundregler.css">
-        <link rel="stylesheet" href="../CSS/container_fuer_menubilder.css">
+        <link rel="stylesheet" href="../CSS/containerFuerMenubilder.css">
         
         <!--JS-->
-        <script src="../JavaScript/allButtons.js"></script>
+        <script src="../JavaScript/allButtons_Options_Functions.js"></script>
         <script type="module" src="../JavaScript/menuSound.js"></script>
         <script src="../JavaScript/localStorage.js"></script>
 

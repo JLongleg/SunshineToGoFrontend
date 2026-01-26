@@ -1,20 +1,94 @@
-import { soundSpeicherung } from "./localStorage.js";
+/*
+==========================================================
+    Import Speicherung / Basis
+==========================================================
+*/
 
-//Zugriff auf den Reglner
+import { soundSpeicherung, ladeSound } from "./localStorage.js";
+
 let volSlider = document.getElementById("myRange");
-//Zugriff auf den Sound
-let waldSound = document.getElementById("waldSound");
+if(volSlider) {
 
-//Input -> wartet auf den Befehl zum Ausführen der Funktion.
+volSlider.value = ladeSound() * 100;
+
 volSlider.addEventListener("input", function() {
-
-// HTML erkennt nur Werte für Sound zwischen 0.0 und 1.0
-// value ist der entscheidende Soundbereich.
   let volume = volSlider.value / 100;
-  waldSound.volume = volume;
-//localer Speicher für den Sound => Weiterarbeiten mit Volume^
-// bedient sich dabei vom Importdatei, wo alle Funktionen
-// für Local gespeicherte Daten sind.
-soundSpeicherung(volume)
+  soundSpeicherung(volume);
+aktualisiereAktuellenSound(volume);
 });
+}
 
+const startVolume = ladeSound();
+
+
+/*
+==========================================================
+    Routing-Funktion für die Musik
+==========================================================
+*/
+
+if (window.location.pathname.includes("sunshine_to_go_menu.html")) {
+    console.log("Spiele Menu Sound");
+    imMenuSound(startVolume) /* Menubereich */
+}
+
+else if (window.location.pathname.includes("spiel_spielen.html")) {
+    console.log("Spiele Gameplaymusik");
+    imGameplaySound(startVolume) /* Gameplaybereich */
+}
+
+else if (window.location.pathname.includes("fortschritt.html")) {
+    console.log("Spiele Fortschrittsmusik")
+    imFortschrittSound(startVolume) /* Fortschrittbereich */
+}
+
+/*
+==========================================================
+    Gameplay Sound
+==========================================================
+*/
+function imGameplaySound(volume) {
+
+    let bitSound = document.getElementById("bitSound");
+  if (bitSound) {
+    bitSound.volume = volume;
+  } 
+} 
+
+/*
+==========================================================
+    Fortschritt Sound
+==========================================================
+*/
+
+function imFortschrittSound(volume) {
+
+  let endSound = document.getElementById("endSound");
+  if (endSound) {
+    endSound.volume = volume;
+  } 
+} 
+
+/*
+==========================================================
+    Menu Sound
+==========================================================
+*/
+ 
+function imMenuSound(volume) {
+
+  let waldSound = document.getElementById("waldSound");
+  if (waldSound) {
+    waldSound.volume = volume
+  } 
+}
+
+
+function aktualisiereAktuellenSound(vol) {
+  const audioIDs = ["waldSound", "bitSound", "endSound"];
+
+  audioIDs.forEach(id => {
+    const audio = document.getElementById(id);
+    if (audio) audio.volume = vol;
+  });
+}

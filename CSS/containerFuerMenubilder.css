@@ -1,0 +1,176 @@
+/* =========================================
+    GRUNDLAGEN & RESET
+   ========================================= */
+
+        body,
+        html  {
+
+            /*100% der sichtbaren Fensterhöhe nutzen*/
+            height: 100%;
+            width: 100%;
+
+            /*Außenabstand und Innenanstand*/
+            margin: 0;
+            padding: 0;
+            
+            /* Kein Scrollen
+            overflow: hidden;*/
+
+        }
+
+/* =========================================
+    GRUNDLAGEN & HINTERGRUND
+   ========================================= */
+
+        body {
+
+            /*Aktiviert das Flexbox-Layout-System für die ganze Seite*/
+            display: flex;
+
+            /*Stapelt die Kinder (Titel + Container) vertikal übereinander*/
+            flex-direction: column;
+
+            /* Hintergrundfarbe, Schriftfarbe und Schriftart */
+            background-color: orange;
+            color: white;
+            font-family: Arial, sans-serif;
+            
+            background-image: 
+            linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), /* Der Schleier */
+            url('../bilder/hintergrundbild/flughafen.png'); /* Das Hintergrundbild */
+
+            background-size: cover;      /* Füllt alles aus */
+            background-position: center; /* Zentriert */
+           
+        }
+
+/* =========================================
+   HEADER & ÜBERSCHRIFT
+   ========================================= */
+
+        .titelVonMenu {
+            margin: 0;
+            /* Entfernt Standard-Ränder */
+            padding: 10px 0;
+            /* Ein bisschen Luft oben/unten */
+            text-align: center;
+            /* Zentriert den Text */
+            height: auto;
+            /* Nimmt sich so viel Platz wie nötig */
+            background-color: #333;
+            /* Optional: Hintergrund für Titel */
+        }
+
+/* =========================================
+   HAUPT-CONTAINER
+   ========================================= */
+
+        .container {
+            /* Volle Bildschirmhöhe (100vh) und zieht 60px ab */
+            height: calc(100vh - 60px);
+            /*Erlaubt es dem Container, kleiner zu werden als sein Inhalt*/
+            min-height: 0;
+            /* Erstellt ein Rasterlayout mit 3 Spalten und 2 Reihen */
+            display:grid;
+            /* Definiert das Raster mit 3 Spalten und 2 Reihen */
+            /*fraction unit*/
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            /*Abstand zwischen dem Rasterzellen*/
+            gap: 5px;
+            /*Abstand vom Außenrand*/
+            padding: 50px;
+            /*Abstand v*/
+            box-sizing: border-box;
+            
+        }
+
+/* =========================================
+   Die Kacheln
+   ========================================= */
+
+        figure.bild {
+            /*Werte auf Null bringen*/
+            margin: 0;
+            padding: 0;
+            /*Die Figur füllt extakt 100% der Rasterzelle aus*/
+            width: 100%;
+            height: 100%;
+            /*Alles was über den Rand ragt, wird abgeschnitten*/
+            overflow: hidden;
+            /*Schichtmanagment*/
+            position: relative;
+            background-color: #ffffff00;
+        }
+
+/* =========================================
+   Die Bilder
+   ========================================= */
+
+        img {
+            width: 100%;
+            height: 100%;
+            
+            object-fit: contain;
+            object-position: center bottom;
+            display: block;
+            /*0.3sek */
+        
+            /*Schichtmanagment*/
+            position: relative;
+            z-index: 2; /*liegt vor dem Text*/
+            
+            /*Bearbeitung der Schrift*/
+             /* display: none !important */
+
+        }
+
+/* =========================================
+   Bildunterschrift
+   ========================================= */
+
+        figcaption {
+            position: absolute;
+            top: 0 ; 
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+            /*liegt unter dem Bild*/
+            z-index: 1; 
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            /*Optik*/
+            color: white;
+            font-size: 3em;
+            font-weight: bold;
+            text-align: center;
+            color: #ffffff;
+            margin-top: 10px;
+            text-shadow: 2px 2px 4px #000000;
+
+
+        }
+
+/* =========================================
+   INTERAKTION (Hover)
+   ========================================= */
+
+        .container img:hover {
+            /*Zeit der Transformation*/
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            /* Vergrößerung der Bilder beim drübergehen (Hover) */
+            transform: scale(0.9);
+            /* Transparenz der Bilder bei drübergehen (Hover) */
+            opacity: 0.5;
+        }
+
+        .figcaption:hover {
+            transition: transform 10s ease, opacity 10s ease;
+            transform: scale(0.1); 
+        }
+
+

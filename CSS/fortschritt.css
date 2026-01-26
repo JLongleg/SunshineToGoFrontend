@@ -1,0 +1,189 @@
+  /* --- GRUNDLAGEN & LAYOUT --- */
+  :root {
+    --primary: #f59e0b;
+    /* Sunshine Yellow/Orange */
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --text: #334155;
+    --text-light: #64748b;
+    --border: #e2e8f0;
+    --code-bg: #1e293b;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --todo: #94a3b8;
+  }
+
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    margin: 0;
+    padding: 40px;
+    background-image: url('../bilder/hintergrundbild/flughafen.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    margin: 0;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    gap: 40px;
+  }
+
+  /* --- TYPOGRAFIE --- */
+  h1 {
+    font-size: 2.5rem;
+    color: #0f172a;
+    border-bottom: 4px solid var(--primary);
+    display: inline-block;
+    margin-bottom: 0.5em;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    border-left: 5px solid var(--primary);
+    padding-left: 15px;
+    color: #1e293b;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 20px;
+  }
+
+  /* --- CARDS (BOXEN) --- */
+  .card {
+    background: var(--surface);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border);
+  }
+
+  /* --- CODE REGELN --- */
+  .code-rules {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+
+  .rule-item {
+    background: #f1f5f9;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+  }
+
+  .rule-item strong {
+    display: block;
+    color: var(--primary);
+    margin-bottom: 5px;
+  }
+
+  code {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-weight: bold;
+  }
+
+  /* --- STATUS LISTE --- */
+  ul.task-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  ul.task-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .label {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: white;
+    min-width: 80px;
+    text-align: center;
+  }
+
+  .status-done {
+    background-color: var(--success);
+  }
+
+  .status-wip {
+    background-color: var(--warning);
+  }
+
+  .status-open {
+    background-color: var(--todo);
+  }
+
+  /* --- APOLLINAIRE KUNST --- */
+  .poem-container {
+    text-align: center;
+    background: #fff;
+    padding: 40px;
+    overflow-x: auto;
+  }
+
+  pre.art {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    line-height: 12px;
+    color: #000;
+    display: inline-block;
+    text-align: left;
+  }
+
+  /* --- TABELLE --- */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  th {
+    background-color: #f8fafc;
+    font-weight: 600;
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 600px) {
+    body {
+      padding: 15px;
+    }
+
+    .label {
+      display: block;
+      margin-top: 5px;
+      width: fit-content;
+    }
+
+    ul.task-list li {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
