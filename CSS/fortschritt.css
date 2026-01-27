@@ -1,24 +1,35 @@
-  /* --- GRUNDLAGEN & LAYOUT --- */
+ 
+    /*
+    ==============================================================
+    Grundlagen und Basis
+    ==============================================================
+    */
+
+    /* Farbwahl (Root -> var) sind Keywords */
   :root {
-    --primary: #f59e0b;
-    /* Sunshine Yellow/Orange */
-    --bg: #f8fafc;
-    --surface: #ffffff;
-    --text: #334155;
-    --text-light: #64748b;
+    --titelFarbe: ;
+    --hauptFarbe: #f59e0b; /* Akzentfarbe */
+    --feldFarbe: #ffffff;
+    --standarttext: #334155;
     --border: #e2e8f0;
     --code-bg: #1e293b;
     --success: #10b981;
     --warning: #f59e0b;
     --todo: #94a3b8;
+    --thhintergrund: #f8fafc;
+    --X: none;
   }
 
+  .untertitel {
+    color:#000000;
+    font-size: 1.2em;
+  }
+
+  /* var nimmt den Wert von Oben */
   body {
     font-family: 'Segoe UI', system-ui, sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    margin: 0;
+    color: var(--standarttext); 
+    line-height: 1.6; /* Textzeile */
     padding: 40px;
     background-image: url('../bilder/hintergrundbild/flughafen.png');
     background-size: cover;
@@ -29,18 +40,29 @@
     margin: 0;
   }
 
-  .container {
+  .btnHome {
+    background: var(--X);
+    border: var(--X);
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  /* container */
+  .umgebung {
     max-width: 900px;
-    margin: 0 auto;
+    margin: auto;
     display: grid;
     gap: 40px;
   }
-
-  /* --- TYPOGRAFIE --- */
+ 
   h1 {
     font-size: 2.5rem;
-    color: #0f172a;
-    border-bottom: 4px solid var(--primary);
+    color: #152a23;
+    border-bottom: 4px solid var(--hauptFarbe);
     display: inline-block;
     margin-bottom: 0.5em;
   }
@@ -48,24 +70,25 @@
   h2 {
     font-size: 1.5rem;
     margin-top: 0;
-    border-left: 5px solid var(--primary);
+    border-left: 5px solid var(--hauptFarbe);
+    display: inline-block;
     padding-left: 15px;
     color: #1e293b;
   }
 
   h3 {
     font-size: 1.1rem;
-    color: var(--text-light);
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-top: 20px;
   }
 
-  /* --- CARDS (BOXEN) --- */
+  /* --- Umgebungsfeld --- */
+
   .card {
-    background: var(--surface);
+    background: var(--feldFarbe);
     padding: 25px;
-    border-radius: 12px;
+    border-radius: 4px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     border: 1px solid var(--border);
   }
@@ -77,16 +100,15 @@
     gap: 15px;
   }
 
-  .rule-item {
+  .card2 {
     background: #f1f5f9;
     padding: 15px;
     border-radius: 8px;
     font-size: 0.9rem;
   }
 
-  .rule-item strong {
-    display: block;
-    color: var(--primary);
+  .card2 strong {
+    color: var(--hauptFarbe);
     margin-bottom: 5px;
   }
 
@@ -122,20 +144,20 @@
     text-align: center;
   }
 
-  .status-done {
+  .GREEN {
     background-color: var(--success);
   }
 
-  .status-wip {
+  .RED {
     background-color: var(--warning);
   }
 
-  .status-open {
+  .YELLOW {
     background-color: var(--todo);
   }
 
   /* --- APOLLINAIRE KUNST --- */
-  .poem-container {
+  .poem-umgebung {
     text-align: center;
     background: #fff;
     padding: 40px;
@@ -158,6 +180,7 @@
     margin-top: 15px;
   }
 
+  /*Tabellenkopf, inhalt*/
   th,
   td {
     text-align: left;
@@ -165,12 +188,13 @@
     border-bottom: 1px solid var(--border);
   }
 
+  /*Tabellenkopf*/
   th {
-    background-color: #f8fafc;
+    background-color: var(--thhintergrund);
     font-weight: 600;
   }
 
-  /* --- RESPONSIVE --- */
+  /* --- !HANDYVERSION UNSTABLE! --- */
   @media (max-width: 600px) {
     body {
       padding: 15px;
