@@ -18,6 +18,10 @@
 
         }
 
+:root {
+--standarttext:white;
+}
+
 /* =========================================
     GRUNDLAGEN & HINTERGRUND
    ========================================= */
@@ -31,16 +35,18 @@
             flex-direction: column;
 
             /* Hintergrundfarbe, Schriftfarbe und Schriftart */
-            background-color: orange;
-            color: white;
+            color: var(--standarttext);
             font-family: Arial, sans-serif;
             
             background-image: 
-            linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), /* Der Schleier */
-            url('../bilder/hintergrundbild/flughafen.png'); /* Das Hintergrundbild */
+            /*Schleier für das Hintergrundbild*/
+            linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            
+            /* Das Hintergrundbild */
+            url('../bilder/hintergrundbild/flughafen.jpg'); 
 
-            background-size: cover;      /* Füllt alles aus */
-            background-position: center; /* Zentriert */
+            /* Bild Zentriert */
+            background-size: cover; 
            
         }
 

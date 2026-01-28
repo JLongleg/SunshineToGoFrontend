@@ -30,7 +30,6 @@ function imMenu() {
     // Bereich HAUPTMENU 
     const buttonCloseGame = document.getElementById("endGameButton");
     const buttonStartBestenliste = document.getElementById("buttonBestenliste");
-    const buttonOpenFortschritt = document.getElementById("fortschrittButton");
     const buttonClickMitwirkende = document.getElementById("btnMitwirkende");
 
     // Div-Bereiche für die Sichtbarkeit bestimmen:
@@ -47,8 +46,8 @@ function imMenu() {
 
     // Hinweise
     // Ein Button für alle Bereiche, der nur einmal erstellt werden muss. 
-    // Nimm aktuelle Seite und lass sie verschwinden.
     // benötigt eine Klasse, weil es häufiger verwendet wurde. 
+
     const alleMenuButtonsGoBack = document.querySelectorAll(".zumMenuButton");
 
     function funcZumMenu() {
@@ -72,11 +71,6 @@ function imMenu() {
     // Bereich "Bestenliste" wird angezeigt
     buttonStartBestenliste.addEventListener("click", () => {
         zeigBestenliste()
-    });
-
-    // Bereich "Fortschritt" wird angezeigt
-    buttonOpenFortschritt.addEventListener("click", () => {
-        zeigFortschritt()
     });
 
     // Bereich "Mitwirkende" wird angezeigt
@@ -134,7 +128,7 @@ function imMenu() {
         menuS.style.display = "none";
     }
 
-};// Ende vom Menubereich
+}; // Ende vom Menubereich
 
 /*
 ==========================================================
@@ -145,7 +139,7 @@ function imMenu() {
 
 function imGameplay() {
 
-    // !Wichtiger Hinweis! für meine JS Datei, da bei der Abfrage
+    // !Wichtiger Hinweis! Für meine JS Datei, da bei der Abfrage
     // von zwei unterschiedlichen Dialogen in Menu und Gameplay ist
     // es wichtig, dass die Dialoge aus der vorherigen Seite
     // nicht = NULL ist, da sonst eine Fehlermeldung entsteht. 
@@ -168,9 +162,8 @@ function imGameplay() {
     buttonPauseMenu.addEventListener("click", () => {
         pausenMenuOp.showModal();
     });
-    //}
 
-}  // Aus dem Gameplaybereich
+}  // Ende aus dem Gameplaybereich
 
 /*
 ==========================================================
