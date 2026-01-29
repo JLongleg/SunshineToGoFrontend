@@ -27,11 +27,6 @@ else if (window.location.pathname.includes("fortschritt.html")) {
 
 function imMenu() {
 
-    // Bereich HAUPTMENU 
-    const buttonCloseGame = document.getElementById("endGameButton");
-    const buttonStartBestenliste = document.getElementById("buttonBestenliste");
-    const buttonClickMitwirkende = document.getElementById("btnMitwirkende");
-
     // Div-Bereiche für die Sichtbarkeit bestimmen:
     const menuS = document.getElementById("menuBereichHTML");
     const bestenlisteS = document.getElementById("bestenListeBereichHTML");
@@ -68,15 +63,15 @@ function imMenu() {
     ============================================================
     */
 
-    // Bereich "Bestenliste" wird angezeigt
-    buttonStartBestenliste.addEventListener("click", () => {
-        zeigBestenliste()
-    });
+    // // Bereich "Bestenliste" wird angezeigt
+    // buttonStartBestenliste.addEventListener("click", () => {
+    //     zeigBestenliste()
+    // });
 
-    // Bereich "Mitwirkende" wird angezeigt
-    buttonClickMitwirkende.addEventListener("click", () => {
-        zeigMitwirkende()
-    });
+    // // Bereich "Mitwirkende" wird angezeigt
+    // buttonClickMitwirkende.addEventListener("click", () => {
+    //     zeigMitwirkende()
+    // });
 
     /*
     ============================================================
@@ -93,30 +88,12 @@ function imMenu() {
     });
 
     // Optionsfenster schließen
-
     const buttonCloseOptionsWindow = document.getElementById("closeWindowOptionsButton");
 
     // Optionsfenster wird geschlossen
     buttonCloseOptionsWindow.addEventListener("click", () => {
         fensterWindowOp.close();
     });
-
-    /*
-    ============================================================
-        Anwendung beenden
-    ============================================================
-    */
-
-    buttonCloseGame.addEventListener("click", () => {
-        window.close();
-    });
-
-    /*
-    ============================================================
-        Sichtbarkeit der Div's = ButtonClick => Seitenwechsel
-        Menubereich zu navigieren (nur eine HTML Datei)
-    ============================================================
-    */
 
     function zeigBestenliste() {
         bestenlisteS.style.display = "block";

@@ -83,7 +83,6 @@ function imMenuSound(volume) {
   } 
 }
 
-
 function aktualisiereAktuellenSound(vol) {
   const audioIDs = ["waldSound", "bitSound", "endSound"];
 

@@ -79,7 +79,6 @@
             /* Erstellt ein Rasterlayout mit 3 Spalten und 2 Reihen */
             display:grid;
             /* Definiert das Raster mit 3 Spalten und 2 Reihen */
-            /*fraction unit*/
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(2, 1fr);
             /*Abstand zwischen dem Rasterzellen*/
@@ -151,13 +150,11 @@
 
             /*Optik*/
             color: white;
-            font-size: 3em;
+            font-size: clamp(1rem, 3.5vw, 3.5rem);
             font-weight: bold;
             text-align: center;
-            color: #ffffff;
             margin-top: 10px;
             text-shadow: 2px 2px 4px #000000;
-
 
         }
 

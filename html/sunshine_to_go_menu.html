@@ -11,6 +11,7 @@ Bilder mit Nano Banana Pro erstellt s. Wasserzeichen
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sunshine To Go</title>
 </head>
+
 <body>
 
     <!--
@@ -28,7 +29,7 @@ Bilder mit Nano Banana Pro erstellt s. Wasserzeichen
         <div class="container">
 
             <figure id="startGameButton" class="bild">
-                <a href="../html/spiel_spielen.html"><img src="../bilder/menu_bilder/gameplay.jpg"
+                <a href="../Gameplay/index.html"><img src="../bilder/menu_bilder/gameplay.jpg"
                         alt="Spiel-Start-Bild"></a>
                 <figcaption><strong>Spiel<br>Starten</strong></figcaption>
             </figure>
@@ -41,23 +42,8 @@ Bilder mit Nano Banana Pro erstellt s. Wasserzeichen
             <figure id="fortschrittButton" class="bild">
                 <a href="../html/fortschritt.html"><img src="../bilder/menu_bilder/fortschritt.jpg"
                         alt="Spiel-Start-Bild">
-                <img src="../bilder/menu_bilder/fortschritt.jpg" alt="Fortschritt-Bild"></a>
+                    <img src="../bilder/menu_bilder/fortschritt.jpg" alt="Fortschritt-Bild"></a>
                 <figcaption><strong>Fort-<br>schritt</strong></figcaption>
-            </figure>
-
-            <figure id="buttonBestenliste" class="bild">
-                <img src="../bilder/menu_bilder/bestenliste.jpg" alt="Bestenliste-Bild">
-                <figcaption><strong>Besten-<br>liste</strong></figcaption>
-            </figure>
-
-            <figure id="btnMitwirkende" class="bild">
-                <img src="../bilder/menu_bilder/mitwirkende.jpg" alt="Mitwirkende-Bild">
-                <figcaption><strong>Mit-<br>wirkende</strong></figcaption>
-            </figure>
-
-            <figure id="endGameButton" class="bild">
-                <img src="../bilder/menu_bilder/beenden.jpg" alt="Beenden-Bild">
-                <figcaption><strong>Beenden</strong></figcaption>
             </figure>
         </div>
     </div>
@@ -77,53 +63,23 @@ Bilder mit Nano Banana Pro erstellt s. Wasserzeichen
                     <p>Soundregler:</p>
                     <input type="range" min="0" max="100" value="50" class="slider" id="myRange">
                     <audio autoplay loop id="waldSound">
-                        <source src="../mp3/453712__kyles__airport-crowd-light-small-waiting-shopping-mall-barcelona-pa-message-spanish.flac" type="audio/wav">
-                        <!-- -->
+                        <source
+                            src="../mp3/453712__kyles__airport-crowd-light-small-waiting-shopping-mall-barcelona-pa-message-spanish.flac"
+                            type="audio/wav">
                     </audio>
                 </div>
             </section>
-            <!-- Optional wenn wir noch Zeit haben -->
+
+            <input type="checkbox">Dunkelmodus</input>
+            <br>
+            <br>
+            <br>
             <button id="closeWindowOptionsButton">Schließen</button>
         </div>
         <div class="dialogStyle2">
             <img src="../bilder/optionsBilder/Ticket.jpg">
         </div>
     </dialog>
-
-    <!--
-    ========================================================
-                Bestenliste Bereich ab hier 
-    ========================================================
-    -->
-
-    <div id="bestenListeBereichHTML">
-        <h1>Bestenliste</h1>
-        <ol style="text-align: left; padding-left: 60px;">
-            <li>Spieler 1 - 500 Pkt</li>
-            <li>Spieler 2 - 450 Pkt</li>
-            <li>Spieler 3 - 300 Pkt</li>
-        </ol>
-
-        <button class="zumMenuButton">Zurück zum Menu</button>
-
-    </div>
-
-    <!--
-    =======================================================
-                Mitwirkende Bereich ab hier
-    =======================================================
-    -->
-
-    <div id="mitwirkendeBereichHTML">
-        <p>Lena, Jan und Markus</p>
-        <button class="zumMenuButton">Zurück zum Menu</button>
-    </div>
-
-    <!--
-    =======================================================
-    Hier könnte ihre CSS oder JS Dabei stehen (verlinkung) 
-    =======================================================
-    -->
 
     <div>
 
@@ -132,14 +88,13 @@ Bilder mit Nano Banana Pro erstellt s. Wasserzeichen
         <link rel="stylesheet" href="../CSS/sichtbarkeit.css">
         <link rel="stylesheet" href="../CSS/soundregler.css">
         <link rel="stylesheet" href="../CSS/containerFuerMenubilder.css">
-        
+
         <!--JS-->
         <script src="../JavaScript/allButtons_Options_Functions.js"></script>
         <script type="module" src="../JavaScript/menuSound.js"></script>
         <script src="../JavaScript/localStorage.js"></script>
 
     </div>
-
 </body>
 
 </html>

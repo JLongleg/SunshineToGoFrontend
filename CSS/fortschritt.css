@@ -7,8 +7,9 @@
 
     /* Farbwahl (Root -> var) sind Keywords */
   :root {
-    --titelFarbe: ;
-    --hauptFarbe: #f59e0b; /* Akzentfarbe */
+    --hauptFarbe: #f59e0b; /* Akzentfarbe 30% Regel */
+    --titelFarbe: #152a23;
+    --untertitelfarbe: #515151;
     --feldFarbe: #ffffff;
     --standarttext: #334155;
     --border: #e2e8f0;
@@ -21,7 +22,7 @@
   }
 
   .untertitel {
-    color:#000000;
+    color: var(--untertitelfarbe);
     font-size: 1.2em;
   }
 
@@ -61,7 +62,7 @@
  
   h1 {
     font-size: 2.5rem;
-    color: #152a23;
+    color: var(--titelFarbe);
     border-bottom: 4px solid var(--hauptFarbe);
     display: inline-block;
     margin-bottom: 0.5em;
