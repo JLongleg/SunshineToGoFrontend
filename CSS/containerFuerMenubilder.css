@@ -18,9 +18,14 @@
 
         }
 
-:root {
---standarttext:white;
-}
+        :root {
+        /*standartFarben*/
+        --standarttext:white;
+        
+        
+        /*darkmodeFarben*/
+        
+        }
 
 /* =========================================
     GRUNDLAGEN & HINTERGRUND
@@ -43,12 +48,13 @@
             linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
             
             /* Das Hintergrundbild */
-            url('../bilder/hintergrundbild/flughafen.jpg'); 
+            url('../bilder/hintergrundbild/Pilot.PNG'); 
 
-            /* Bild Zentriert */
-            background-size: cover; 
+            /* Bild wird zurecht zentriert */
+            background-size: cover;
            
         }
+
 
 /* =========================================
    HEADER & ÜBERSCHRIFT
@@ -98,9 +104,11 @@
             /*Werte auf Null bringen*/
             margin: 0;
             padding: 0;
+
             /*Die Figur füllt extakt 100% der Rasterzelle aus*/
             width: 100%;
             height: 100%;
+
             /*Alles was über den Rand ragt, wird abgeschnitten*/
             overflow: hidden;
             /*Schichtmanagment*/
@@ -109,7 +117,7 @@
         }
 
 /* =========================================
-   Die Bilder
+   Bilder aufstellung
    ========================================= */
 
         img {
@@ -119,14 +127,13 @@
             object-fit: contain;
             object-position: center bottom;
             display: block;
-            /*0.3sek */
-        
+
             /*Schichtmanagment*/
             position: relative;
             z-index: 2; /*liegt vor dem Text*/
             
             /*Bearbeitung der Schrift*/
-             /* display: none !important */
+            /* display: none !important */
 
         }
 
@@ -135,21 +142,22 @@
    ========================================= */
 
         figcaption {
+
             position: absolute;
             top: 0 ; 
             left: 0;
             width: 100%;
             height: 100%;
 
-            /*liegt unter dem Bild*/
-            z-index: 1; 
-
             display: flex;
             justify-content: center;
             align-items: center;
 
+            /*liegt unter dem Bild*/
+            z-index: 1; 
+
             /*Optik*/
-            color: white;
+            color: rgb(255, 255, 255);
             font-size: clamp(1rem, 3.5vw, 3.5rem);
             font-weight: bold;
             text-align: center;
@@ -169,6 +177,7 @@
             transform: scale(0.9);
             /* Transparenz der Bilder bei drübergehen (Hover) */
             opacity: 0.5;
+            
         }
 
         .figcaption:hover {
@@ -176,4 +185,10 @@
             transform: scale(0.1); 
         }
 
+  /* --- !HANDYVERSION UNSTABLE! --- */
+  @media (max-width: 800px) {
 
+    figcaption {
+        top: 50px;
+    }
+  };

@@ -15,3 +15,8 @@ const gespeicherterWert = window.localStorage.getItem("soundWert")
   } else
     return 0.5;
 };
+
+
+
+
+ 

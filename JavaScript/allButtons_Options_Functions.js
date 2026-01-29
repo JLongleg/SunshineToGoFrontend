@@ -59,22 +59,6 @@ function imMenu() {
 
     /*
     ============================================================
-        AddEventListener für die Button's
-    ============================================================
-    */
-
-    // // Bereich "Bestenliste" wird angezeigt
-    // buttonStartBestenliste.addEventListener("click", () => {
-    //     zeigBestenliste()
-    // });
-
-    // // Bereich "Mitwirkende" wird angezeigt
-    // buttonClickMitwirkende.addEventListener("click", () => {
-    //     zeigMitwirkende()
-    // });
-
-    /*
-    ============================================================
         Optionsfenster
     ============================================================
     */
@@ -104,6 +88,29 @@ function imMenu() {
         mitwirkendeS.style.display = "block";
         menuS.style.display = "none";
     }
+
+
+    /*
+==========================================================
+Darkmode-Barrierearmut
+======================
+==========================================================
+*/
+
+    // Abspeicherung des Darkmode durch 0/1
+
+    const checkKasten = document.getElementById("checkbox");
+
+    checkKasten.addEventListener("input", () => {
+        if (checkKasten.checked) {
+            console.log("Dunkelmodus wurde aktiviert")
+            return darkMode1 = window.localStorage.setItem("darkMode", '1')
+        } else {
+            console.log("Dunkelmodus wurde deaktiviert")
+            return darkMode0 = window.localStorage.setItem("darkMode", '0')
+        }
+    });
+
 
 }; // Ende vom Menubereich
 
@@ -161,4 +168,7 @@ function imFortschritt() {
     });
 
 };
+
+
+
 

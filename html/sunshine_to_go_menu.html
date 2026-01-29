@@ -10,10 +10,19 @@ Bilder mit Nano Banana Pro erstellt s. Wasserzeichen
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sunshine To Go</title>
+
+    <script> // darkMode automatisch starten, wenn man auf der Seite ist.
+    if(localStorage.getItem('darkMode') === '1') {
+        document.documentElement.classList.add('dark-mode');
+    }
+    </script>
+
 </head>
 
 <body>
 
+    <div class="dunkelModus">
+        
     <!--
     ==============================================================
                         Menu Bereich ab hier 
@@ -29,23 +38,23 @@ Bilder mit Nano Banana Pro erstellt s. Wasserzeichen
         <div class="container">
 
             <figure id="startGameButton" class="bild">
-                <a href="../Gameplay/index.html"><img src="../bilder/menu_bilder/gameplay.jpg"
-                        alt="Spiel-Start-Bild"></a>
+                <a href="../Gameplay/index.html"><img src="../bilder/menu_bilder/Endprodukt/KaffeeToGo.jpg" alt="Spiel-Start-Bild"></a>
                 <figcaption><strong>Spiel<br>Starten</strong></figcaption>
             </figure>
 
             <figure id="startOnClickOptions" class="bild">
-                <img src="../bilder/menu_bilder/option.jpg" alt="Optionen-Bild">
+                <img src="../bilder/menu_bilder/Endprodukt/Koffer.jpg" alt="Optionen-Bild">
                 <figcaption><strong>Optionen</strong></figcaption>
             </figure>
 
-            <figure id="fortschrittButton" class="bild">
-                <a href="../html/fortschritt.html"><img src="../bilder/menu_bilder/fortschritt.jpg"
-                        alt="Spiel-Start-Bild">
-                    <img src="../bilder/menu_bilder/fortschritt.jpg" alt="Fortschritt-Bild"></a>
+            <figure id="fortschrittButton" class="bild" class="papierflieger">
+                <a href="../html/fortschritt.html"><img src="../bilder/menu_bilder/Endprodukt/Flieger.jpg"
+                        alt="Spiel-Start-Bild"></a>
                 <figcaption><strong>Fort-<br>schritt</strong></figcaption>
             </figure>
+
         </div>
+
     </div>
 
     <!--
@@ -64,22 +73,23 @@ Bilder mit Nano Banana Pro erstellt s. Wasserzeichen
                     <input type="range" min="0" max="100" value="50" class="slider" id="myRange">
                     <audio autoplay loop id="waldSound">
                         <source
-                            src="../mp3/453712__kyles__airport-crowd-light-small-waiting-shopping-mall-barcelona-pa-message-spanish.flac"
-                            type="audio/wav">
+                            src="../mp3/453712__kyles__airport-crowd-light-small-waiting-shopping-mall-barcelona-pa-message-spanish.flac" type="audio/wav">
                     </audio>
                 </div>
             </section>
 
-            <input type="checkbox">Dunkelmodus</input>
+            <input type="checkbox" id="checkbox">Dunkelmodus</input>
             <br>
             <br>
             <br>
             <button id="closeWindowOptionsButton">Schließen</button>
         </div>
         <div class="dialogStyle2">
-            <img src="../bilder/optionsBilder/Ticket.jpg">
+            <img src="../bilder/optionsBilder/Ticket.png">
         </div>
     </dialog>
+
+     </div> <!-- dunkelmodus Ende  -->
 
     <div>
 
@@ -95,6 +105,7 @@ Bilder mit Nano Banana Pro erstellt s. Wasserzeichen
         <script src="../JavaScript/localStorage.js"></script>
 
     </div>
+    
 </body>
 
 </html>

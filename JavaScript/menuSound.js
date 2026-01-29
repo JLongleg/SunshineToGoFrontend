@@ -3,8 +3,11 @@
     Import Speicherung / Basis
 ==========================================================
 */
+console.log("Test, ob die JS Dabei erfasst wird [x]")
 
 import { soundSpeicherung, ladeSound } from "./localStorage.js";
+
+try{
 
 let volSlider = document.getElementById("myRange");
 if(volSlider) {
@@ -18,8 +21,9 @@ aktualisiereAktuellenSound(volume);
 });
 }
 
-const startVolume = ladeSound();
 
+
+const startVolume = ladeSound();
 
 /*
 ==========================================================
@@ -42,11 +46,18 @@ else if (window.location.pathname.includes("fortschritt.html")) {
     imFortschrittSound(startVolume) /* Fortschrittbereich */
 }
 
+} // try
+
 /*
 ==========================================================
     Gameplay Sound
 ==========================================================
 */
+
+catch (error) {
+  console.error("KRITISCHER FEHLER im Haupt-Skript:");
+    console.error(error);
+}
 function imGameplaySound(volume) {
 
     let bitSound = document.getElementById("bitSound");
@@ -62,10 +73,11 @@ function imGameplaySound(volume) {
 */
 
 function imFortschrittSound(volume) {
-
   let endSound = document.getElementById("endSound");
   if (endSound) {
+    console.log("Sound endSound gefunden")
     endSound.volume = volume;
+    console.log(`Lautstärke umgestellt ${volume}`)
   } 
 } 
 
