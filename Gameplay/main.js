@@ -160,17 +160,17 @@ let gateTexthinzufuegen = function (uebergebeneFont) {
 
   //Platzieren des Gate-Texts in der Szene
   meshUeberschriftGate1 = new THREE.Mesh(geometry1, textmaterial);
-  meshUeberschriftGate1.position.set(-15, 7, -15.2);
+  meshUeberschriftGate1.position.set(-15, 11, -15.2);
   meshUeberschriftGate1.name = "UeberschriftGate1";
   scene.add(meshUeberschriftGate1);
 
-  const ueberschriftGate2 = new THREE.Mesh(geometry2, textmaterial);
-  ueberschriftGate2.position.set(-3, 7, -15.2);
-  ueberschriftGate2.name = "UeberschriftGate2";
-  scene.add(ueberschriftGate2);
+  meshUeberschriftGate2 = new THREE.Mesh(geometry2, textmaterial);
+  meshUeberschriftGate2.position.set(-4, 9, -15.2);
+  meshUeberschriftGate2.name = "UeberschriftGate2";
+  scene.add(meshUeberschriftGate2);
 
   meshUeberschriftGate3 = new THREE.Mesh(geometry3, textmaterial);
-  meshUeberschriftGate3.position.set(8, 7, -15.2);
+  meshUeberschriftGate3.position.set(6, 7, -15.2);
   meshUeberschriftGate3.name = "UeberschriftGate3";
   scene.add(meshUeberschriftGate3);
 }
@@ -178,14 +178,18 @@ let gateTexthinzufuegen = function (uebergebeneFont) {
 fontloader.load("Schriftart.json", gateTexthinzufuegen); //Erstes Attribut: Lädt Font und übergibt sie an -> Zweites Attribut: onLoad()-callback-Funktion alias anonyme Funktion
 
 
-//Ersetzen der Überschrift von Gate 1
 
-// Benötigt, um Städtenamen bei neuer Runde zu aktualisieren
-// fehlt noch für Gate 2 und 3
-function gateUeberschriftErsetzen() {
+// Ueberschriften ueber Gates werden mit Städtenamen der aktuellen Runde ersetzt
+
+function gateUeberschriftErsetzen(NameStadt1, NameStadt2, NameStadt3) {
   scene.remove(meshUeberschriftGate1);
-  meshUeberschriftGate1.remove(); //Mesh wird nicht mehr in Szene angezeigt, aber wird nicht komplett gelöscht, das bräuchte eine dispose function
-  textfuermeshUeberschriftGate1 = "Stadt1";
+  scene.remove(meshUeberschriftGate2);
+  scene.remove(meshUeberschriftGate3);//Mesh wird nicht mehr in Szene angezeigt, aber wird nicht komplett gelöscht, das bräuchte eine dispose function
+
+  textfuermeshUeberschriftGate1 = NameStadt1;
+  textfuermeshUeberschriftGate2 = NameStadt2;
+  textfuermeshUeberschriftGate3 = NameStadt3;
+
   fontloader.load("Schriftart.json", gateTexthinzufuegen); //Überschriften werden per Funktion neu erstellt (mit dem nun aktualisierten Text)
 }
 
@@ -254,6 +258,7 @@ scene.add(light.target);
 const loader = new GLTFLoader();
 
 let mixer; //Ref "02"  //Mixer spielt Animationen für dieses Objekt ab, wird in gltfLoader-Funktion erstellt
+let mixer2;
 let lastActionmixerA;
 let mixerB;
 let lastActionmixerB;
@@ -265,15 +270,76 @@ let action;
 
 let aktuellerCharakter;
 let Tiffany;
+let invisibleGuide;
+let curCities //Daten ausgewählter Städte für die aktuelle Runde
+let KorrekteAntwort //Daten für die korrekte Stadt in der aktuellen Runde
 
 let gewaehltesGate = 'Gate2' //Mittiges Gate als Default
-
+let tempWunsch
+let feldMitWunschtemp
 
 // ====================
 // Laden des 3D-Modells
 // (einmalig)
 
-loader.load('./Sunshine3DModel10_2.glb', function (gltf) {
+
+
+// ===============================
+// Game-Loop
+// aus test.js kopiert und erweitert
+
+//Laden von nahezu 100 Städte von Jan's API
+async function loadCities() {
+  const response = await fetch('/api/cities');
+  if (!response.ok) {
+    throw new Error('API nicht erreichbar');
+  }
+  var cities = await response.json();
+  return cities;
+}
+
+// Auswählen und Rückgabe von drei Städte aus dem Array, die dann aus dem Array entfernt werden
+function pickCities(cities) {
+  if (cities.length > 2) {
+    var curCities = cities.splice(0, 3);
+  } else throw new Error('Nicht ausreichend Städte im Array');
+  return curCities;
+}
+
+// Cities Variable wird erstellt und das Array (nahezu 100 Städte) per Funktion darin gespeichert
+var cities;
+try {
+  cities = await loadCities();
+}
+// Falls das nicht klappen sollte (z.B. Server down) wird eine Backup-Liste der Daten von 18 Städten verwendet
+catch (e) {
+  cities = [
+    { "city": "Tokyo", "country": "Japan", "maxTemperature": 9 },
+    { "city": "Delhi", "country": "India", "maxTemperature": 16 },
+    { "city": "Shanghai", "country": "China", "maxTemperature": 20 },
+    { "city": "São Paulo", "country": "Brazil", "maxTemperature": 29 },
+    { "city": "Mexico City", "country": "Mexico", "maxTemperature": 19 },
+    { "city": "Cairo", "country": "Egypt", "maxTemperature": 18 },
+    { "city": "Beijing", "country": "China", "maxTemperature": 0 },
+    { "city": "Mumbai", "country": "India", "maxTemperature": 25 },
+    { "city": "Osaka", "country": "Japan", "maxTemperature": 8 },
+    { "city": "Karachi", "country": "Pakistan", "maxTemperature": 24 },
+    { "city": "Chongqing", "country": "China", "maxTemperature": 13 },
+    { "city": "Istanbul", "country": "Turkey", "maxTemperature": 8 },
+    { "city": "Buenos Aires", "country": "Argentina", "maxTemperature": 34 },
+    { "city": "Kolkata", "country": "India", "maxTemperature": 22 },
+    { "city": "Kinshasa", "country": "DR Congo", "maxTemperature": 30 },
+    { "city": "Lagos", "country": "Nigeria", "maxTemperature": 34 },
+    { "city": "Manila", "country": "Philippines", "maxTemperature": 28 },
+    { "city": "Tianjin", "country": "China", "maxTemperature": 2 }];
+}
+let rundeNummer = 0;
+
+// Funktion wird in loader.load oben aufgerufen. Vorteil: Wird erst ausgeführt, sobald Modell geladen ist und alle Objekte der Szene stehen zur Verfügung
+
+
+
+loader.load('./Sunshine3DModel21.glb', function (gltf) {
   // "onLoad"-Funktion des gltfLoaders
   // (der gltfLoader hat also zu diesem Zeitpunkt fertig geladen)
 
@@ -286,21 +352,241 @@ loader.load('./Sunshine3DModel10_2.glb', function (gltf) {
 
   //Da wir nur in dieser Funktion das gesamte 3D-Modell aus dieser Datei zur Verfügung haben, müssen jetzt die "Mixer" (undefined) mit den Animationen erstellt werden
   Tiffany = scene.getObjectByName('Armature');
-  mixer = new THREE.AnimationMixer(Tiffany);
+  aktuellerCharakter = Tiffany;
+  mixer2 = new THREE.AnimationMixer(gltf.scene);
+
+  invisibleGuide = scene.getObjectByName('Empty');
+  mixer = new THREE.AnimationMixer(invisibleGuide);
   //mixer = new THREE.AnimationMixer(gltf.scene); //Constructor für einen Player für Animationen. Ein Mixer pro animiertes Objekt. Mixer ist komplexes Objekt, nicht nur Array mit Animationen (Ref "02")
   clips = gltf.animations; //Array aller Animationen (Ref "02")
   console.log("clips: ", clips);
 
-  characterrollsin();
+
+
+  spielrunde()
+
+
+  async function spielrunde() {
+    // Solange im Array noch mind. 3 Städte übrig sind, kann eine neue Runde mit drei Städte beginnen
+
+    while (cities.length > 2) {
 
 
 
-}, undefined, function (error) {
 
-  //"onError-Callback"-Funktion des gltfLoaders
-  console.error(error);
+      // wERTE FUER DIESE RUNDE
+      curCities = pickCities(cities);// 3 Städte für die aktuelle Runde werden ausgewählt. (curCities ist "current cities") Attribute: city, country, maxTemperature
 
-});
+      console.log(cities)
+      console.log(curCities)
+      console.log(curCities[0].city)
+
+
+
+      // Beschriftung von Gates in Reihenfolge (Array bereits randomised).
+      // Auswahl richtiger Antwort (Zufällige Zahl 0/1/2 entspricht Gate 1, 2 oder 3)
+
+      let zufälligeZahl = Math.floor(Math.random() * 3) //Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+      KorrekteAntwort = curCities[zufälligeZahl]
+
+      //Temperaturwunsch des Charakters wird passend zur richtigen Antwort gewählt
+      tempWunsch = KorrekteAntwort.maxTemperature
+      console.log("Temperaturwunsch: ", tempWunsch, KorrekteAntwort.city)
+
+      //Platzhalter-Ueberschriften ueber Gates werden mit Städtenamen dieser Runde ersetzt
+      gateUeberschriftErsetzen(curCities[0].city, curCities[1].city, curCities[2].city)
+
+
+      console.log("Runde:", rundeNummer)
+
+
+      if (rundeNummer === 5) {
+        alert(`Das waren 5 Runden! Kleine Pause?`);
+        break;
+      }
+
+
+
+
+      feldMitWunschtemp = tempWunschFeldanzeigen(Tiffany, tempWunsch) //Übergabeparameter: aktuellerCharakter und tempWunsch, return: myCSS2DObject
+
+      goToCenter();
+
+      await new Promise((resolve =>
+        mixer.addEventListener('finished', resolve, false))); //Wenn mixer 'finished', dann resolve das Promise.
+
+      scene.getObjectByName("CoverGate1").visible = false;
+      scene.getObjectByName("CoverGate2").visible = false;
+      scene.getObjectByName("CoverGate3").visible = false;
+      scene.getObjectByName("CoverGate1X").visible = false;
+      scene.getObjectByName("CoverGate2X").visible = false;
+      scene.getObjectByName("CoverGate3X").visible = false;
+
+      if (gewaehltesGate == 'Gate1') {
+        goToGate1();
+      }
+
+      else if (gewaehltesGate == 'Gate3') {
+        goToGate3();
+      }
+
+      else {
+        goToGate2();
+      }
+
+      await new Promise((resolve =>
+        mixer.addEventListener('finished', resolve, false))); //Wenn mixer 'finished', dann resolve das Promise.
+
+
+      console.log("Runde ", rundeNummer, "beendet")
+
+      rundeNummer += 1;
+    }
+
+  }
+
+
+}
+
+
+
+
+
+
+  , undefined, function (error) {
+
+    //"onError-Callback"-Funktion des gltfLoaders
+    console.error(error);
+
+  });
+
+
+
+async function goToCenter() {
+
+
+  const Idle_clip = THREE.AnimationClip.findByName(clips, 'TiffanyIdle');
+  const Idle_action = mixer.clipAction(Idle_clip, Tiffany); //clip, root, blend mode
+  Idle_action.setLoop(THREE.LoopRepeat);
+  Idle_action.play();
+
+
+  let feldMitWunschtemp = tempWunschFeldanzeigen(Tiffany, tempWunsch)
+
+  const rollingin_clip = THREE.AnimationClip.findByName(clips, 'CharacterGoesToDecisionPoint');
+  const rollingin_action = mixer.clipAction(rollingin_clip, invisibleGuide); //clip, root, blend mode
+  rollingin_action.clampWhenFinished = true;
+  rollingin_action.setLoop(THREE.LoopOnce);
+  rollingin_action.play();
+
+
+  await new Promise((resolve =>
+    mixer.addEventListener('finished', resolve, false))); //Wenn mixer 'finished', dann resolve das Promise.
+
+  rollingin_action.stop();
+}
+
+async function goToGate1() {
+
+  //Charakter fährt zu dem Gate, für das der Spieler sich entschieden hat
+  //Event-Listener Referenz: https://www.youtube.com/watch?v=4PAq3aaL8BE&t=63s
+
+  const togate1_clip = THREE.AnimationClip.findByName(clips, 'CharacterGoesToGate1');
+  const togate1_action = mixer.clipAction(togate1_clip, invisibleGuide); //clip, root, blend mode
+  togate1_action.clampWhenFinished = true;
+  togate1_action.setLoop(THREE.LoopOnce);
+  togate1_action.play();
+
+  await new Promise((resolve =>
+    mixer.addEventListener('finished', resolve, false))); //Wenn mixer 'finished', dann resolve das Promise.
+  togate1_action.stop();
+
+  Tiffany.remove(feldMitWunschtemp); //Entfernen des Textes über dem Charakter
+
+  if (curCities[0].maxTemperature == tempWunsch) {
+    scene.getObjectByName("CoverGate1").visible = true
+  }
+  else {
+    scene.getObjectByName("CoverGate1X").visible = true
+  }
+
+  let Flugzeug1 = scene.getObjectByName('Flugzeug1');
+  mixer2 = new THREE.AnimationMixer(Flugzeug1); //to-do: müsste nur einmal erstellt werden, nicht in jeder Runde
+  const flugzeughebtab_clip = THREE.AnimationClip.findByName(clips, 'flugzeughebtab');
+  const flugzeughebtab_action = mixer2.clipAction(flugzeughebtab_clip, Flugzeug1); //clip, root, blend mode
+  flugzeughebtab_action.setLoop(THREE.LoopOnce);
+  flugzeughebtab_action.play();
+
+
+
+}
+
+
+
+async function goToGate3() {
+  const togate3_clip = THREE.AnimationClip.findByName(clips, 'CharacterGoesToGate3');
+  const togate3_action = mixer.clipAction(togate3_clip, invisibleGuide); //clip, root, blend mode
+  togate3_action.clampWhenFinished = true;
+  togate3_action.setLoop(THREE.LoopOnce);
+  togate3_action.play();
+
+  await new Promise((resolve =>
+    mixer.addEventListener('finished', resolve, false))); //Wenn mixer 'finished', dann resolve das Promise.
+  togate3_action.stop();
+
+  Tiffany.remove(feldMitWunschtemp);
+
+  let Flugzeug3 = scene.getObjectByName('Flugzeug3');
+  mixer = new THREE.AnimationMixer(Flugzeug3); //to-do: müsste nur einmal erstellt werden, nicht in jeder Runde
+  Flugzeug3.name = "Flugzeug1"; //um die Animation von Flugzeug1 nutzen zu können
+  const flugzeughebtab_clip = THREE.AnimationClip.findByName(clips, 'flugzeughebtab');
+  const flugzeughebtab_action = mixer.clipAction(flugzeughebtab_clip, Flugzeug3); //clip, root, blend mode
+  flugzeughebtab_action.setLoop(THREE.LoopOnce);
+  flugzeughebtab_action.play();
+
+  Flugzeug3.name = "Flugzeug3"; //Rückgängigmachen der Umbennung
+
+  if (curCities[2].maxTemperature == tempWunsch) {
+    scene.getObjectByName("CoverGate3").visible = true
+  }
+  else {
+    scene.getObjectByName("CoverGate3X").visible = true
+  }
+}
+
+
+async function goToGate2() {
+  //Default: Gate2 bei keiner Gate-Wahl des Spielers
+  const togate2_clip = THREE.AnimationClip.findByName(clips, 'CharacterGoesToGate2');
+  const togate2_action = mixer.clipAction(togate2_clip, invisibleGuide); //clip, root, blend mode
+  togate2_action.clampWhenFinished = true;
+  togate2_action.setLoop(THREE.LoopOnce);
+  togate2_action.play();
+
+  await new Promise((resolve =>
+    mixer.addEventListener('finished', resolve, false))); //Wenn mixer 'finished', dann resolve das Promise.
+  togate2_action.stop();
+
+  Tiffany.remove(feldMitWunschtemp);
+
+  let Flugzeug2 = scene.getObjectByName('Flugzeug2');
+  mixer2 = new THREE.AnimationMixer(Flugzeug2); //to-do: müsste nur einmal erstellt werden, nicht in jeder Runde
+  Flugzeug2.name = "Flugzeug1"; //um die Animation von Flugzeug1 nutzen zu können
+  const flugzeughebtab_clip = THREE.AnimationClip.findByName(clips, 'flugzeughebtab');
+  const flugzeughebtab_action = mixer2.clipAction(flugzeughebtab_clip, Flugzeug2); //clip, root, blend mode
+  flugzeughebtab_action.setLoop(THREE.LoopOnce);
+  flugzeughebtab_action.play();
+
+  Flugzeug2.name = "Flugzeug2"; //Rückgängigmachen der Umbennung
+
+  if (curCities[1].maxTemperature == tempWunsch) {
+    scene.getObjectByName("CoverGate2").visible = true
+  }
+  else {
+    scene.getObjectByName("CoverGate2X").visible = true
+  }
+
+}
 
 
 // ================
@@ -315,111 +601,14 @@ function animatecube() {
 renderer.setAnimationLoop(animatecube); //stoppt, wenn andere Animation beginnt
 
 
-// ===================================
-// Charakterbewegung auf Fliessbändern
-
-function characterrollsin() {
-
-  //Charakter wird in 'Idle'-Position gestellt und fährt zu Entscheidungspunkt
-
-  const Idle_clip = THREE.AnimationClip.findByName(clips, 'Idle');
-  const Idle_action = mixer.clipAction(Idle_clip, Tiffany); //clip, root, blend mode
-  Idle_action.setLoop(THREE.LoopRepeat);
-  Idle_action.play();
-
-
-  let feldMitWunschtemp = tempWunschFeldanzeigen(Tiffany, "22") //Übergabeparameter: aktuellerCharakter und tempWunsch, return: myCSS2DObject
-
-  const rollingin_clip = THREE.AnimationClip.findByName(clips, 'rollingin'); //Ref "02"
-  const rollingin_action = mixer.clipAction(rollingin_clip, Tiffany); //Ref "02" //clipAction nimmt den Clip (Video) und ggf. Root-Objekt und blendMode. Returns "Animation Action", also ALLE Informationen zum Abspielen (Mixer, Clip, Root-Objekt, blendMode)
-  rollingin_action.setLoop(THREE.LoopOnce); //Optional, modes : LoopRepeat | LoopOnce | LoopPingPong, repetitions : number
-  rollingin_action.play(Tiffany); //Spielt Animation direkt zu Anfang //Ref "02"
-  lastActionmixerA = rollingin_action;
-
-  
-
-  //Charakter fährt zu dem Gate, für das der Spieler sich entschieden hat
-  //Event-Listener Referenz: https://www.youtube.com/watch?v=4PAq3aaL8BE&t=63s
-  mixer.addEventListener('finished', function (e) {
-    console.log('Entscheidungspunkt, gewaehltesGate ist: ', gewaehltesGate);
-
-    if (gewaehltesGate == 'Gate1') {
-      const togate1_clip = THREE.AnimationClip.findByName(clips, 'togate1');
-      const togate1_action = mixer.clipAction(togate1_clip, Tiffany); //clip, root, blend mode
-      togate1_action.clampWhenFinished = true;
-      togate1_action.setLoop(THREE.LoopOnce);
-      togate1_action.play();
-
-      //EventListener, sobald Charakter Gate1 erreicht hat
-      mixer.addEventListener('finished', function (e2) {
-
-        Tiffany.remove(feldMitWunschtemp); //entfernen des Textes über dem Charakter
-        let Flugzeug1 = scene.getObjectByName('Flugzeug1');
-        mixer = new THREE.AnimationMixer(Flugzeug1); //to-do: müsste nur einmal erstellt werden, nicht in jeder Runde
-        const flugzeughebtab_clip = THREE.AnimationClip.findByName(clips, 'flugzeughebtab');
-        const flugzeughebtab_action = mixer.clipAction(flugzeughebtab_clip, Flugzeug1); //clip, root, blend mode
-        flugzeughebtab_action.setLoop(THREE.LoopOnce);
-        flugzeughebtab_action.play();
-
-      })
-
-    }
-
-    else if (gewaehltesGate == 'Gate3') {
-      const togate3_clip = THREE.AnimationClip.findByName(clips, 'togate3');
-      const togate3_action = mixer.clipAction(togate3_clip, Tiffany); //clip, root, blend mode
-      togate3_action.clampWhenFinished = true;
-      togate3_action.setLoop(THREE.LoopOnce);
-      togate3_action.play();
-
-      //EventListener, sobald Charakter Gate3 erreicht hat
-      mixer.addEventListener('finished', function (e2) {
-
-        Tiffany.remove(feldMitWunschtemp);
-        let Flugzeug3 = scene.getObjectByName('Flugzeug3');
-        mixer = new THREE.AnimationMixer(Flugzeug3); //to-do: müsste nur einmal erstellt werden, nicht in jeder Runde
-        Flugzeug3.name = "Flugzeug1"; //um die Animation von Flugzeug1 nutzen zu können
-        const flugzeughebtab_clip = THREE.AnimationClip.findByName(clips, 'flugzeughebtab');
-        const flugzeughebtab_action = mixer.clipAction(flugzeughebtab_clip, Flugzeug3); //clip, root, blend mode
-        flugzeughebtab_action.setLoop(THREE.LoopOnce);
-        flugzeughebtab_action.play();
-
-        Flugzeug3.name = "Flugzeug3"; //Rückgängigmachen der Umbennung
-      })
-    }
-
-    else { //Default: Gate2 bei keiner Gate-Wahl des Spielers
-      const togate2_clip = THREE.AnimationClip.findByName(clips, 'togate2');
-      const togate2_action = mixer.clipAction(togate2_clip, Tiffany); //clip, root, blend mode
-      togate2_action.clampWhenFinished = true;
-      togate2_action.setLoop(THREE.LoopOnce);
-      togate2_action.play();
-
-      //EventListener, sobald Charakter Gate2 erreicht hat
-      mixer.addEventListener('finished', function (e2) {
-
-        Tiffany.remove(feldMitWunschtemp);
-        let Flugzeug2 = scene.getObjectByName('Flugzeug2');
-        mixer = new THREE.AnimationMixer(Flugzeug2); //to-do: müsste nur einmal erstellt werden, nicht in jeder Runde
-        Flugzeug2.name = "Flugzeug1"; //um die Animation von Flugzeug1 nutzen zu können
-        const flugzeughebtab_clip = THREE.AnimationClip.findByName(clips, 'flugzeughebtab');
-        const flugzeughebtab_action = mixer.clipAction(flugzeughebtab_clip, Flugzeug2); //clip, root, blend mode
-        flugzeughebtab_action.setLoop(THREE.LoopOnce);
-        flugzeughebtab_action.play();
-
-        Flugzeug2.name = "Flugzeug2"; //Rückgängigmachen der Umbennung
-      })
-    }
-
-  });
-}
+animate();
 
 
 
 function tempWunschFeldanzeigen(aktuellerCharakter, tempWunsch) {
 
   let feldMitWunschtemp = document.createElement("div"); //Erstellen eines div-Elements
-  feldMitWunschtemp.innerHTML = "Oh wie glücklich in der Tat, <br> wäre ich bei " + tempWunsch + " Grad!"; //tempWunsch
+  feldMitWunschtemp.innerHTML = "♥ " + tempWunsch + " ♥"; //tempWunsch
   let myCSS2DObject = new CSS2DObject(feldMitWunschtemp); //Erstellen eines 2D-Objekts auf Basis des vorhin erstellten div-Elements
   myCSS2DObject.position.set(0, 5, 0); //Festsetzen, wo das Feld über Charakter angezeigt werden soll
   aktuellerCharakter.add(myCSS2DObject) //Tatsächliches Hinzufügen/Anzeigen des Feldes über dem Charakter
@@ -441,6 +630,7 @@ function animate() { //Accessibility Test: A3 Click
   if (importsfertig) {
     let delta = clock.getDelta();  //clock.getDelta indicates at which point in time we are in the animation loop
     mixer.update(delta); //update method advances the global mixer time and updates the animation/shows model at this point in time.
+    mixer2.update(delta);
   }
 
   renderer.render(scene, camera); //Accessibility Test: A3 Click
@@ -459,7 +649,6 @@ function animate() { //Accessibility Test: A3 Click
 
 };
 
-animate();
 
 
 /* =========================================
@@ -472,7 +661,6 @@ setTimeout(() => {
   //renderer.setAnimationLoop(animate); //Ref "02"
 
 
-  gateUeberschriftErsetzen();
 
 }, 10000) //Wartezeit in Millisekunden
 
@@ -485,13 +673,13 @@ setTimeout(() => {
 Vorbereitung:
 - clips: Array aller Animationen
 - mixerA oder mixerB: Kann Clip/Video abspielen, sobald dieser Clip fertig ist
-
+ 
 Ablauf:
 1. "AnimationClip"-Klasse erstellt den clip bzw. das "Video". Animation hat Name, Dauer, "Tracks" (Positionen), BlendMode (wenn zwei Animationen gleichzeitig abgespielt werden).
 -> Die Methode der AnimationClip-Klasse findet aus dem Array (clips) die Daten der benannten Animation und erstellt ein "Video" (clip) von dieser einzelnen Animation.
-
+ 
 2. Die Methode der Mixer-Klasse, "".clipAction", sammelt alle zum Abspielen benötigten Informationen (Mixer bzw. "Abspieler", fertiger Clip, Root-Objekt, blendMode) und speichert sie in einer "action"-Variabble.
-
+ 
 3. Die "action"-Variable beinhaltet jetzt alle benötigten Details.
 -> action.play() spielt dann endlich den Clip in der richtigen Kombination ab.
 */
