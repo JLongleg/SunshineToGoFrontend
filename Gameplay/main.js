@@ -219,16 +219,17 @@ beispielCube = mya3.createBox(beispielCube, "button") //Accessibility Test: Mesh
 //Setup von threejs.org Manual
 //360° Hintergrundbild 'kloofendal_48d_partly_cloudy_puresky.jpg' von "public asset library" https://polyhaven.com/
 
-const backgroundloader = new THREE.TextureLoader();
-const texture = backgroundloader.load(
-  'Hintergrundbild_Daytime.jpg',
-  () => {
+const dunkelModus1 = localStorage.getItem('darkMode') === '1';
 
+
+const file = dunkelModus1 ? 'Hintergrundbild_Nighttime.jpg' : 'Hintergrundbild_Daytime.jpg';
+
+new THREE.TextureLoader().load(file, (texture) => {
     texture.mapping = THREE.EquirectangularReflectionMapping;
     texture.colorSpace = THREE.SRGBColorSpace;
     scene.background = texture;
+});
 
-  });
 
 
 // ===========
