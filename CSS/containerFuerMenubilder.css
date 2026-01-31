@@ -17,7 +17,10 @@
             overflow: hidden;*/
         }
 
-        /*StandardFarben and DarkMODE*/
+/* =========================================
+   STANDARTDFARBEN
+   ========================================= */
+
 
         :root {
         /*standartFarben*/
@@ -48,9 +51,6 @@
     GRUNDLAGEN & HINTERGRUND
    ========================================= */
 
-        
-
-        
         body {
 
             /*Aktiviert das Flexbox-Layout-System für die ganze Seite*/
@@ -73,7 +73,6 @@
             background-size: cover;
            
         }
-
 
 /* =========================================
    HEADER & ÜBERSCHRIFT

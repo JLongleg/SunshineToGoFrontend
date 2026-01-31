@@ -1,259 +1,264 @@
- 
-    /*
+ /*
     ==============================================================
     Grundlagen und Basis
     ==============================================================
     */
 
-    /* Farbwahl (Root -> var) sind Keywords
+ /* Farbwahl (Root -> var) sind Keywords
     Standartfarben
     */
 
-  :root {
-    --hauptFarbe: #f59e0b; /* Akzentfarbe 30% Regel */
-    --titelFarbe: #152a23;
-    --untertitelfarbe: #ffffff;
-    --codingKonversationsText: #000000;
-    --feldFarbe: #ffffff;
-    --h2texte: #000000;
-    --standarttext: #334155;
-    --border: #e2e8f0;
-    --code-bg: #1e293b;
-    --success: #10b981;
-    --warning: #f59e0b;
-    --todo: #94a3b8;
-    --thhintergrund: #f8fafc;
-    --hgbFarben: rgba(8, 3, 41, 0); 
-    --card2Farbe: #f1f5f938;
-    --bugFeldFarbe:#fef2f2;
-    --eifelTurmFarbe:#000;
-    --artHintergrundFarbe:#ffffff;
-    --hintergrundButton: #ffffff00;
-    --X: none;
-  }
-/*DarkMode*/
-    :root.dark-mode {
-    --hauptFarbe: #5e3e09; 
-    --titelFarbe: #b3ff00;
-    --untertitelfarbe: #ffffff;
-    --codingKonversationsText: #000000;
-    --feldFarbe: #020202c5;
-    --h2texte: #ffffff;
-    --standarttext: #ffffff;
-    --border: #e2e8f0;
-    --code-bg: #ced5e0;
-    --success: #0a7753;
-    --warning: #c5009ac7;
-    --todo: #5d6774;
-    --thhintergrund: #047bf34b;
-    --hgbFarben: rgba(8, 3, 41, 0.712); 
-    --card2Farbe: #c0c0c0;
-    --bugFeldFarbe:#11111149;
-    --eifelTurmFarbe:#ffee00;
-    --artHintergrundFarbe:#000000;
-    --hintergrundButton: #b3ff00d2;
-    --X: none;
-  } 
+ :root {
+   --hauptFarbe: #f59e0b;
+   /* Akzentfarbe 30% Regel */
+   --titelFarbe: #152a23;
+   --untertitelfarbe: #ffffff;
+   --codingKonversationsText: #000000;
+   --feldFarbe: #ffffff;
+   --h2texte: #000000;
+   --standarttext: #334155;
+   --border: #e2e8f0;
+   --code-bg: #1e293b;
+   --success: #10b981;
+   --warning: #f59e0b;
+   --todo: #94a3b8;
+   --thhintergrund: #f8fafc;
+   --hgbFarben: rgba(8, 3, 41, 0);
+   --card2Farbe: #f1f5f938;
+   --bugFeldFarbe: #fef2f2;
+   --eifelTurmFarbe: #000;
+   --artHintergrundFarbe: #ffffff;
+   --hintergrundButton: #ffffff00;
+   --X: none;
+ }
 
-  .untertitel {
-    color: var(--untertitelfarbe);
-    font-size: 1.2em;
-  }
+ /* =========================================
+   DUNKELMODUS
+   ========================================= */
 
-  /* var nimmt den Wert von Oben */
-  body {
-    font-family: 'Segoe UI', system-ui, sans-serif;
-    color: var(--standarttext); 
-    line-height: 1.6; /* Textzeile */
-    padding: 40px;
-    background-image:
-    linear-gradient(var(--hgbFarben), var(--hgbFarben)),
-    url('../bilder/hintergrundbild/flughafen.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    min-height: 100vh;
-    margin: 0;
-  }
+ :root.dark-mode {
+   --hauptFarbe: #5e3e09;
+   --titelFarbe: #b3ff00;
+   --untertitelfarbe: #ffffff;
+   --codingKonversationsText: #000000;
+   --feldFarbe: rgba(87, 86, 86, 0.301);
+   --h2texte: #ffffff;
+   --standarttext: #ffffff;
+   --border: #e2e8f0;
+   --code-bg: #ced5e0;
+   --success: #0a7753;
+   --warning: #c5009ac7;
+   --todo: #5d6774;
+   --thhintergrund: #047bf34b;
+   --hgbFarben: rgba(8, 3, 41, 0.712);
+   --card2Farbe: #c0c0c0;
+   --bugFeldFarbe: #11111149;
+   --eifelTurmFarbe: #ffee00;
+   --artHintergrundFarbe: #000000;
+   --hintergrundButton: #b3ff00d2;
+   --X: none;
+ }
 
-  .btnHome {
-    background: var(--X);
-    border: var(--X);
-    padding: 0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+ .untertitel {
+   color: var(--untertitelfarbe);
+   font-size: 1.2em;
+ }
 
-  }
+ /* var nimmt den Wert von Oben */
+ body {
+   font-family: 'Segoe UI', system-ui, sans-serif;
+   color: var(--standarttext);
+   line-height: 1.6;
+   /* Textzeile */
+   padding: 40px;
+   background-image:
+     linear-gradient(var(--hgbFarben), var(--hgbFarben)),
+     url('../bilder/hintergrundbild/flughafen.png');
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   min-height: 100vh;
+   margin: 0;
+ }
 
-  /* container */
-  .umgebung {
-    max-width: 900px;
-    margin: auto;
-    display: grid;
-    gap: 40px;
-  }
- 
-  h1 {
-    font-size: 2.5rem;
-    color: var(--titelFarbe);
-    border-bottom: 4px solid var(--hauptFarbe);
-    display: inline-block;
-    margin-bottom: 0.5em;
-  }
+ .btnHome {
+   background: var(--X);
+   border: var(--X);
+   padding: 0;
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 
-  h2 {
-    font-size: 1.5rem;
-    margin-top: 0;
-    border-left: 5px solid var(--hauptFarbe);
-    display: inline-block;
-    padding-left: 15px;
-    color: var(--h2texte);
-  }
+ }
 
-  h3 {
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 20px;
-  }
+ /* container */
+ .umgebung {
+   max-width: 900px;
+   margin: auto;
+   display: grid;
+   gap: 40px;
+ }
 
-  /* --- Umgebungsfeld --- */
+ h1 {
+   font-size: 2.5rem;
+   color: var(--titelFarbe);
+   border-bottom: 4px solid var(--hauptFarbe);
+   display: inline-block;
+   margin-bottom: 0.5em;
+ }
 
-  .card {
-    background: var(--feldFarbe);
-    padding: 25px;
-    border-radius: 4px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    border: 1px solid var(--border);
-  }
+ h2 {
+   font-size: 1.5rem;
+   margin-top: 0;
+   border-left: 5px solid var(--hauptFarbe);
+   display: inline-block;
+   padding-left: 15px;
+   color: var(--h2texte);
+ }
 
-  /* --- CODE REGELN --- */
-  .code-rules {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-  }
+ h3 {
+   font-size: 1.1rem;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   margin-top: 20px;
+ }
 
-  .card2 {
-    background: var(--card2Farbe);
-    padding: 15px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    color: var(--codingKonversationsText);
-  }
+ /* --- Umgebungsfeld --- */
 
-  .card2 strong {
-    color: var(--hauptFarbe);
-    margin-bottom: 5px;
-  }
+ .card {
+   background: var(--feldFarbe);
+   padding: 25px;
+   border-radius: 12px;
+   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+   border: 1px solid var(--border);
+ }
 
-  code {
-    background: rgba(255, 251, 0, 0.432);
-    padding: 2px 5px;
-    border-radius: 4px;
-    font-family: monospace;
-    font-weight: bold;
-  }
+ /* --- CODE REGELN --- */
+ .code-rules {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   gap: 15px;
+ }
 
-  /* --- STATUS LISTE --- */
-  ul.task-list {
-    list-style: none;
-    padding: 0;
-  }
+ .card2 {
+   background: var(--card2Farbe);
+   padding: 15px;
+   border-radius: 8px;
+   font-size: 0.9rem;
+   color: var(--codingKonversationsText);
+ }
 
-  ul.task-list li {
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+ .card2 strong {
+   color: var(--hauptFarbe);
+   margin-bottom: 5px;
+ }
 
-  .label {
-    font-size: 0.75rem;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-weight: bold;
-    color: white;
-    min-width: 80px;
-    text-align: center;
-  }
+ code {
+   background: rgba(255, 251, 0, 0.432);
+   padding: 2px 5px;
+   border-radius: 4px;
+   font-family: monospace;
+   font-weight: bold;
+ }
 
-  .GREEN {
-    background-color: var(--success);
-  }
+ /* --- STATUS LISTE --- */
+ ul.task-list {
+   list-style: none;
+   padding: 0;
+ }
 
-  .RED {
-    background-color: var(--warning);
-  }
+ ul.task-list li {
+   padding: 10px 0;
+   border-bottom: 1px solid var(--border);
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+ }
 
-  .YELLOW {
-    background-color: var(--todo);
-  }
+ .label {
+   font-size: 0.75rem;
+   padding: 4px 10px;
+   border-radius: 20px;
+   font-weight: bold;
+   color: white;
+   min-width: 80px;
+   text-align: center;
+ }
 
-  .btnHome {
-    background-color:var(--hintergrundButton)
-  }
+ .GREEN {
+   background-color: var(--success);
+ }
 
-  /* --- APOLLINAIRE KUNST --- */
-  .poem-umgebung {
-    text-align: center;
-    background: var(--artHintergrundFarbe);
-    padding: 40px;
-    overflow-x: auto;
-    border-radius: 4px;
-  }
+ .RED {
+   background-color: var(--warning);
+ }
 
-  pre.art {
-    font-family: 'Courier New', monospace;
-    font-size: 12px;
-    line-height: 12px;
-    color: var(--eifelTurmFarbe);
-    display: inline-block;
-    text-align: left;
-    
-  }
+ .YELLOW {
+   background-color: var(--todo);
+ }
 
-  /* --- TABELLE --- */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-  }
+ .btnHome {
+   background-color: var(--hintergrundButton);
+   border-radius: 8px;
 
-  /*Tabellenkopf, inhalt*/
-  th,
-  td {
-    text-align: left;
-    padding: 12px;
-    border-bottom: 1px solid var(--border);
-  }
+ }
 
-  /*Tabellenkopf*/
-  th {
-    background-color: var(--thhintergrund);
-    font-weight: 600;
-  }
+ /* --- APOLLINAIRE KUNST --- */
+ .poem-umgebung {
+   text-align: center;
+   background: var(--artHintergrundFarbe);
+   padding: 40px;
+   overflow-x: auto;
+   border-radius: 4px;
+ }
 
-  /* --- !HANDYVERSION UNSTABLE! --- */
-  @media (max-width: 600px) {
-    body {
-      padding: 15px;
-    }
+ pre.art {
+   font-family: 'Courier New', monospace;
+   font-size: 12px;
+   line-height: 12px;
+   color: var(--eifelTurmFarbe);
+   display: inline-block;
+   text-align: left;
 
-    .label {
-      display: block;
-      margin-top: 5px;
-      width: fit-content;
-    }
+ }
 
-    ul.task-list li {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  }
+ /* --- TABELLE --- */
+ table {
+   width: 100%;
+   border-collapse: collapse;
+   margin-top: 15px;
+ }
 
-  
+ /*Tabellenkopf, inhalt*/
+ th,
+ td {
+   text-align: left;
+   padding: 12px;
+   border-bottom: 1px solid var(--border);
+ }
+
+ /*Tabellenkopf*/
+ th {
+   background-color: var(--thhintergrund);
+   font-weight: 600;
+ }
+
+ /* --- !HANDYVERSION UNSTABLE! --- */
+ @media (max-width: 600px) {
+   body {
+     padding: 15px;
+   }
+
+   .label {
+     display: block;
+     margin-top: 5px;
+     width: fit-content;
+   }
+
+   ul.task-list li {
+     flex-direction: column;
+     align-items: flex-start;
+   }
+ }

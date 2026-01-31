@@ -1,4 +1,28 @@
 /* =========================================
+   STANDARTDFARBEN
+   ========================================= */
+
+
+        :root {
+        --SchwarzerRand: black;
+        --optionsfensterSchatten: rgba(128, 128, 128, 0.208);
+        --hintergrundFarbe: rgb(255, 147, 47);
+        --kastenFarbe: rgb(255, 255, 255);
+        }
+
+/* =========================================
+   DUNKELMODUS
+   ========================================= */
+
+        :root.dark-mode {
+        --SchwarzerRand: black;
+        --optionsfensterSchatten: rgba(128, 128, 128, 0.208);
+        --hintergrundFarbe: rgba(87, 86, 86, 0.301);
+        --kastenFarbe: rgb(15, 97, 117);
+        }
+
+
+/* =========================================
    Fenster selbst
    ========================================= */
    
@@ -15,9 +39,9 @@
     width: 40%;
     height: (68%)vw;
     border-radius: 10px;
-    border: 5px solid black;
-    box-shadow: 10px 10px 5px rgba(128, 128, 128, 0.208);
-    background-color: rgb(255, 147, 47);
+    border:5px solid var(--SchwarzerRand);
+    box-shadow: 10px 10px 5px var(--optionsfensterSchatten);
+    background-color: var(--hintergrundFarbe);
 
 }
 
@@ -27,16 +51,16 @@
 
 .dialogStyle {
     padding: 20px;
-    border: 2px solid #000000;
-    background-color: rgb(255, 255, 255);
+    border: 2px solid var(--SchwarzerRand);
+    background-color: var(--kastenFarbe);
     border-radius: 5px;
 }
 
 .dialogStyle2 {
     margin-top: 2%;
     padding: 1%;
-    border: 2px solid #000000;
-    background-color: rgb(255, 255, 255);
+    border: 2px solid var(--SchwarzerRand);
+    background-color: var(--kastenFarbe);
     border-radius: 5px;
 
     object-fit: cover;

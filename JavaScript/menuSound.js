@@ -9,44 +9,44 @@ console.log("Test, ob die JS Dabei erfasst wird [x]")
 
 import { soundSpeicherung, ladeSound } from "./localStorage.js";
 
-try{
+try {
 
-let volSlider = document.getElementById("myRange");
-if(volSlider) {
+  let volSlider = document.getElementById("myRange");
+  if (volSlider) {
 
-volSlider.value = ladeSound() * 100;
+    volSlider.value = ladeSound() * 100;
 
-volSlider.addEventListener("input", function() {
-  let volume = volSlider.value / 100;
-  soundSpeicherung(volume);
-aktualisiereAktuellenSound(volume);
-});
-}
+    volSlider.addEventListener("input", function () {
+      let volume = volSlider.value / 100;
+      soundSpeicherung(volume);
+      aktualisiereAktuellenSound(volume);
+    });
+  }
 
 
 
-const startVolume = ladeSound();
+  const startVolume = ladeSound();
 
-/*
-==========================================================
-    Routing-Funktion für die Musik
-==========================================================
-*/
+  /*
+  ==========================================================
+      Routing-Funktion für die Musik
+  ==========================================================
+  */
 
-if (window.location.pathname.includes("sunshine_to_go_menu.html")) {
+  if (window.location.pathname.includes("sunshine_to_go_menu.html")) {
     console.log("Spiele Menu Sound");
     imMenuSound(startVolume) /* Menubereich */
-}
+  }
 
-else if (window.location.pathname.includes("spiel_spielen.html")) {
+  else if (window.location.pathname.includes("spiel_spielen.html")) {
     console.log("Spiele Gameplaymusik");
     imGameplaySound(startVolume) /* Gameplaybereich */
-}
+  }
 
-else if (window.location.pathname.includes("tutorial.html")) {
+  else if (window.location.pathname.includes("tutorial.html")) {
     console.log("Spiele Tutorialmusik")
     imTutorialSound(startVolume) /* Tutorialbereich */
-}
+  }
 
 } // try
 
@@ -58,15 +58,15 @@ else if (window.location.pathname.includes("tutorial.html")) {
 
 catch (error) {
   console.error("KRITISCHER FEHLER im Haupt-Skript:");
-    console.error(error);
+  console.error(error);
 }
 function imGameplaySound(volume) {
 
-    let bitSound = document.getElementById("bitSound");
+  let bitSound = document.getElementById("bitSound");
   if (bitSound) {
     bitSound.volume = volume;
-  } 
-} 
+  }
+}
 
 /*
 ==========================================================
@@ -80,21 +80,21 @@ function imTutorialSound(volume) {
     console.log("Sound endSound gefunden")
     endSound.volume = volume;
     console.log(`Lautstärke umgestellt ${volume}`)
-  } 
-} 
+  }
+}
 
 /*
 ==========================================================
     Menu Sound
 ==========================================================
 */
- 
+
 function imMenuSound(volume) {
 
   let waldSound = document.getElementById("waldSound");
   if (waldSound) {
     waldSound.volume = volume
-  } 
+  }
 }
 
 function aktualisiereAktuellenSound(vol) {
