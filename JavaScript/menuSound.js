@@ -1,3 +1,5 @@
+
+
 /*
 ==========================================================
     Import Speicherung / Basis
@@ -41,9 +43,9 @@ else if (window.location.pathname.includes("spiel_spielen.html")) {
     imGameplaySound(startVolume) /* Gameplaybereich */
 }
 
-else if (window.location.pathname.includes("fortschritt.html")) {
-    console.log("Spiele Fortschrittsmusik")
-    imFortschrittSound(startVolume) /* Fortschrittbereich */
+else if (window.location.pathname.includes("tutorial.html")) {
+    console.log("Spiele Tutorialmusik")
+    imTutorialSound(startVolume) /* Tutorialbereich */
 }
 
 } // try
@@ -68,11 +70,11 @@ function imGameplaySound(volume) {
 
 /*
 ==========================================================
-    Fortschritt Sound
+    Tutorial Sound
 ==========================================================
 */
 
-function imFortschrittSound(volume) {
+function imTutorialSound(volume) {
   let endSound = document.getElementById("endSound");
   if (endSound) {
     console.log("Sound endSound gefunden")

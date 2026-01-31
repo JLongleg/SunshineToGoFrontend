@@ -1,7 +1,7 @@
 <!--
 ==============================================================
 
-Fortschritt
+Tutorial
 Template mit KI erstellt
 
 Quelle für das Icon:
@@ -17,12 +17,13 @@ https://www.reshot.com/free-svg-icons/item/home-X27HUJS9EC/
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sunshine To Go - Projekt Dokumentation</title>
+    <script src="../JavaScript/dunkelModusAbfrage.js"></script>
 </head>
 
 <!-- Das Musiklied heißt end -->
 
 <body> 
-    <audio controls autoplay loop id="endSound">
+    <audio autoplay loop id="endSound">
         <source src="../mp3/218204__valentinsosnitskiy__ending.mp3" type="audio/mp3">
     </audio>
     
@@ -37,26 +38,48 @@ https://www.reshot.com/free-svg-icons/item/home-X27HUJS9EC/
 
         
         <section class="card">
-            <h2>Coding Conventions</h2>
+            <h2>Spiel Vorstellung: Charaktere</h2>
             <div class="code-rules">
                 <div class="card2">
-                    <strong>Variablen</strong><br><br>
-                    Verwendung von <code>CamelCase</code>.
+                    <strong>Tiffany</strong><br><br>
+                    Spionin, Wetterexpertin und Abenteuerin:
+                    Ohne ihre <code>Wolkenfrisur</code> geht gar nichts!
+                    Bei manchen Einsätzen, weiß sie selbst gar nicht, wohin sie fliegt. 
                 </div>
                 <div class="card2">
-                    <strong>Deklaration</strong><br><br>
-                    So wenig <code>const</code> wie möglich, eher <code>let</code>.
+                    <strong>Snowella</strong><br><br>
+                    Kälteliebhaberin, Mützenträgerin und etwas <code>verwirrt</code>
+                    steigt gerne mal in den Flieger und weiß am Ende nicht mal wie warm es dort wird.
                 </div>
                 <div class="card2">
-                    <strong>Fortschritt</strong><br><br>
-                    Dokumentation vom Projekt
+                    <strong>Jason</strong><br><br>
+                    Reisegeist, Flammenschnell und hat ein <code>Jahresticket</code>, mit dem er durch die Welt gurkt.
                 </div>
                 <div class="card2">
-                    <strong>Bibliothek Three JS</strong><br><br>
-                    Abwägung zwischen 2D und Videospiel und 3D.
+                    <strong>...</strong><br><br>
+                    Werden die <code>Drei</code>, ihren Weg, ins richtige Land finden?
                 </div>
             </div>
             <br>
+        </section>
+
+        <section class="card">
+            <h3>Tutorial</h2>
+                <div class="card2">
+                    <strong>Wie funktioniert das Spiel?</strong><br><br>
+                    Ojee, es scheint fast so, als hätten die Drei ihre Koffer vertauscht!<br>
+                    Jetzt sind die doch tatsächlich auf den Fließbändern gelandet!<br>Ojeee<br> 
+                    Schnell! Wir brauchen <code>JETZT DEINE</code> Hilfe,<br> damit die Drei an ihre Ziele kommen! 
+                    <br>
+                    <br>
+                    1. <strong>Du musst schnell sein!</strong> Die Fließbänder führen automatisch zu Gate 2.<br>
+                    2. <strong>Klick das richtige Tor:</strong> Klicke auf die Gates 1 bis 3, bei denen die Temperatur passt.<br>
+                    3. <strong>Highscore:</strong> Versuch so viele richtige Länder wie möglich auszuwählen!<br>
+                    4. <strong>Punkte:</strong> Sammle dabei bis zu 5 Punkte.<br>
+                    <br>
+                    <br>
+                    <code>Du SCHAFFST DAS</code>
+                </div>
         </section>
 
         <section class="card">
@@ -73,8 +96,8 @@ https://www.reshot.com/free-svg-icons/item/home-X27HUJS9EC/
                 <li>Server aufsetzen <span class="label GREEN">Erledigt</span></li>
                 <li>Wetterdaten empfangen <span class="label GREEN">Erledigt</span></li>
                 <li>3D Umgebungswelt <span class="label GREEN">Erledigt</span></li>
-                <li>Fortschrittsanzeige <span class="label GREEN">Erledigt</span></li>
-                <li>Optionen (Spieleinstellungen) <span class="label GREEN">In Arbeit</span></li>
+                <li>Tutorialanzeige <span class="label GREEN">Erledigt</span></li>
+                <li>Optionen (Spieleinstellungen) <span class="label GREEN">Erledigt</span></li>
                 <li><span>-</span></li>
                 <li>Design & Menüs <span class="label YELLOW">In Arbeit</span></li>
                 <li>Pause-Menü <span class="label YELLOW">In Arbeit</span></li>
@@ -82,6 +105,11 @@ https://www.reshot.com/free-svg-icons/item/home-X27HUJS9EC/
                 <li><span>-</span></li>
                 <li>Punktesystem & Ranking <span class="label RED">Verworfen</span></li>
                 <li>Highscore Bereich <span class="label RED">Verworfen</span></li>
+
+                <li> dankMode <span class="label RED">Verworfen</span></li>
+                <li> Punkte <span class="label RED">Verworfen</span></li>
+                <li> Ticket <span class="label RED">Verworfen</span></li>
+                <li> Tutorial <span class="label RED">Verworfen</span></li>
 
             </ul><br>
             <button class="btnHome" aria-label="Aktion ausführen"><img
@@ -117,40 +145,12 @@ https://www.reshot.com/free-svg-icons/item/home-X27HUJS9EC/
                     </tr>
                 </tbody>
             </table>
-
+            <br>
             <button class="btnHome" aria-label="Aktion ausführen"><img
                     src="../bilder/icons/reshot-icon-home-X27HUJS9EC.svg" alt="Home-Icon" width="42" height="42"></svg></button>
         </section>
 
-        <section class="card" style="border-left: 5px solid red;">
-            <h2 style="border-left: none; padding: 0; color: #b91c1c;">Bug Report</h2>
-            <div style="background: #fef2f2; padding: 15px; border-radius: 8px;">
-                <strong>Problem:</strong> Fenster lässt sich nach Navigation nicht schließen.<br>
-                <strong>Status:</strong> <span class="label status-done">Gefunden [x]</span><br>
-                <strong>Erklärung:</strong> Dies ist ein Sicherheitsfeature des Browsers. Eine Seite kann sich nicht
-                selbst schließen, wenn der Nutzer sie manuell geöffnet hat (nur Popups, die per Script geöffnet wurden,
-                dürfen per Script geschlossen werden).
-            </div>
-        </section>
-        <section class="card" style="border-left: 5px solid red;">
-            <h2 style="border-left: none; padding: 0; color: #b91c1c;">Bug Report</h2>
-            <div style="background: #fef2f2; padding: 15px; border-radius: 8px;">
-                <strong>Problem:</strong> <br>
-                <strong>Status:</strong> <span class="label status-done">Gefunden [x]</span><br>
-                <strong>Erklärung:</strong> JavaScript lässt es nicht zu, dass zwei HTML-Datein, in einer JS Datei
-                verarbeitet werden.
-            </div>
-        </section>
-        <section class="card" style="border-left: 5px solid red;">
-            <h2 style="border-left: none; padding: 0; color: #b91c1c;">Bug Report</h2>
-            <div style="background: #fef2f2; padding: 15px; border-radius: 8px;">
-                <strong>Problem:</strong> Mehrere CSS-Datein in einer CSS-Datei verwalten, führt zu massiven Problemen
-                in der Auflösung <br>
-                <strong>Status:</strong> <span class="label status-wip">Alternative [x]</span><br>
-                <strong>Erklärung:</strong> Auseinandersetzung mit DOM gescheitert, es wurde auf einfaches HTML
-                Seitenwechsel, mit jeweils unterschiedlichen CSS Datein gewechselt
-            </div>
-        </section>
+
 
         <section class="card">
             <h2>Apollinaire Calligram</h2>
@@ -189,7 +189,7 @@ https://www.reshot.com/free-svg-icons/item/home-X27HUJS9EC/
 
 
 
-    <link rel="stylesheet" href="../CSS/fortschritt.css"></link>
+    <link rel="stylesheet" href="../CSS/tutorial.css"></link>
     <script src="../JavaScript/allButtons_Options_Functions.js"></script>
     <script type="module" src="../JavaScript/menuSound.js"></script>
     <script src="../JavaScript/localStorage.js"></script>

@@ -5,12 +5,17 @@
     ==============================================================
     */
 
-    /* Farbwahl (Root -> var) sind Keywords */
+    /* Farbwahl (Root -> var) sind Keywords
+    Standartfarben
+    */
+
   :root {
     --hauptFarbe: #f59e0b; /* Akzentfarbe 30% Regel */
     --titelFarbe: #152a23;
-    --untertitelfarbe: #515151;
+    --untertitelfarbe: #ffffff;
+    --codingKonversationsText: #000000;
     --feldFarbe: #ffffff;
+    --h2texte: #000000;
     --standarttext: #334155;
     --border: #e2e8f0;
     --code-bg: #1e293b;
@@ -18,8 +23,37 @@
     --warning: #f59e0b;
     --todo: #94a3b8;
     --thhintergrund: #f8fafc;
+    --hgbFarben: rgba(8, 3, 41, 0); 
+    --card2Farbe: #f1f5f938;
+    --bugFeldFarbe:#fef2f2;
+    --eifelTurmFarbe:#000;
+    --artHintergrundFarbe:#ffffff;
+    --hintergrundButton: #ffffff00;
     --X: none;
   }
+/*DarkMode*/
+    :root.dark-mode {
+    --hauptFarbe: #5e3e09; 
+    --titelFarbe: #b3ff00;
+    --untertitelfarbe: #ffffff;
+    --codingKonversationsText: #000000;
+    --feldFarbe: #020202c5;
+    --h2texte: #ffffff;
+    --standarttext: #ffffff;
+    --border: #e2e8f0;
+    --code-bg: #ced5e0;
+    --success: #0a7753;
+    --warning: #c5009ac7;
+    --todo: #5d6774;
+    --thhintergrund: #047bf34b;
+    --hgbFarben: rgba(8, 3, 41, 0.712); 
+    --card2Farbe: #c0c0c0;
+    --bugFeldFarbe:#11111149;
+    --eifelTurmFarbe:#ffee00;
+    --artHintergrundFarbe:#000000;
+    --hintergrundButton: #b3ff00d2;
+    --X: none;
+  } 
 
   .untertitel {
     color: var(--untertitelfarbe);
@@ -32,7 +66,9 @@
     color: var(--standarttext); 
     line-height: 1.6; /* Textzeile */
     padding: 40px;
-    background-image: url('../bilder/hintergrundbild/flughafen.png');
+    background-image:
+    linear-gradient(var(--hgbFarben), var(--hgbFarben)),
+    url('../bilder/hintergrundbild/flughafen.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -74,7 +110,7 @@
     border-left: 5px solid var(--hauptFarbe);
     display: inline-block;
     padding-left: 15px;
-    color: #1e293b;
+    color: var(--h2texte);
   }
 
   h3 {
@@ -102,10 +138,11 @@
   }
 
   .card2 {
-    background: #f1f5f9;
+    background: var(--card2Farbe);
     padding: 15px;
     border-radius: 8px;
     font-size: 0.9rem;
+    color: var(--codingKonversationsText);
   }
 
   .card2 strong {
@@ -114,7 +151,7 @@
   }
 
   code {
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(255, 251, 0, 0.432);
     padding: 2px 5px;
     border-radius: 4px;
     font-family: monospace;
@@ -157,21 +194,27 @@
     background-color: var(--todo);
   }
 
+  .btnHome {
+    background-color:var(--hintergrundButton)
+  }
+
   /* --- APOLLINAIRE KUNST --- */
   .poem-umgebung {
     text-align: center;
-    background: #fff;
+    background: var(--artHintergrundFarbe);
     padding: 40px;
     overflow-x: auto;
+    border-radius: 4px;
   }
 
   pre.art {
     font-family: 'Courier New', monospace;
     font-size: 12px;
     line-height: 12px;
-    color: #000;
+    color: var(--eifelTurmFarbe);
     display: inline-block;
     text-align: left;
+    
   }
 
   /* --- TABELLE --- */
@@ -213,3 +256,4 @@
     }
   }
 
+  

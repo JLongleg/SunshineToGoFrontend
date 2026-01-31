@@ -115,6 +115,73 @@
     //     zeigMitwirkende()
     // });
 
+/*  ========================================= 
+    Hier werden die einzelnen Bereiche
+    (Seiten = Div) verborgen, damit sie beim
+    Start nicht angezeigt werden.
+    =========================================  */
+
+#mitwirkendeBereichHTML {
+    display:none;
+}
+
+#bestenListeBereichHTML {
+    display:none;
+}
+
+#fortschrittBereichHTML {
+    display:none;
+}
+
+#gameplayBereichHTML {
+    display:none;
+}
+
+#mitwirkendeBereichHTML {
+    display:none;
+}
+
+    function zeigBestenliste() {
+        bestenlisteS.style.display = "block";
+        menuS.style.display = "none";
+    }
+
+    function zeigMitwirkende() {
+        mitwirkendeS.style.display = "block";
+        menuS.style.display = "none";
+    }
+
+
+            <section class="card" style="border-left: 5px solid red;">
+            <h2 style="border-left: none; padding: 0; color: #b91c1c;">Bug Report</h2>
+            <div style="background: var(--bugFeldFarbe); padding: 15px; border-radius: 8px;">
+                <strong>Problem:</strong> Fenster lässt sich nach Navigation nicht schließen.<br>
+                <strong>Status:</strong> <span class="label status-done">Gefunden [x]</span><br>
+                <strong>Erklärung:</strong> Dies ist ein Sicherheitsfeature des Browsers. Eine Seite kann sich nicht
+                selbst schließen, wenn der Nutzer sie manuell geöffnet hat (nur Popups, die per Script geöffnet wurden,
+                dürfen per Script geschlossen werden).
+            </div>
+        </section>
+        <section class="card" style="border-left: 5px solid red;">
+            <h2 style="border-left: none; padding: 0; color: #b91c1c;">Bug Report</h2>
+            <div style="background: var(--bugFeldFarbe); padding: 15px; border-radius: 8px;">
+                <strong>Problem:</strong> <br>
+                <strong>Status:</strong> <span class="label status-done">Gefunden [x]</span><br>
+                <strong>Erklärung:</strong> JavaScript lässt es nicht zu, dass zwei HTML-Datein, in einer JS Datei
+                verarbeitet werden.
+            </div>
+        </section>
+        <section class="card" style="border-left: 5px solid red;">
+            <h2 style="border-left: none; padding: 0; color: #b91c1c;">Bug Report</h2>
+            <div style="background: var(--bugFeldFarbe); padding: 15px; border-radius: 8px;">
+                <strong>Problem:</strong> Mehrere CSS-Datein in einer CSS-Datei verwalten, führt zu massiven Problemen
+                in der Auflösung <br>
+                <strong>Status:</strong> <span class="label status-wip">Alternative [x]</span><br>
+                <strong>Erklärung:</strong> Auseinandersetzung mit DOM gescheitert, es wurde auf einfaches HTML
+                Seitenwechsel, mit jeweils unterschiedlichen CSS Datein gewechselt
+            </div>
+        </section>
+
 
     -->
 

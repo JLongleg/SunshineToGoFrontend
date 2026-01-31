@@ -14,9 +14,9 @@ else if (window.location.pathname.includes("spiel_spielen.html")) {
     imGameplay() /* Gameplaybereich */
 }
 
-else if (window.location.pathname.includes("fortschritt.html")) {
+else if (window.location.pathname.includes("tutorial.html")) {
     console.log("Willkommen bei der Dokumentation")
-    imFortschritt() /* Fortschrittbereich */
+    imTutorial() /* Tutorialbereich */
 }
 /*
 ==========================================================
@@ -77,17 +77,8 @@ function imMenu() {
     // Optionsfenster wird geschlossen
     buttonCloseOptionsWindow.addEventListener("click", () => {
         fensterWindowOp.close();
+        return window.location.reload();
     });
-
-    function zeigBestenliste() {
-        bestenlisteS.style.display = "block";
-        menuS.style.display = "none";
-    }
-
-    function zeigMitwirkende() {
-        mitwirkendeS.style.display = "block";
-        menuS.style.display = "none";
-    }
 
 
     /*
@@ -101,7 +92,7 @@ Darkmode-Barrierearmut
 
     const checkKasten = document.getElementById("checkbox");
 
-    checkKasten.addEventListener("input", () => {
+    checkKasten.addEventListener("change", () => {
         if (checkKasten.checked) {
             console.log("Dunkelmodus wurde aktiviert")
             return darkMode1 = window.localStorage.setItem("darkMode", '1')
@@ -151,12 +142,12 @@ function imGameplay() {
 
 /*
 ==========================================================
-    Fortschrittbereich
+    Tutorialbereich
     ==================
 ==========================================================
 */
 
-function imFortschritt() {
+function imTutorial() {
 
     const buttonHome = document.querySelectorAll(".btnHome");
 

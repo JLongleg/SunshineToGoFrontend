@@ -11,17 +11,10 @@ Bilder mit Nano Banana Pro erstellt s. Wasserzeichen
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sunshine To Go</title>
 
-    <script> // darkMode automatisch starten, wenn man auf der Seite ist.
-    if(localStorage.getItem('darkMode') === '1') {
-        document.documentElement.classList.add('dark-mode');
-    }
-    </script>
+    <script src="../JavaScript/dunkelModusAbfrage.js"></script>
 
 </head>
-
 <body>
-
-    <div class="dunkelModus">
         
     <!--
     ==============================================================
@@ -47,10 +40,10 @@ Bilder mit Nano Banana Pro erstellt s. Wasserzeichen
                 <figcaption><strong>Optionen</strong></figcaption>
             </figure>
 
-            <figure id="fortschrittButton" class="bild" class="papierflieger">
-                <a href="../html/fortschritt.html"><img src="../bilder/menu_bilder/Endprodukt/Flieger.jpg"
+            <figure id="tutorialButton" class="bild" class="papierflieger">
+                <a href="../html/tutorial.html"><img src="../bilder/menu_bilder/Endprodukt/Flieger.jpg"
                         alt="Spiel-Start-Bild"></a>
-                <figcaption><strong>Fort-<br>schritt</strong></figcaption>
+                <figcaption><strong>Tutorial</strong></figcaption>
             </figure>
 
         </div>
@@ -85,11 +78,9 @@ Bilder mit Nano Banana Pro erstellt s. Wasserzeichen
             <button id="closeWindowOptionsButton">Schließen</button>
         </div>
         <div class="dialogStyle2">
-            <img src="../bilder/optionsBilder/Ticket.png">
+            <img class="ticketOption" src="../bilder/optionsBilder/Ticket.png">
         </div>
     </dialog>
-
-     </div> <!-- dunkelmodus Ende  -->
 
     <div>
 

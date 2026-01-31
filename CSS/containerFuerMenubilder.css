@@ -12,25 +12,45 @@
             /*Außenabstand und Innenanstand*/
             margin: 0;
             padding: 0;
-            
+        
             /* Kein Scrollen
             overflow: hidden;*/
-
         }
+
+        /*StandardFarben and DarkMODE*/
 
         :root {
         /*standartFarben*/
-        --standarttext:white;
-        
-        
-        /*darkmodeFarben*/
-        
+        --standarttext:rgb(255, 255, 255);
+        --durchsichtig:rgba(0, 0, 0, 0);
+        /*Hintergrundbild*/
+        --hgbFarben: rgba(30, 0, 255, 0.138); 
+        --titelfeld: rgba(30, 0, 255, 0.138);
+        --hgbFarbenDM:rgba(0, 0, 0, 0.5); 
+        --FarbeFigcaption: rgb(255, 255, 255);
+        }
+
+/* =========================================
+   DUNKELMODUS
+   ========================================= */
+
+        :root.dark-mode {
+        /* standartFarben */
+        --standarttext:rgb(217, 255, 0);
+        --durchsichtig:rgba(0, 0, 0, 0);
+        /* Hintergrundbild färben */
+        --hgbFarben: rgba(8, 3, 41, 0.466); 
+        --titelfeld: rgb(37, 35, 56);
+        --FarbeFigcaption: rgb(255, 255, 255);
         }
 
 /* =========================================
     GRUNDLAGEN & HINTERGRUND
    ========================================= */
 
+        
+
+        
         body {
 
             /*Aktiviert das Flexbox-Layout-System für die ganze Seite*/
@@ -45,9 +65,8 @@
             
             background-image: 
             /*Schleier für das Hintergrundbild*/
-            linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-            
-            /* Das Hintergrundbild */
+            /*Komma relevant für den Hintergrund*/
+            linear-gradient(var(--hgbFarben), var(--hgbFarben)),
             url('../bilder/hintergrundbild/Pilot.PNG'); 
 
             /* Bild wird zurecht zentriert */
@@ -69,7 +88,7 @@
             /* Zentriert den Text */
             height: auto;
             /* Nimmt sich so viel Platz wie nötig */
-            background-color: #333;
+            background-color: var(--titelfeld);
             /* Optional: Hintergrund für Titel */
         }
 
@@ -97,7 +116,7 @@
         }
 
 /* =========================================
-   Die Kacheln
+   Die Kacheln (Felder in denen die Bilder sind)
    ========================================= */
 
         figure.bild {
@@ -113,7 +132,7 @@
             overflow: hidden;
             /*Schichtmanagment*/
             position: relative;
-            background-color: #ffffff00;
+            background-color: #6b020200; /*Falls man die Bildfelder bearbeiten möchte*/
         }
 
 /* =========================================
@@ -137,8 +156,14 @@
 
         }
 
+        /*Bild in den Optionen*/
+        img.ticketOption {
+            object-fit: cover;
+
+        }
+
 /* =========================================
-   Bildunterschrift
+   Bildunterschrift = Schrift hinter dem Bild
    ========================================= */
 
         figcaption {
@@ -157,12 +182,13 @@
             z-index: 1; 
 
             /*Optik*/
-            color: rgb(255, 255, 255);
+            color: var(--FarbeFigcaption);
+            margin-top: 10px;
+            text-shadow: 2px 2px 4px #000000;
+            /*Text*/
             font-size: clamp(1rem, 3.5vw, 3.5rem);
             font-weight: bold;
             text-align: center;
-            margin-top: 10px;
-            text-shadow: 2px 2px 4px #000000;
 
         }
 
@@ -176,7 +202,7 @@
             /* Vergrößerung der Bilder beim drübergehen (Hover) */
             transform: scale(0.9);
             /* Transparenz der Bilder bei drübergehen (Hover) */
-            opacity: 0.5;
+            opacity: 0.2;
             
         }
 
