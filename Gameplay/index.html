@@ -10,7 +10,15 @@
   <!-- Von https://threejs.org/manual/#en/installation -->
   <!-- SETUP Three.js -->
 
-<script src="../JavaScript/dunkelModusAbfrage.js"></script>
+<!-- MARKUS BEARBEITUNG ANFANG -->
+    
+<!-- Quellen -->
+    <script src="../JavaScript/localStorage.js"></script>
+    <script src="../JavaScript/dunkelModusAbfrage.js"></script>
+    <script src="../JavaScript/punkteStand.js"></script>
+    <link rel="stylesheet" href="../CSS/gameplayAnzeigeDunkelModus.css"></link>
+
+    <!-- MARKUS BEARBEITUNG ENDE -->
 
   <script type="importmap">
 {
@@ -36,16 +44,31 @@
 
     @import url("https://cdn.jsdelivr.net/npm/a3model@1.0.8/src/index.css");
 
-    
-
   </style>
 
-
-
 </head>
+
 <body>
 
-   <button>Menu</button>
+<!--MARKUS BEARBEITUNG ANFANG-->
+
+    <dialog id="pausenMenu">
+        <h1>Pausen Menü</h1>
+        <section>
+            <!---Audioregler-->
+            <div class="slidecontainer">
+                <p>Soundregler:</p>
+                <input type="range" min="0" max="100" value="50" class="slider" id="myRange">
+            </div>
+        </section>
+        <a href="../html/sunshine_to_go_menu.html">
+            <button>Menu</button></a>
+    </dialog>
+
+  <p class="punkteAnzeige">Punktestand:<span id="punkteZahl">0</span></p>
+   <button class="btnPauseMenu">Menu</button>
+
+<!--MARKUS BEARBEITUNG ENDE-->
 
   <div id="a3canvas"> <!-- Accessibility -->
 

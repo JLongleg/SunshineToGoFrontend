@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+.btnPauseMenu {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+}
+
+.punkteAnzeige {
+    position: fixed;
+    right: 0;
+    margin-right: 20px;
+
+    
+}
