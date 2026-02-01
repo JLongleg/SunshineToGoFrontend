@@ -21,7 +21,7 @@ import A3 from 'a3model';
 // Externer Code
 // Referenz 1: THREE.js Manual: https://threejs.org/manual/#en/installation#manual/introduction/Creating-a-scene
 // Referenz 2: Ref "02": Animation setup von https://www.youtube.com/watch?v=GByT8ActvDk (Animation from THREE.js Manual: https://threejs.org/manual/?q=animation#en/animation-system)
-// Referenz 3: Ref "03": https://threejs.org/docs/#CSS2DRenderer und https://threejs.org/docs/#CSS2DObject
+// Referenz 3: Ref "03": https://threejs.org/docs/#CSS2DRenderer und https://threejs.org/docs/#CSS2DObject und https://waelyasmina.net/articles/how-to-integrate-html-elements-into-a-three-js-scene/#css2drenderer
 // Referenz 4: 
 // Referenz B: "Barrierefreiheit"/"Accessibility Test"
 
@@ -43,25 +43,6 @@ const sizes = { // Accessibility Test: Sizes
 } // Accessibility Test: Sizes
 
 const clock = new THREE.Clock(); //Ref "02"
-
-
-let myCSS2DRenderer = new CSS2DRenderer();  //Ref "03"
-
-
-
-/*
-let feldMitWunschtemp = document.createElement("div");
-feldMitWunschtemp.innerText = "Hallo";
-document.body.appendChild(feldMitWunschtemp);
-
-or
-
-let feldMitWunschtemp = document.createElement("div");
-let tatsText = document.createElement("p");
-feldMitWunschtemp.append(tatsText, "jdslkjf");
-document.body.append(feldMitWunschtemp);
-
-*/
 
 
 
@@ -91,7 +72,6 @@ const renderer = new THREE.WebGLRenderer({ // Accessibility Test: Renderer // Ko
 renderer.setSize(sizes.width, sizes.height) // Accessibility Test: Renderer // Grösse der Fläche der gerenderten App
 // Alternativ: 
 // renderer.setSize(window.innerWidth, window.innerHeight); 
-
 document.body.appendChild(renderer.domElement); //Renderer benutzt ein <canvas>-Element, um die Szene darzustellen. Dieses Element wird dem HTML-Dokument hinzugefügt.
 
 
@@ -100,9 +80,11 @@ document.body.appendChild(renderer.domElement); //Renderer benutzt ein <canvas>-
 // ========
 // Controls
 
+
 const controls = new OrbitControls(camera, renderer.domElement);
 //controls.enableDamping = true; // kein zu abruptes Bewegen der controls
 controls.update(); // controls.update() must be called after any manual changes to the camera's transform
+
 
 
 
@@ -128,9 +110,11 @@ const fontloader = new FontLoader();
 let meshUeberschriftGate1; //Zeigt auf das Mesh der Überschrift für Gate1 (andernfalls nur innerhalb Funktion verfügbar)
 let meshUeberschriftGate2;
 let meshUeberschriftGate3;
+let meshTemperatur;
 let textfuermeshUeberschriftGate1 = "Gate1";//String, welcher das Mesh für Gate1 darstellt. Muss per Funktion in Mesh "transformiert" und angezeigt werden.
 let textfuermeshUeberschriftGate2 = "Gate2";
 let textfuermeshUeberschriftGate3 = "Gate3";
+let textfuermeshTemperatur = "-20";
 
 
 //Anonyme Funktion, welche Überschriften zu den Gates hinzufügt
@@ -156,9 +140,15 @@ let gateTexthinzufuegen = function (uebergebeneFont) {
     depth: 0.2,
   });
 
+  const geometryTemperatur = new TextGeometry(textfuermeshTemperatur, {
+    font: uebergebeneFont,
+    size: 2,
+    depth: 0.2,
+  });
+
   const textmaterial = new THREE.MeshBasicMaterial({ color: 0x00ffff });
 
-  //Platzieren des Gate-Texts in der Szene
+  //Platzieren der Texte in der Szene
   meshUeberschriftGate1 = new THREE.Mesh(geometry1, textmaterial);
   meshUeberschriftGate1.position.set(-15, 11, -15.2);
   meshUeberschriftGate1.name = "UeberschriftGate1";
@@ -173,6 +163,15 @@ let gateTexthinzufuegen = function (uebergebeneFont) {
   meshUeberschriftGate3.position.set(6, 7, -15.2);
   meshUeberschriftGate3.name = "UeberschriftGate3";
   scene.add(meshUeberschriftGate3);
+
+    meshTemperatur = new THREE.Mesh(geometryTemperatur, textmaterial);
+  meshTemperatur.position.set(6, 0, 8);
+  meshTemperatur.rotation.x= -Math.PI/2;
+  meshTemperatur.rotation.y = 0.52
+  meshTemperatur.rotation.z= Math.PI / 2;
+  
+  meshTemperatur.name = "Temperaturwunsch";
+  scene.add(meshTemperatur);
 }
 
 fontloader.load("Schriftart.json", gateTexthinzufuegen); //Erstes Attribut: Lädt Font und übergibt sie an -> Zweites Attribut: onLoad()-callback-Funktion alias anonyme Funktion
@@ -181,15 +180,19 @@ fontloader.load("Schriftart.json", gateTexthinzufuegen); //Erstes Attribut: Läd
 
 // Ueberschriften ueber Gates werden mit Städtenamen der aktuellen Runde ersetzt
 
-function gateUeberschriftErsetzen(NameStadt1, NameStadt2, NameStadt3) {
+function gateUeberschriftErsetzen(NameStadt1, NameStadt2, NameStadt3, tempWunsch) {
   scene.remove(meshUeberschriftGate1);
   scene.remove(meshUeberschriftGate2);
   scene.remove(meshUeberschriftGate3);//Mesh wird nicht mehr in Szene angezeigt, aber wird nicht komplett gelöscht, das bräuchte eine dispose function
+scene.remove(meshTemperatur);
 
   textfuermeshUeberschriftGate1 = NameStadt1;
   textfuermeshUeberschriftGate2 = NameStadt2;
   textfuermeshUeberschriftGate3 = NameStadt3;
+textfuermeshTemperatur = "\"" + tempWunsch.toString() + "°C\"";
 
+console.log("NameStad1 now", NameStadt1)
+console.log("Tempwunsch now", tempWunsch)
   fontloader.load("Schriftart.json", gateTexthinzufuegen); //Überschriften werden per Funktion neu erstellt (mit dem nun aktualisierten Text)
 }
 
@@ -333,6 +336,7 @@ catch (e) {
     { "city": "Tianjin", "country": "China", "maxTemperature": 2 }];
 }
 let rundeNummer = 0;
+let punktzahl = 0;
 
 // Funktion wird in loader.load oben aufgerufen. Vorteil: Wird erst ausgeführt, sobald Modell geladen ist und alle Objekte der Szene stehen zur Verfügung
 
@@ -361,7 +365,6 @@ loader.load('./Sunshine3DModel21.glb', function (gltf) {
   console.log("clips: ", clips);
 
 
-
   spielrunde()
 
 
@@ -376,10 +379,6 @@ loader.load('./Sunshine3DModel21.glb', function (gltf) {
       // wERTE FUER DIESE RUNDE
       curCities = pickCities(cities);// 3 Städte für die aktuelle Runde werden ausgewählt. (curCities ist "current cities") Attribute: city, country, maxTemperature
 
-      console.log(cities)
-      console.log(curCities)
-      console.log(curCities[0].city)
-
 
 
       // Beschriftung von Gates in Reihenfolge (Array bereits randomised).
@@ -393,10 +392,10 @@ loader.load('./Sunshine3DModel21.glb', function (gltf) {
       console.log("Temperaturwunsch: ", tempWunsch, KorrekteAntwort.city)
 
       //Platzhalter-Ueberschriften ueber Gates werden mit Städtenamen dieser Runde ersetzt
-      gateUeberschriftErsetzen(curCities[0].city, curCities[1].city, curCities[2].city)
+      gateUeberschriftErsetzen(curCities[0].city, curCities[1].city, curCities[2].city, tempWunsch)
 
 
-      console.log("Runde:", rundeNummer)
+      console.log("Runde:", rundeNummer, "Punktzahl: ", punktzahl)
 
 
       if (rundeNummer === 5) {
@@ -406,8 +405,6 @@ loader.load('./Sunshine3DModel21.glb', function (gltf) {
 
 
 
-
-      feldMitWunschtemp = tempWunschFeldanzeigen(Tiffany, tempWunsch) //Übergabeparameter: aktuellerCharakter und tempWunsch, return: myCSS2DObject
 
       goToCenter();
 
@@ -470,7 +467,6 @@ async function goToCenter() {
   Idle_action.play();
 
 
-  let feldMitWunschtemp = tempWunschFeldanzeigen(Tiffany, tempWunsch)
 
   const rollingin_clip = THREE.AnimationClip.findByName(clips, 'CharacterGoesToDecisionPoint');
   const rollingin_action = mixer.clipAction(rollingin_clip, invisibleGuide); //clip, root, blend mode
@@ -500,13 +496,14 @@ async function goToGate1() {
     mixer.addEventListener('finished', resolve, false))); //Wenn mixer 'finished', dann resolve das Promise.
   togate1_action.stop();
 
-  Tiffany.remove(feldMitWunschtemp); //Entfernen des Textes über dem Charakter
 
   if (curCities[0].maxTemperature == tempWunsch) {
     scene.getObjectByName("CoverGate1").visible = true
+    punktzahl += 1;
   }
   else {
     scene.getObjectByName("CoverGate1X").visible = true
+    punktzahl -= 1;
   }
 
   let Flugzeug1 = scene.getObjectByName('Flugzeug1');
@@ -546,10 +543,12 @@ async function goToGate3() {
   Flugzeug3.name = "Flugzeug3"; //Rückgängigmachen der Umbennung
 
   if (curCities[2].maxTemperature == tempWunsch) {
-    scene.getObjectByName("CoverGate3").visible = true
+    scene.getObjectByName("CoverGate3").visible = true;
+    punktzahl += 1;
   }
   else {
     scene.getObjectByName("CoverGate3X").visible = true
+    punktzahl -= 1;
   }
 }
 
@@ -580,9 +579,11 @@ async function goToGate2() {
 
   if (curCities[1].maxTemperature == tempWunsch) {
     scene.getObjectByName("CoverGate2").visible = true
+    punktzahl += 1;
   }
   else {
     scene.getObjectByName("CoverGate2X").visible = true
+    punktzahl -= 1;
   }
 
 }
@@ -604,16 +605,6 @@ animate();
 
 
 
-function tempWunschFeldanzeigen(aktuellerCharakter, tempWunsch) {
-
-  let feldMitWunschtemp = document.createElement("div"); //Erstellen eines div-Elements
-  feldMitWunschtemp.innerHTML = "♥ " + tempWunsch + " ♥"; //tempWunsch
-  let myCSS2DObject = new CSS2DObject(feldMitWunschtemp); //Erstellen eines 2D-Objekts auf Basis des vorhin erstellten div-Elements
-  myCSS2DObject.position.set(0, 5, 0); //Festsetzen, wo das Feld über Charakter angezeigt werden soll
-  aktuellerCharakter.add(myCSS2DObject) //Tatsächliches Hinzufügen/Anzeigen des Feldes über dem Charakter
-
-  return myCSS2DObject
-}
 
 
 
@@ -623,13 +614,14 @@ function tempWunschFeldanzeigen(aktuellerCharakter, tempWunsch) {
 
 function animate() { //Accessibility Test: A3 Click
 
-  requestAnimationFrame(animate); // The (window.-)requestAnimationFrame() method tells the browser that you wish to perform an animation and requests that the browser call a specified function to update an animation before the next repaint. //Accessibility Test: A3 Click
+
+  renderer.setAnimationLoop(animate); // Anzeige eines Bildes mit aktuellem Stand der Animation
   controls.update();
 
   if (importsfertig) {
     let delta = clock.getDelta();  //clock.getDelta indicates at which point in time we are in the animation loop
     mixer.update(delta); //update method advances the global mixer time and updates the animation/shows model at this point in time.
-    mixer2.update(delta);
+    mixer2.update(delta); //Separater Mixer, da zwei Animationen gleichzeitig laufen/starten
   }
 
   renderer.render(scene, camera); //Accessibility Test: A3 Click
@@ -641,6 +633,14 @@ function animate() { //Accessibility Test: A3 Click
     - before rendering: Renderer#init needs to have been called for initialisation, e.g. when using on-demand rendering
     - exception: using render() inside an animation loop but -> animation loop must be defined with Renderer#setAnimationLoop
   */
+
+  window.addEventListener('resize', function () { //Ref "03"
+    camera.aspect = window.innerWidth / window.innerHeight; //Ref "03"
+    camera.updateProjectionMatrix(); //Ref "03",aktualisiert die Projection Matrix der Kamera, muss nach jeder Änderung der Kamera Properties aufgerufen werden.
+    renderer.setSize(window.innerWidth, window.innerHeight); //Verhindert "Stretchen" des 3D-Modell-Canvas' bei Größenänderung des Fensters
+
+  })
+
 
   mya3.updateBoxes(camera) //Accessibility Test: A3 Click
 
