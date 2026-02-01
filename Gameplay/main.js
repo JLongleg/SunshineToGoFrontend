@@ -479,14 +479,11 @@ loader.load('./Sunshine3DModel22.glb', function (gltf) {
         modal.classList.add("open"); //Div bekommt neue Klasse, die es in den Vordergrund (Layer 999) rückt
 
         const ResultatPopUp = document.getElementById('punkteZahlResultat');
-        if (aktuellePunkteZahl == 1 || aktuellePunkteZahl == -1) {
+        if (aktuellePunkteZahl == 1) {
           ResultatPopUp.innerText = aktuellePunkteZahl + " Pünktchen erreicht! OK!"
         }
         else if (aktuellePunkteZahl == 0) {
           ResultatPopUp.innerText = aktuellePunkteZahl + " Punkte. Ausgewogen!"
-        }
-        else if (aktuellePunkteZahl < -1){
-          ResultatPopUp.innerText = aktuellePunkteZahl + " Punkte. Uff... Kaffee?"
         }
         else {
           ResultatPopUp.innerText = aktuellePunkteZahl + " Punkte, yay!"
@@ -613,7 +610,6 @@ async function goToGate1() {
   }
   else {
     scene.getObjectByName("CoverGate1X").visible = true;
-    aktuellePunkteZahl -= 1;
   }
 
   let Flugzeug1 = scene.getObjectByName('Flugzeug1');
@@ -642,7 +638,7 @@ async function goToGate3() {
   aktuellerCharakter.remove(feldMitWunschtemp);
 
   let Flugzeug3 = scene.getObjectByName('Flugzeug3');
-  mixer2 = new THREE.AnimationMixer(Flugzeug3); //to-do: müsste nur einmal erstellt werden, nicht in jeder Runde
+  mixer2 = new THREE.AnimationMixer(Flugzeug3); 
   Flugzeug3.name = "Flugzeug1"; //um die Animation von Flugzeug1 nutzen zu können
   const flugzeughebtab_clip = THREE.AnimationClip.findByName(clips, 'flugzeughebtab');
   const flugzeughebtab_action = mixer2.clipAction(flugzeughebtab_clip, Flugzeug3); //clip, root, blend mode
@@ -657,7 +653,6 @@ async function goToGate3() {
   }
   else {
     scene.getObjectByName("CoverGate3X").visible = true
-    aktuellePunkteZahl -= 1;
   }
 }
 
@@ -677,7 +672,7 @@ async function goToGate2() {
   aktuellerCharakter.remove(feldMitWunschtemp);
 
   let Flugzeug2 = scene.getObjectByName('Flugzeug2');
-  mixer2 = new THREE.AnimationMixer(Flugzeug2); //to-do: müsste nur einmal erstellt werden, nicht in jeder Runde
+  mixer2 = new THREE.AnimationMixer(Flugzeug2);
   Flugzeug2.name = "Flugzeug1"; //um die Animation von Flugzeug1 nutzen zu können
   const flugzeughebtab_clip = THREE.AnimationClip.findByName(clips, 'flugzeughebtab');
   const flugzeughebtab_action = mixer2.clipAction(flugzeughebtab_clip, Flugzeug2); //clip, root, blend mode
@@ -692,7 +687,6 @@ async function goToGate2() {
   }
   else {
     scene.getObjectByName("CoverGate2X").visible = true
-    aktuellePunkteZahl -= 1;
   }
 
 }
