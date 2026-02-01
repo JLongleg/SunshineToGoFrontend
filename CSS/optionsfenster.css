@@ -1,62 +1,70 @@
 /* =========================================
-   STANDARTDFARBEN
+   STANDARTDFARBEN Optionsfenster
    ========================================= */
 
 
-        :root {
+    :root {
         --SchwarzerRand: black;
         --optionsfensterSchatten: rgba(128, 128, 128, 0.208);
         --hintergrundFarbe: rgb(255, 147, 47);
         --kastenFarbe: rgb(255, 255, 255);
-        }
+    }
 
 /* =========================================
-   DUNKELMODUS
+   DUNKELMODUS Optionsfenster
    ========================================= */
 
-        :root.dark-mode {
+    :root.dark-mode {
         --SchwarzerRand: black;
         --optionsfensterSchatten: rgba(128, 128, 128, 0.208);
         --hintergrundFarbe: rgba(87, 86, 86, 0.301);
         --kastenFarbe: rgb(15, 97, 117);
-        }
+    }
 
 
 /* =========================================
    Fenster selbst
    ========================================= */
    
-.dialog {
+    .dialog {
     text-align: center;
     border-style: calc();
     
-}
+    }
 /* =========================================
-   Optionsfenster Einstellungen
+   Dialog des Optionsfenster 
    ========================================= */
    
-#openWindowOptionID {
+    #openWindowOptionID {
     width: 40%;
     height: (68%)vw;
     border-radius: 10px;
     border:5px solid var(--SchwarzerRand);
     box-shadow: 10px 10px 5px var(--optionsfensterSchatten);
     background-color: var(--hintergrundFarbe);
+    }
 
-}
+    /*weitere Verwendung von der ID als Classe*/
+    .openWindowOptionClass {
+
+    border-radius: 10px;
+    border:5px solid var(--SchwarzerRand);
+    box-shadow: 10px 10px 5px var(--optionsfensterSchatten);
+    background-color: var(--hintergrundFarbe);
+    }
 
 /* =========================================
-   Titel im Optionen Fenster
+   Div des Optionsfenster 1 und 2 / Text 
    ========================================= */
 
-.dialogStyle {
+    .dialogStyle {
     padding: 20px;
     border: 2px solid var(--SchwarzerRand);
     background-color: var(--kastenFarbe);
     border-radius: 5px;
-}
+    }
 
-.dialogStyle2 {
+    .dialogStyle2 {
     margin-top: 2%;
     padding: 1%;
     border: 2px solid var(--SchwarzerRand);
@@ -65,12 +73,12 @@
 
     object-fit: cover;
     display: block;
-}
+    }
 
-.Optionstitle {
+    .Optionstitle {
     font-size: 2em;
     margin-bottom: 0.5em;
     position: relative;
     object-position: center;
     text-align: center;
-}
+    }

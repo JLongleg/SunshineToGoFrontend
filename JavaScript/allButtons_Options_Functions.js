@@ -3,13 +3,14 @@
     Routing-Funktion zwischen Menu und Gameplay
 ==========================================================
 */
+// Die Paths sind dabei nur Strings:
 
 if (window.location.pathname.includes("sunshine_to_go_menu.html")) {
     console.log("Willkommen im Menubereich");
     imMenu() /* Menubereich */
 }
 
-else if (window.location.pathname.includes("spiel_spielen.html")) {
+else if (window.location.pathname.includes("index.html")) {
     console.log("Willkommen im Gameplaybereich");
     imGameplay() /* Gameplaybereich */
 }
@@ -27,12 +28,6 @@ else if (window.location.pathname.includes("tutorial.html")) {
 
 function imMenu() {
 
-    // Div-Bereiche für die Sichtbarkeit bestimmen:
-    const menuS = document.getElementById("menuBereichHTML");
-    const bestenlisteS = document.getElementById("bestenListeBereichHTML");
-    const gameplayS = document.getElementById("gameplayBereichHTML");
-    const mitwirkendeS = document.getElementById("mitwirkendeBereichHTML");
-
     /*
     ============================================================
         Universal Button um zurück zum Menu zu kommen
@@ -48,9 +43,7 @@ function imMenu() {
     function funcZumMenu() {
 
         if (menuS) menuS.style.display = "block";
-        if (bestenlisteS) bestenlisteS.style.display = "none";
         if (gameplayS) gameplayS.style.display = "none";
-        if (mitwirkendeS) mitwirkendeS.style.display = "none";
     }
 
     alleMenuButtonsGoBack.forEach(einzelnerButton => {
@@ -74,19 +67,23 @@ function imMenu() {
     // Optionsfenster schließen
     const buttonCloseOptionsWindow = document.getElementById("closeWindowOptionsButton");
 
+    // Registriert jeden Klick egal, ob an oder aus
+    checkbox.addEventListener("click", () => {
+        return window.location.reload();
+    })
+
     // Optionsfenster wird geschlossen
     buttonCloseOptionsWindow.addEventListener("click", () => {
         fensterWindowOp.close();
-        return window.location.reload();
+        
     });
 
-
     /*
-==========================================================
-Darkmode-Barrierearmut
-======================
-==========================================================
-*/
+    ==========================================================
+    Darkmode-Barrierearmut = Checkbox
+    =================================
+    ==========================================================
+    */
 
     // Abspeicherung des Darkmode durch 0/1
 
@@ -102,17 +99,18 @@ Darkmode-Barrierearmut
         }
     });
 
-
 }; // Ende vom Menubereich
 
-/*
-==========================================================
+    /*
+    ==========================================================
     Gameplaybereich
     ===============
-==========================================================
+    ==========================================================
 */
 
 function imGameplay() {
+// Kontrollinstanz mit Console:
+console.log("JS nähere Auswahl Gameplay");
 
     // !Wichtiger Hinweis! Für meine JS Datei, da bei der Abfrage
     // von zwei unterschiedlichen Dialogen in Menu und Gameplay ist
@@ -120,22 +118,24 @@ function imGameplay() {
     // nicht = NULL ist, da sonst eine Fehlermeldung entsteht. 
     // Wurde mit der Routingfunktion behoben S. oben [x]
 
-
     // Button für das PausenMenu
+    const buttonPauseMenu = document.getElementById("btnPauseMenuId");
 
-    const buttonPauseMenu = document.getElementById("pausenMenuButton");
+    // Button im Optionsfenster, dass das Optionsfenster wieder schließt
+    const optionsfensterSchlie = document.getElementById("opSchiessen")
 
-    // Pausen Menu öffnen !!!!!!!
+    // Pausen Menu öffnen
     const pausenMenuOp = document.getElementById("pausenMenu");
 
     // Optionsfenster
-
     buttonPauseMenu.addEventListener("click", () => {
+        console.log("Pausenmenu wurde geöffnet");
         pausenMenuOp.showModal();
     });
 
-    buttonPauseMenu.addEventListener("click", () => {
-        pausenMenuOp.showModal();
+    optionsfensterSchlie.addEventListener("click", () => {
+        console.log("Optionsfenster geschlossen")
+        pausenMenuOp.close();
     });
 
 }  // Ende aus dem Gameplaybereich

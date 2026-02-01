@@ -23,7 +23,8 @@
    --warning: #f59e0b;
    --todo: #94a3b8;
    --thhintergrund: #f8fafc;
-   --hgbFarben: rgba(8, 3, 41, 0);
+   --hgbFarbe1: rgba(8, 3, 41, 0);
+   --hgbFarbe2: rgba(26, 10, 128, 0.534);
    --card2Farbe: #f1f5f938;
    --bugFeldFarbe: #fef2f2;
    --eifelTurmFarbe: #000;
@@ -50,7 +51,8 @@
    --warning: #c5009ac7;
    --todo: #5d6774;
    --thhintergrund: #047bf34b;
-   --hgbFarben: rgba(8, 3, 41, 0.712);
+   --hgbFarbe1: rgba(8, 3, 41, 0.616);
+   --hgbFarbe2: rgba(26, 10, 128, 0.534);
    --card2Farbe: #c0c0c0;
    --bugFeldFarbe: #11111149;
    --eifelTurmFarbe: #ffee00;
@@ -59,28 +61,39 @@
    --X: none;
  }
 
+/* =========================================
+   Untertitel
+   ========================================= */
+
  .untertitel {
    color: var(--untertitelfarbe);
    font-size: 1.2em;
  }
+/* =========================================
+   body: Allg. Schriftart, Farbe, Abstand,
+   ========================================= */
 
- /* var nimmt den Wert von Oben */
  body {
+   margin: 0;
    font-family: 'Segoe UI', system-ui, sans-serif;
    color: var(--standarttext);
-   line-height: 1.6;
    /* Textzeile */
+   line-height: 1.6;
    padding: 40px;
+   /*Hintergrundbild*/
    background-image:
-     linear-gradient(var(--hgbFarben), var(--hgbFarben)),
+     linear-gradient(var(--hgbFarbe2), var(--hgbFarbe1)),
      url('../bilder/hintergrundbild/flughafen.png');
    background-size: cover;
    background-position: center;
    background-repeat: no-repeat;
    background-attachment: fixed;
    min-height: 100vh;
-   margin: 0;
  }
+
+/* =========================================
+   Icon
+   ========================================= */
 
  .btnHome {
    background: var(--X);
@@ -88,22 +101,31 @@
    padding: 0;
    cursor: pointer;
    display: flex;
-   align-items: center;
-   justify-content: center;
  }
+
+/* =========================================
+   Bild der Charaktere
+   ========================================= */
 
  .imgCharacter {
   border: 4px solid var(--hauptFarbe);
   border-radius: 50px;
  }
 
- /* container */
+/* =========================================
+   Container aller anderen Container 
+   ========================================= */
+
  .umgebung {
    max-width: 900px;
    margin: auto;
    display: grid;
    gap: 40px;
  }
+
+/* =========================================
+   Mehrere Überschriften
+   ========================================= */
 
  h1 {
    font-size: 2.5rem;
@@ -129,7 +151,9 @@
    margin-top: 20px;
  }
 
- /* --- Umgebungsfeld --- */
+/* =========================================
+   Container Card und Card2
+   ========================================= */
 
  .card {
    background: var(--feldFarbe);
@@ -137,13 +161,6 @@
    border-radius: 12px;
    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
    border: 1px solid var(--border);
- }
-
- /* --- CODE REGELN --- */
- .code-rules {
-   display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-   gap: 15px;
  }
 
  .card2 {
@@ -159,6 +176,16 @@
    margin-bottom: 5px;
  }
 
+ .cardKleinCard {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   gap: 15px;
+ }
+
+/* =========================================
+   Code regeln als betonung für den Text 
+   ========================================= */
+
  code {
    background: rgba(255, 251, 0, 0.432);
    padding: 2px 5px;
@@ -167,13 +194,16 @@
    font-weight: bold;
  }
 
- /* --- STATUS LISTE --- */
- ul.task-list {
+/* =========================================
+   Tabellen & Erledigtfelder
+   ========================================= */
+
+ ul.aufgabenBereich {
    list-style: none;
    padding: 0;
  }
 
- ul.task-list li {
+ ul.aufgabenBereich li {
    padding: 10px 0;
    border-bottom: 1px solid var(--border);
    display: flex;
@@ -208,33 +238,37 @@
    border-radius: 8px;
  }
 
- /* --- APOLLINAIRE KUNST --- */
- .poem-umgebung {
+/* =========================================
+   Komische Kunst die auch dabei ist = D
+   ========================================= */
+
+ .eifel-umgebung {
    text-align: center;
    background: var(--artHintergrundFarbe);
    padding: 40px;
    overflow-x: auto;
-   border-radius: 20px;
+   border-radius: 8px;
  }
 
  pre.art {
    font-family: 'Courier New', monospace;
    font-size: 12px;
    line-height: 12px;
-   border-radius: 50px;
    color: var(--eifelTurmFarbe);
    display: inline-block;
    text-align: left;
  }
 
- /* --- TABELLE --- */
+/* =========================================
+   Spielmechanik Tabelle
+   ========================================= */
+
  table {
    width: 100%;
    border-collapse: collapse;
    margin-top: 15px;
  }
 
- /*Tabellenkopf, inhalt*/
  th,
  td {
    text-align: left;
@@ -242,25 +276,32 @@
    border-bottom: 1px solid var(--border);
  }
 
- /*Tabellenkopf*/
  th {
    background-color: var(--thhintergrund);
    font-weight: 600;
  }
 
- /* --- !HANDYVERSION UNSTABLE! --- */
- @media (max-width: 600px) {
+/* =========================================
+   Handyeinstellungen
+   ========================================= */
+
+ @media (max-width: 800px) {
    body {
+
      padding: 15px;
    }
-
+    .umgebung {
+   display: grid;
+   gap:10px;
+   }
+   
    .label {
      display: block;
      margin-top: 5px;
      width: fit-content;
    }
 
-   ul.task-list li {
+   ul.aufgabenBereich li {
      flex-direction: column;
      align-items: flex-start;
    }

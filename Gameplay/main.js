@@ -226,8 +226,6 @@ new THREE.TextureLoader().load(file, (texture) => {
   texture.colorSpace = THREE.SRGBColorSpace;
   scene.background = texture;
 });
-
-
 if (localStorage.getItem('darkMode') == 1) {
 
 }
