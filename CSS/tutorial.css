@@ -9,28 +9,40 @@
     */
 
  :root {
+  /* Textfarben: */
    --hauptFarbe: #f59e0b;
    /* Akzentfarbe 30% Regel */
    --titelFarbe: #152a23;
    --untertitelfarbe: #ffffff;
    --codingKonversationsText: #000000;
-   --feldFarbe: #ffffff;
    --h2texte: #000000;
    --standarttext: #334155;
+   --herausstechenderText: rgba(225, 222, 55, 0.699);
+
+   /* Feldfarben: */
+   --feldFarbe: #ffffff;
    --border: #e2e8f0;
-   --code-bg: #1e293b;
+   --card2Farbe: #f1f5f938;
+   
+   /* Warnfarben: */
    --success: #10b981;
    --warning: #f59e0b;
    --todo: #94a3b8;
-   --thhintergrund: #f8fafc;
+
+   /* Hintergrund: */
    --hgbFarbe1: rgba(8, 3, 41, 0);
    --hgbFarbe2: rgba(26, 10, 128, 0.534);
-   --card2Farbe: #f1f5f938;
-   --bugFeldFarbe: #fef2f2;
+
+   /* Tabelle: */
+   --thhintergrund: #f8fafc;
+
+   /* Icon: */
+   --hintergrundButton: #ffffff00;
+
+   /* Sonstiges: */
    --eifelTurmFarbe: #000;
    --artHintergrundFarbe: #ffffff;
-   --hintergrundButton: #ffffff00;
-   --X: none;
+
  }
 
  /* =========================================
@@ -38,27 +50,39 @@
    ========================================= */
 
  :root.dark-mode {
+   /* Textfarben: */
    --hauptFarbe: #5e3e09;
    --titelFarbe: #b3ff00;
    --untertitelfarbe: #ffffff;
    --codingKonversationsText: #000000;
-   --feldFarbe: rgba(87, 86, 86, 0.301);
    --h2texte: #ffffff;
    --standarttext: #ffffff;
+   --herausstechenderText: rgba(255, 251, 0, 0.432);
+
+   /* Feldfarbe: */
+   --feldFarbe: rgba(87, 86, 86, 0.301);
    --border: #e2e8f0;
-   --code-bg: #ced5e0;
+   --card2Farbe: #c0c0c0;
+
+   /* Warnfarben: */
    --success: #0a7753;
    --warning: #c5009ac7;
    --todo: #5d6774;
-   --thhintergrund: #047bf34b;
+
+   /* Hintergrund: */
    --hgbFarbe1: rgba(8, 3, 41, 0.616);
    --hgbFarbe2: rgba(26, 10, 128, 0.534);
-   --card2Farbe: #c0c0c0;
-   --bugFeldFarbe: #11111149;
+
+   /*Tabelle*/
+   --thhintergrund: #047bf34b;
+
+   /*Icon*/
+   --hintergrundButton: #b3ff00d2;
+
+   /* Sonstiges */
    --eifelTurmFarbe: #ffee00;
    --artHintergrundFarbe: #000000;
-   --hintergrundButton: #b3ff00d2;
-   --X: none;
+
  }
 
 /* =========================================
@@ -187,7 +211,7 @@
    ========================================= */
 
  code {
-   background: rgba(255, 251, 0, 0.432);
+   background: var(--herausstechenderText);
    padding: 2px 5px;
    border-radius: 4px;
    font-family: monospace;
