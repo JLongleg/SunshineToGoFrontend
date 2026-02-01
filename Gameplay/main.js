@@ -227,8 +227,6 @@ new THREE.TextureLoader().load(file, (texture) => {
     scene.background = texture;
 });
 
-
-
 // ===========
 // Lichtquelle
 

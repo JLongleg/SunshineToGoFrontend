@@ -13,10 +13,12 @@
 <!-- MARKUS BEARBEITUNG ANFANG -->
     
 <!-- Quellen -->
+    <script src="../JavaScript/allButtons_Options_Functions.js" defer></script>
     <script src="../JavaScript/localStorage.js"></script>
     <script src="../JavaScript/dunkelModusAbfrage.js"></script>
     <script src="../JavaScript/punkteStand.js"></script>
     <link rel="stylesheet" href="../CSS/gameplayAnzeigeDunkelModus.css"></link>
+    <link rel="stylesheet" href="../CSS/optionsfenster.css"></link>
 
     <!-- MARKUS BEARBEITUNG ENDE -->
 
@@ -50,23 +52,36 @@
 
 <body>
 
-<!--MARKUS BEARBEITUNG ANFANG-->
+<!-- MARKUS BEARBEITUNG ANFANG -->
 
-    <dialog id="pausenMenu">
-        <h1>Pausen Menü</h1>
+  <!-- PausenMenuButton -->
+  <button id="btnPauseMenuId" class="btnPauseMenu"><img
+                    src="../bilder/icons/reshot-icon-home-X27HUJS9EC.svg" alt="Home-Icon" width="42"
+                    height="42"></svg>
+  </button>
+
+<!-- Optionsfenster -->
+
+    <dialog id="pausenMenu" class="openWindowOptionClass">
+      <div class="dialogStyle">  
+      <h1>Optionen</h1>
         <section>
             <!---Audioregler-->
             <div class="slidecontainer">
-                <p>Soundregler:</p>
-                <input type="range" min="0" max="100" value="50" class="slider" id="myRange">
+                <p>Soundregler:</p><input type="range" min="0" max="100" value="50" class="slider" id="myRange">
             </div>
         </section>
-        <a href="../html/sunshine_to_go_menu.html">
-            <button>Menu</button></a>
+        <button id="opSchiessen">Optionsfenster schließen</button>
+        <a href="../html/sunshine_to_go_menu.html">    
+      <button>Zurück zum Menu</button></a>
+      </div>
     </dialog>
 
-  <p class="punkteAnzeige">Punktestand:<span id="punkteZahl">0</span></p>
-   <button class="btnPauseMenu">Menu</button>
+<!-- Punkteanzeige -->
+
+<div class="punkteAnzeige">
+  <p>Punktestand:<span id="punkteZahl"> 0</span></p>
+</div>
 
 <!--MARKUS BEARBEITUNG ENDE-->
 

@@ -43,7 +43,7 @@
         --durchsichtig:rgba(0, 0, 0, 0);
         /* Hintergrundbild färben */
         --hgbFarben: rgba(8, 3, 41, 0.466); 
-        --titelfeld: rgb(37, 35, 56);
+        --titelfeld: rgba(37, 35, 56, 0.26);
         --FarbeFigcaption: rgb(255, 255, 255);
         }
 
@@ -79,39 +79,31 @@
    ========================================= */
 
         .titelVonMenu {
-            margin: 0;
             /* Entfernt Standard-Ränder */
+            margin: 0;
+            /* Bissl Luft oben und unten */
             padding: 10px 0;
-            /* Ein bisschen Luft oben/unten */
+            /* Text wird in die Mitte positioniert */
             text-align: center;
-            /* Zentriert den Text */
+            /* Höhe automatisch */
             height: auto;
-            /* Nimmt sich so viel Platz wie nötig */
+             /* Hintergrund für Titel */
             background-color: var(--titelfeld);
-            /* Optional: Hintergrund für Titel */
+           
         }
 
 /* =========================================
-   HAUPT-CONTAINER
+   HAUPT-CONTAINER => für die Bildauswahl
    ========================================= */
 
         .container {
-            /* Volle Bildschirmhöhe (100vh) und zieht 60px ab */
+            /* Volle Bildschirmhöhe 100% des sichtbaren Browsers - 60px */
             height: calc(100vh - 60px);
-            /*Erlaubt es dem Container, kleiner zu werden als sein Inhalt*/
-            min-height: 0;
             /* Erstellt ein Rasterlayout mit 3 Spalten und 2 Reihen */
             display:grid;
             /* Definiert das Raster mit 3 Spalten und 2 Reihen */
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(2, 1fr);
-            /*Abstand zwischen dem Rasterzellen*/
-            gap: 5px;
-            /*Abstand vom Außenrand*/
-            padding: 50px;
-            /*Abstand v*/
-            box-sizing: border-box;
-            
         }
 
 /* =========================================
@@ -119,9 +111,8 @@
    ========================================= */
 
         figure.bild {
-            /*Werte auf Null bringen*/
+            /*Rand entfernen*/
             margin: 0;
-            padding: 0;
 
             /*Die Figur füllt extakt 100% der Rasterzelle aus*/
             width: 100%;
@@ -131,8 +122,7 @@
             overflow: hidden;
             /*Schichtmanagment*/
             position: relative;
-            background-color: #6b020200; /*Falls man die Bildfelder bearbeiten möchte*/
-        }
+            }
 
 /* =========================================
    Bilder aufstellung
@@ -142,24 +132,21 @@
             width: 100%;
             height: 100%;
             
+            /*Behaält seine Seitenverältnis,
+            sonst gestreckt*/
             object-fit: contain;
-            object-position: center bottom;
-            display: block;
 
-            /*Schichtmanagment*/
+            /*positions loslösung notwenig,
+            damit z.index funktioniert.
+            => liegt vor dem Text durch 2
+            z. ist dabei die Z-Achse */
             position: relative;
-            z-index: 2; /*liegt vor dem Text*/
+            z-index: 2; 
             
             /*Bearbeitung der Schrift*/
             /* display: none !important */
-
         }
 
-        /*Bild in den Optionen*/
-        img.ticketOption {
-            object-fit: cover;
-
-        }
 
 /* =========================================
    Bildunterschrift = Schrift hinter dem Bild
@@ -167,26 +154,30 @@
 
         figcaption {
 
+            /* Orientiert sich am Elternelement
+            => Container */
             position: absolute;
             top: 0 ; 
             left: 0;
             width: 100%;
             height: 100%;
 
+            /*zentrierung des Textes*/
             display: flex;
             justify-content: center;
             align-items: center;
 
             /*liegt unter dem Bild*/
-            z-index: 1; 
+            z-index: 1;
 
             /*Optik*/
             color: var(--FarbeFigcaption);
-            margin-top: 10px;
-            text-shadow: 2px 2px 4px #000000;
+            text-shadow: 4px 4px 8px #000000;
             /*Text*/
             font-size: clamp(1rem, 3.5vw, 3.5rem);
+            /*fettgedruckt*/
             font-weight: bold;
+            /*'Spiel starten zentrieren*/
             text-align: center;
 
         }
@@ -204,16 +195,3 @@
             opacity: 0.2;
             
         }
-
-        .figcaption:hover {
-            transition: transform 10s ease, opacity 10s ease;
-            transform: scale(0.1); 
-        }
-
-  /* --- !HANDYVERSION UNSTABLE! --- */
-  @media (max-width: 800px) {
-
-    figcaption {
-        top: 50px;
-    }
-  };
