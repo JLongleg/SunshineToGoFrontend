@@ -62,9 +62,9 @@ catch (error) {
 }
 function imGameplaySound(volume) {
 
-  let bitSound = document.getElementById("bitSound");
-  if (bitSound) {
-    bitSound.volume = volume;
+  let lenaSound = document.getElementById("lenaSound");
+  if (lenaSound) {
+    lenaSound.volume = volume;
   }
 }
 
@@ -98,7 +98,7 @@ function imMenuSound(volume) {
 }
 
 function aktualisiereAktuellenSound(vol) {
-  const audioIDs = ["waldSound", "bitSound", "endSound"];
+  const audioIDs = ["waldSound", "lenaSound", "endSound"];
 
   audioIDs.forEach(id => {
     const audio = document.getElementById(id);

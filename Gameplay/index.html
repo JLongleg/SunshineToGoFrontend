@@ -28,15 +28,13 @@
 <!-- Quellen -->
   <script type = "module" src="../JavaScript/allButtons_Options_Functions.js" defer></script>
   <script type = "module" src="../JavaScript/localStorage.js"></script>
-  <script tzpe = "module" src="../JavaScript/dunkelModusAbfrage.js"></script>
-  <link rel="stylesheet" href="../CSS/gameplayAnzeigeDunkelModus.css"></link>
-  <link rel="stylesheet" href="../CSS/optionsfenster.css"></link>
+  <script type = "module" src="../JavaScript/dunkelModusAbfrage.js"></script>
 
-  <!-- Quellen -->
   <script type = "module" src="../JavaScript/localStorage.js"></script>
   <script type = "module" src="../JavaScript/dunkelModusAbfrage.js"></script>
-  <link rel="stylesheet" href="../CSS/gameplayAnzeigeDunkelModus.css">
-  </link>
+  <scrpt type = "module" src="../JavaScript/menuSound.js" defer></scrpt>
+  <link rel="stylesheet" href="../CSS/gameplayAnzeigeDunkelModus.css"></link>
+  <link rel="stylesheet" href="../CSS/optionsfenster.css"></link>
 
   <!-- MARKUS BEARBEITUNG ENDE -->
 
@@ -125,6 +123,11 @@
             <!---Audioregler-->
             <div class="slidecontainer">
                 <p>Soundregler:</p><input type="range" min="0" max="100" value="50" class="slider" id="myRange">
+                <audio controls autoplay loop id="lenaSound">
+                        <source
+                        src="../mp3/Cup_of_Sunshine.mp3"
+                        type="audio/mp3">
+                </audio>
             </div>
         </section>
         <button id="opSchiessen">Optionsfenster schließen</button>
