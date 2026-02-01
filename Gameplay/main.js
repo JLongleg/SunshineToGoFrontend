@@ -273,6 +273,7 @@ let aktuellerCharakter;
 let Tiffany;
 let Jasun;
 let Snovella;
+let MrRain;
 let Passagierliste = []; //Liste verfuegbarer Charaktere, aus denen spaeter einer fuer die aktuelle Runde ausgewählt wird
 let invisibleGuide;
 let curCities //Daten ausgewählter Städte für die aktuelle Runde
@@ -352,7 +353,7 @@ function mehrPunkte() {
 
 
 
-loader.load('./Sunshine3DModel22.glb', function (gltf) {
+loader.load('./Sunshine3DModel23.glb', function (gltf) {
   // "onLoad"-Funktion des gltfLoaders
   // (der gltfLoader hat also zu diesem Zeitpunkt fertig geladen)
 
@@ -368,8 +369,9 @@ loader.load('./Sunshine3DModel22.glb', function (gltf) {
   Tiffany = scene.getObjectByName('Armature_Tiffany');
   Jasun = scene.getObjectByName('Armature_Jasun')
   Snovella = scene.getObjectByName('Armature_Snovella')
+  MrRain = scene.getObjectByName('MrRain_Armature')
 
-  Passagierliste.push(Tiffany, Jasun, Snovella);
+  Passagierliste.push(Tiffany, Jasun, Snovella, MrRain);
 
   mixer2 = new THREE.AnimationMixer(gltf.scene);
 
@@ -405,7 +407,9 @@ loader.load('./Sunshine3DModel22.glb', function (gltf) {
 
       let zufälligeZahl = Math.floor(Math.random() * 3) //Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
       KorrekteAntwort = curCities[zufälligeZahl];
-      aktuellerCharakter = Passagierliste[zufälligeZahl];
+      let zufälligeZahlNullbisDrei=Math.floor(Math.random() * 4)
+      aktuellerCharakter = Passagierliste[zufälligeZahlNullbisDrei];
+      console.log("aktueller Charakter,", aktuellerCharakter);
       charakterSichtbarkeitaendern("machesichtbar", aktuellerCharakter);
 
       //Temperaturwunsch des Charakters wird passend zur richtigen Antwort gewählt
@@ -555,6 +559,12 @@ function showIdleAnimation() {
     Idle_action.play();
   }
 
+    if (aktuellerCharakter == MrRain) {
+    const Idle_clip = THREE.AnimationClip.findByName(clips, 'MrRainIdle');
+    const Idle_action = mixer.clipAction(Idle_clip); //clip, root, blend mode
+    Idle_action.setLoop(THREE.LoopRepeat);
+    Idle_action.play();
+  }
 }
 
 async function goToCenter() {
@@ -703,7 +713,11 @@ function charakterSichtbarkeitaendern(sichtbarkeitswunsch, charakter = "alle") {
     scene.getObjectByName("Body_Snovella").visible = false;
     scene.getObjectByName("Hat_Snovella").visible = false;
     scene.getObjectByName("Head_Snovella").visible = false;
-    scene.getObjectByName("Rollstuhl_Jason").visible = false;
+    scene.getObjectByName("Rollstuhl_Jasun").visible = false;
+    scene.getObjectByName("MrRain_Body").visible = false;
+    scene.getObjectByName("MrRain_Head").visible = false;
+    scene.getObjectByName("MrRain_Fly").visible = false;
+    scene.getObjectByName("MrRain_Hair").visible = false;
   }
 
   else if (sichtbarkeitswunsch == "machesichtbar") {
@@ -716,12 +730,18 @@ function charakterSichtbarkeitaendern(sichtbarkeitswunsch, charakter = "alle") {
       scene.getObjectByName("Sunglasses_Jasun").visible = true;
       scene.getObjectByName("Hair_Jasun").visible = true;
       scene.getObjectByName("Body_Jasun").visible = true;
-      scene.getObjectByName("Rollstuhl_Jason").visible = true;
+      scene.getObjectByName("Rollstuhl_Jasun").visible = true;
     }
     else if (charakter == Snovella) {
       scene.getObjectByName("Body_Snovella").visible = true;
       scene.getObjectByName("Hat_Snovella").visible = true;
       scene.getObjectByName("Head_Snovella").visible = true;
+    }
+        else if (charakter == MrRain) {
+      scene.getObjectByName("MrRain_Body").visible = true;
+      scene.getObjectByName("MrRain_Hair").visible = true;
+      scene.getObjectByName("MrRain_Fly").visible = true;
+      scene.getObjectByName("MrRain_Head").visible = true;
     }
   }
 }
