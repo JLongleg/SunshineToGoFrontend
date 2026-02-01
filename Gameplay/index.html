@@ -32,7 +32,7 @@
 
   <script type = "module" src="../JavaScript/localStorage.js"></script>
   <script type = "module" src="../JavaScript/dunkelModusAbfrage.js"></script>
-  <scrpt type = "module" src="../JavaScript/menuSound.js" defer></scrpt>
+  <script type = "module" src="../JavaScript/menuSound.js"></script>
   <link rel="stylesheet" href="../CSS/gameplayAnzeigeDunkelModus.css"></link>
   <link rel="stylesheet" href="../CSS/optionsfenster.css"></link>
 
@@ -123,11 +123,13 @@
             <!---Audioregler-->
             <div class="slidecontainer">
                 <p>Soundregler:</p><input type="range" min="0" max="100" value="50" class="slider" id="myRange">
-                <audio controls autoplay loop id="lenaSound">
+                <br>
+                <audio autoplay loop id="lenaSound">
                         <source
                         src="../mp3/Cup_of_Sunshine.mp3"
                         type="audio/mp3">
                 </audio>
+                <br>
             </div>
         </section>
         <button id="opSchiessen">Optionsfenster schließen</button>

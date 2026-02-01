@@ -23,8 +23,6 @@ try {
     });
   }
 
-
-
   const startVolume = ladeSound();
 
   /*
@@ -38,7 +36,7 @@ try {
     imMenuSound(startVolume) /* Menubereich */
   }
 
-  else if (window.location.pathname.includes("spiel_spielen.html")) {
+  else if (window.location.pathname.includes("index.html")) {
     console.log("Spiele Gameplaymusik");
     imGameplaySound(startVolume) /* Gameplaybereich */
   }
@@ -61,10 +59,15 @@ catch (error) {
   console.error(error);
 }
 function imGameplaySound(volume) {
-
+  console.log("Sound wurde umgestellt");
   let lenaSound = document.getElementById("lenaSound");
+
   if (lenaSound) {
+    console.log("Sound lenaSound gefunden");
     lenaSound.volume = volume;
+    console.log(`Lautstärke umgestellt ${volume}`)
+  } else {
+    console.warn("Lautstärke kann nicht umgestellt werden.");
   }
 }
 
@@ -76,10 +79,11 @@ function imGameplaySound(volume) {
 
 function imTutorialSound(volume) {
   let endSound = document.getElementById("endSound");
+  
   if (endSound) {
-    console.log("Sound endSound gefunden")
+    console.log("Sound endSound gefunden");
     endSound.volume = volume;
-    console.log(`Lautstärke umgestellt ${volume}`)
+    console.log(`Lautstärke umgestellt ${volume}`);
   }
 }
 
@@ -94,6 +98,7 @@ function imMenuSound(volume) {
   let waldSound = document.getElementById("waldSound");
   if (waldSound) {
     waldSound.volume = volume
+    console.log(`Lautstärke umgestellt ${volume}`);
   }
 }
 
