@@ -1,12 +1,9 @@
-// Bereich für die Speicherung von lokalen Daten
-
-// SETTER:
-export const soundSpeicherung = (volume) => {
-  window.localStorage.setItem("soundWert", volume)
+export const soundSpeicherung = (volume) => { // Bereich für die Speicherung von lokalen Daten
+  window.localStorage.setItem("soundWert", volume) // SETTER:
 };
 
-// GETTER:
-export const ladeSound = () => {
+
+export const ladeSound = () => { // GETTER:
 
   const gespeicherterWert = window.localStorage.getItem("soundWert")
 

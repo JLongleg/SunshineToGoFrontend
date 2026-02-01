@@ -33,7 +33,7 @@ import A3 from 'a3model';
 
 const scene = new THREE.Scene();
 
-const canvas = document.querySelector('canvas#webgl') // Accessibility Test: Canvas
+const canvas = document.querySelector('canvas#webgl') // Accessibility Test: A3-Objekt(Canvas) wird initalisiert
 const sizes = { // Accessibility Test: Sizes
 
   width: innerWidth, // Accessibility Test: Sizes
@@ -65,14 +65,13 @@ scene.add(camera) // Accessiblity Test: Camera
 
 const renderer = new THREE.WebGLRenderer({ // Accessibility Test: Renderer // Konstruiert einen neuen WebGL-Renderer. WebGL (Web Graphics Library) ist ein Javascript API, mit dessen Hilfe 3D-Grafiken im Browser angezeigt werden können.
 
-  canvas: canvas // Accessibility Test: Renderer
-
+  canvas: canvas
 }) // Accessibility Test: Renderer
 
 renderer.setSize(sizes.width, sizes.height) // Accessibility Test: Renderer // Grösse der Fläche der gerenderten App
 // Alternativ: 
 // renderer.setSize(window.innerWidth, window.innerHeight); 
-document.body.appendChild(renderer.domElement); //Renderer benutzt ein <canvas>-Element, um die Szene darzustellen. Dieses Element wird dem HTML-Dokument hinzugefügt.
+//document.body.appendChild(renderer.domElement); //Renderer benutzt ein <canvas>-Element, um die Szene darzustellen. Dieses Element wird dem HTML-Dokument hinzugefügt.
 
 
 
@@ -164,12 +163,12 @@ let gateTexthinzufuegen = function (uebergebeneFont) {
   meshUeberschriftGate3.name = "UeberschriftGate3";
   scene.add(meshUeberschriftGate3);
 
-    meshTemperatur = new THREE.Mesh(geometryTemperatur, textmaterial);
+  meshTemperatur = new THREE.Mesh(geometryTemperatur, textmaterial);
   meshTemperatur.position.set(6, 0, 8);
-  meshTemperatur.rotation.x= -Math.PI/2;
+  meshTemperatur.rotation.x = -Math.PI / 2;
   meshTemperatur.rotation.y = 0.52
-  meshTemperatur.rotation.z= Math.PI / 2;
-  
+  meshTemperatur.rotation.z = Math.PI / 2;
+
   meshTemperatur.name = "Temperaturwunsch";
   scene.add(meshTemperatur);
 }
@@ -184,15 +183,13 @@ function gateUeberschriftErsetzen(NameStadt1, NameStadt2, NameStadt3, tempWunsch
   scene.remove(meshUeberschriftGate1);
   scene.remove(meshUeberschriftGate2);
   scene.remove(meshUeberschriftGate3);//Mesh wird nicht mehr in Szene angezeigt, aber wird nicht komplett gelöscht, das bräuchte eine dispose function
-scene.remove(meshTemperatur);
+  scene.remove(meshTemperatur);
 
   textfuermeshUeberschriftGate1 = NameStadt1;
   textfuermeshUeberschriftGate2 = NameStadt2;
   textfuermeshUeberschriftGate3 = NameStadt3;
-textfuermeshTemperatur = "\"" + tempWunsch.toString() + "°C\"";
+  textfuermeshTemperatur = "\"" + tempWunsch.toString() + "°C\"";
 
-console.log("NameStad1 now", NameStadt1)
-console.log("Tempwunsch now", tempWunsch)
   fontloader.load("Schriftart.json", gateTexthinzufuegen); //Überschriften werden per Funktion neu erstellt (mit dem nun aktualisierten Text)
 }
 
@@ -208,12 +205,12 @@ const geometry = new THREE.BoxGeometry(1, 1, 1);
 const material = new THREE.MeshBasicMaterial({ color: 0xFF00FF });
 let beispielCube = new THREE.Mesh(geometry, material); // Accessibility Test: Von "const" zu "let" geändert, da Variable gleich geändert wird
 beispielCube.position.set(0, 10, 0);
-scene.add(beispielCube);
+
 
 beispielCube.name = "beispielCube" //Accessibility Test: Mesh
 
 beispielCube = mya3.createBox(beispielCube, "button") //Accessibility Test: Mesh
-
+scene.add(beispielCube);
 // ==============
 //Hintergrundbild 
 //Setup von threejs.org Manual
@@ -225,13 +222,15 @@ const dunkelModus1 = localStorage.getItem('darkMode') === '1';
 const file = dunkelModus1 ? 'Hintergrundbild_Nighttime.jpg' : 'Hintergrundbild_Daytime.jpg';
 
 new THREE.TextureLoader().load(file, (texture) => {
-    texture.mapping = THREE.EquirectangularReflectionMapping;
-    texture.colorSpace = THREE.SRGBColorSpace;
-    scene.background = texture;
+  texture.mapping = THREE.EquirectangularReflectionMapping;
+  texture.colorSpace = THREE.SRGBColorSpace;
+  scene.background = texture;
 });
 
 
+if (localStorage.getItem('darkMode') == 1) {
 
+}
 // ===========
 // Lichtquelle
 
@@ -274,6 +273,9 @@ let action;
 
 let aktuellerCharakter;
 let Tiffany;
+let Jasun;
+let Snovella;
+let Passagierliste = []; //Liste verfuegbarer Charaktere, aus denen spaeter einer fuer die aktuelle Runde ausgewählt wird
 let invisibleGuide;
 let curCities //Daten ausgewählter Städte für die aktuelle Runde
 let KorrekteAntwort //Daten für die korrekte Stadt in der aktuellen Runde
@@ -338,33 +340,45 @@ catch (e) {
     { "city": "Tianjin", "country": "China", "maxTemperature": 2 }];
 }
 let rundeNummer = 0;
-let punktzahl = 0;
+let aktuellePunkteZahl = 0;
+const punkteZahlAnzeige = document.getElementById('punkteZahl');
+
+function mehrPunkte() {
+  aktuellePunkteZahl++;
+  punkteZahlAnzeige.innerText = aktuellePunkteZahl;
+}
+
+
 
 // Funktion wird in loader.load oben aufgerufen. Vorteil: Wird erst ausgeführt, sobald Modell geladen ist und alle Objekte der Szene stehen zur Verfügung
 
 
 
-loader.load('./Sunshine3DModel21.glb', function (gltf) {
+loader.load('./Sunshine3DModel22.glb', function (gltf) {
   // "onLoad"-Funktion des gltfLoaders
   // (der gltfLoader hat also zu diesem Zeitpunkt fertig geladen)
 
   scene.add(gltf.scene); //Ref "02" //eines der "Loader results" des gltfLoaders war die Szene (3D-Modell) aus dieser glb-Datei, die jetzt der gesamten angezeigten Szene hinzugefügt wird 
   importsfertig = true;
   //Kontrolle: Listed alle "children"/Objekte in der Szene auf
-  scene.traverse(function (child) {
+  /*scene.traverse(function (child) {
     console.log("Liste aller Children/Objekte in Szene: ", child.name);
   });
+  */
 
   //Da wir nur in dieser Funktion das gesamte 3D-Modell aus dieser Datei zur Verfügung haben, müssen jetzt die "Mixer" (undefined) mit den Animationen erstellt werden
-  Tiffany = scene.getObjectByName('Armature');
-  aktuellerCharakter = Tiffany;
+  Tiffany = scene.getObjectByName('Armature_Tiffany');
+  Jasun = scene.getObjectByName('Armature_Jasun')
+  Snovella = scene.getObjectByName('Armature_Snovella')
+
+  Passagierliste.push(Tiffany, Jasun, Snovella);
+
   mixer2 = new THREE.AnimationMixer(gltf.scene);
 
   invisibleGuide = scene.getObjectByName('Empty');
   mixer = new THREE.AnimationMixer(invisibleGuide);
   //mixer = new THREE.AnimationMixer(gltf.scene); //Constructor für einen Player für Animationen. Ein Mixer pro animiertes Objekt. Mixer ist komplexes Objekt, nicht nur Array mit Animationen (Ref "02")
   clips = gltf.animations; //Array aller Animationen (Ref "02")
-  console.log("clips: ", clips);
 
 
   spielrunde()
@@ -381,33 +395,110 @@ loader.load('./Sunshine3DModel21.glb', function (gltf) {
       // wERTE FUER DIESE RUNDE
       curCities = pickCities(cities);// 3 Städte für die aktuelle Runde werden ausgewählt. (curCities ist "current cities") Attribute: city, country, maxTemperature
 
-
+      charakterSichtbarkeitaendern("macheunsichtbar"); //Alle Charakter-Objekte folgen dem InvisibleGuide und sollen erstmal nicht angezeigt werden
 
       // Beschriftung von Gates in Reihenfolge (Array bereits randomised).
       // Auswahl richtiger Antwort (Zufällige Zahl 0/1/2 entspricht Gate 1, 2 oder 3)
 
+      const groupJason = new THREE.Group();
+      //groupJason.add(scene.getObjectByName("Armature_Jasun"))
+
+
+
       let zufälligeZahl = Math.floor(Math.random() * 3) //Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
-      KorrekteAntwort = curCities[zufälligeZahl]
+      KorrekteAntwort = curCities[zufälligeZahl];
+      aktuellerCharakter = Passagierliste[zufälligeZahl];
+      charakterSichtbarkeitaendern("machesichtbar", aktuellerCharakter);
 
       //Temperaturwunsch des Charakters wird passend zur richtigen Antwort gewählt
       tempWunsch = KorrekteAntwort.maxTemperature
-      console.log("Temperaturwunsch: ", tempWunsch, KorrekteAntwort.city)
+      console.log("Lösung: ", tempWunsch, KorrekteAntwort.city)
 
       //Platzhalter-Ueberschriften ueber Gates werden mit Städtenamen dieser Runde ersetzt
       gateUeberschriftErsetzen(curCities[0].city, curCities[1].city, curCities[2].city, tempWunsch)
 
 
-      console.log("Runde:", rundeNummer, "Punktzahl: ", punktzahl)
+      console.log("Runde:", rundeNummer, "aktuellePunkteZahl: ", aktuellePunkteZahl)
 
 
       if (rundeNummer === 5) {
-        alert(`Das waren 5 Runden! Kleine Pause?`);
+
+        resultscreen(aktuellePunkteZahl)
         break;
+      }
+
+      //Barrierefreiheit mit Tab-Taste: Gate-Auswahl
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key == "1") {
+          gewaehltesGate = 'Gate1';
+        }
+        else if (event.key == "2") {
+          gewaehltesGate = 'Gate2';
+        }
+        else if (event.key == "3") {
+          gewaehltesGate = 'Gate3';
+        }
+      })
+      let Gate1 = scene.getObjectByName('Gate1')
+      let Gate1x = mya3.createBox(Gate1, "button"); //Klickbare unsichtbare Box um Gate1
+      mya3.click(Gate1x, barrierefreiGate1gewaehlt, 'Gate1 wurde ausgewählt')
+
+      function barrierefreiGate1gewaehlt() {
+        gewaehltesGate = Gate1;
+        console.log("gewGatenoww", gewaehltesGate)
+      }
+
+      let Gate2 = scene.getObjectByName('Gate2')
+      Gate2 = mya3.createBox(Gate2, "button"); //Klickbare unsichtbare Box um Gate1
+      mya3.click(Gate2.name, barrierefreiGate2gewaehlt, 'Gate2 wurde ausgewählt')
+
+      function barrierefreiGate2gewaehlt() {
+        gewaehltesGate = Gate2;
+        console.log("gewGatenoww", gewaehltesGate);
+      }
+
+      let Gate3 = scene.getObjectByName('Gate3')
+      Gate3 = mya3.createBox(Gate3, "button") //Klickbare unsichtbare Box um Gate1
+      mya3.click(Gate3, barrierefreiGate3gewaehlt, 'Gate3 wurde ausgewählt')
+
+      function barrierefreiGate3gewaehlt() {
+        gewaehltesGate = Gate3;
+        console.log("gewGatenoww", gewaehltesGate.name)
       }
 
 
 
+      mya3.renderEffects(camera)
+      // Result Screen bei Spielende
+      // Reference 04: https://www.youtube.com/watch?v=r_PL0K2fGkY
 
+      function resultscreen(aktuellePunkteZahl) {
+
+        const modal = document.getElementById("modal"); //Textfeld des Resultate-Pop-Ups
+        const closeBtn = document.getElementById("closeModal"); //Close-Button, um Pop-Up zu schliessen
+
+        modal.classList.add("open"); //Div bekommt neue Klasse, die es in den Vordergrund (Layer 999) rückt
+
+        const ResultatPopUp = document.getElementById('punkteZahlResultat');
+        if (aktuellePunkteZahl == 1 || aktuellePunkteZahl == -1) {
+          ResultatPopUp.innerText = aktuellePunkteZahl + " Pünktchen erreicht! OK!"
+        }
+        else if (aktuellePunkteZahl == 0) {
+          ResultatPopUp.innerText = aktuellePunkteZahl + " Punkte. Ausgewogen!"
+        }
+        else if (aktuellePunkteZahl < -1){
+          ResultatPopUp.innerText = aktuellePunkteZahl + " Punkte. Uff... Kaffee?"
+        }
+        else {
+          ResultatPopUp.innerText = aktuellePunkteZahl + " Punkte, yay!"
+        }
+        closeBtn.addEventListener("click", () => {
+          modal.classList.remove("open");
+        })
+      }
+
+      showIdleAnimation();
       goToCenter();
 
       await new Promise((resolve =>
@@ -420,23 +511,11 @@ loader.load('./Sunshine3DModel21.glb', function (gltf) {
       scene.getObjectByName("CoverGate2X").visible = false;
       scene.getObjectByName("CoverGate3X").visible = false;
 
-      if (gewaehltesGate == 'Gate1') {
-        goToGate1();
-      }
 
-      else if (gewaehltesGate == 'Gate3') {
-        goToGate3();
-      }
-
-      else {
-        goToGate2();
-      }
-
+      sendToChosenGate() //Funktion ruft Funktion goToGate1(), goToGate2(), oder goToGate1() auf.
       await new Promise((resolve =>
         mixer.addEventListener('finished', resolve, false))); //Wenn mixer 'finished', dann resolve das Promise.
 
-
-      console.log("Runde ", rundeNummer, "beendet")
 
       rundeNummer += 1;
     }
@@ -459,15 +538,31 @@ loader.load('./Sunshine3DModel21.glb', function (gltf) {
   });
 
 
+function showIdleAnimation() {
+  if (aktuellerCharakter == Tiffany) {
+    const Idle_clip = THREE.AnimationClip.findByName(clips, 'TiffanyIdle');
+    const Idle_action = mixer.clipAction(Idle_clip); //clip, root, blend mode
+    Idle_action.setLoop(THREE.LoopRepeat);
+    Idle_action.play();
+  }
+
+  if (aktuellerCharakter == Jasun) {
+    const Idle_clip = THREE.AnimationClip.findByName(clips, 'JasunIdle');
+    const Idle_action = mixer.clipAction(Idle_clip); //clip, root, blend mode
+    Idle_action.setLoop(THREE.LoopRepeat);
+    Idle_action.play();
+  }
+
+  if (aktuellerCharakter == Snovella) {
+    const Idle_clip = THREE.AnimationClip.findByName(clips, 'SnovellaIdle');
+    const Idle_action = mixer.clipAction(Idle_clip); //clip, root, blend mode
+    Idle_action.setLoop(THREE.LoopRepeat);
+    Idle_action.play();
+  }
+
+}
 
 async function goToCenter() {
-
-
-  const Idle_clip = THREE.AnimationClip.findByName(clips, 'TiffanyIdle');
-  const Idle_action = mixer.clipAction(Idle_clip, Tiffany); //clip, root, blend mode
-  Idle_action.setLoop(THREE.LoopRepeat);
-  Idle_action.play();
-
 
 
   const rollingin_clip = THREE.AnimationClip.findByName(clips, 'CharacterGoesToDecisionPoint');
@@ -481,6 +576,21 @@ async function goToCenter() {
     mixer.addEventListener('finished', resolve, false))); //Wenn mixer 'finished', dann resolve das Promise.
 
   rollingin_action.stop();
+}
+
+//Funktion ruft bei Entscheidungspunkt goToGate1(), goToGate2(), oder goToGate1() auf.
+function sendToChosenGate() {
+  if (gewaehltesGate == 'Gate1') {
+    goToGate1();
+  }
+
+  else if (gewaehltesGate == 'Gate3') {
+    goToGate3();
+  }
+
+  else {
+    goToGate2(); //Gate2 ist Default, falls kein Gate gewaehlt wurde.
+  }
 }
 
 async function goToGate1() {
@@ -500,16 +610,15 @@ async function goToGate1() {
 
 
   if (curCities[0].maxTemperature == tempWunsch) {
-    scene.getObjectByName("CoverGate1").visible = true
-    punktzahl += 1;
+    scene.getObjectByName("CoverGate1").visible = true;
+    mehrPunkte()
   }
   else {
-    scene.getObjectByName("CoverGate1X").visible = true
-    punktzahl -= 1;
+    scene.getObjectByName("CoverGate1X").visible = true;
+    aktuellePunkteZahl -= 1;
   }
 
   let Flugzeug1 = scene.getObjectByName('Flugzeug1');
-  mixer2 = new THREE.AnimationMixer(Flugzeug1); //to-do: müsste nur einmal erstellt werden, nicht in jeder Runde
   const flugzeughebtab_clip = THREE.AnimationClip.findByName(clips, 'flugzeughebtab');
   const flugzeughebtab_action = mixer2.clipAction(flugzeughebtab_clip, Flugzeug1); //clip, root, blend mode
   flugzeughebtab_action.setLoop(THREE.LoopOnce);
@@ -532,13 +641,13 @@ async function goToGate3() {
     mixer.addEventListener('finished', resolve, false))); //Wenn mixer 'finished', dann resolve das Promise.
   togate3_action.stop();
 
-  Tiffany.remove(feldMitWunschtemp);
+  aktuellerCharakter.remove(feldMitWunschtemp);
 
   let Flugzeug3 = scene.getObjectByName('Flugzeug3');
-  mixer = new THREE.AnimationMixer(Flugzeug3); //to-do: müsste nur einmal erstellt werden, nicht in jeder Runde
+  mixer2 = new THREE.AnimationMixer(Flugzeug3); //to-do: müsste nur einmal erstellt werden, nicht in jeder Runde
   Flugzeug3.name = "Flugzeug1"; //um die Animation von Flugzeug1 nutzen zu können
   const flugzeughebtab_clip = THREE.AnimationClip.findByName(clips, 'flugzeughebtab');
-  const flugzeughebtab_action = mixer.clipAction(flugzeughebtab_clip, Flugzeug3); //clip, root, blend mode
+  const flugzeughebtab_action = mixer2.clipAction(flugzeughebtab_clip, Flugzeug3); //clip, root, blend mode
   flugzeughebtab_action.setLoop(THREE.LoopOnce);
   flugzeughebtab_action.play();
 
@@ -546,11 +655,11 @@ async function goToGate3() {
 
   if (curCities[2].maxTemperature == tempWunsch) {
     scene.getObjectByName("CoverGate3").visible = true;
-    punktzahl += 1;
+    mehrPunkte()
   }
   else {
     scene.getObjectByName("CoverGate3X").visible = true
-    punktzahl -= 1;
+    aktuellePunkteZahl -= 1;
   }
 }
 
@@ -567,7 +676,7 @@ async function goToGate2() {
     mixer.addEventListener('finished', resolve, false))); //Wenn mixer 'finished', dann resolve das Promise.
   togate2_action.stop();
 
-  Tiffany.remove(feldMitWunschtemp);
+  aktuellerCharakter.remove(feldMitWunschtemp);
 
   let Flugzeug2 = scene.getObjectByName('Flugzeug2');
   mixer2 = new THREE.AnimationMixer(Flugzeug2); //to-do: müsste nur einmal erstellt werden, nicht in jeder Runde
@@ -581,16 +690,49 @@ async function goToGate2() {
 
   if (curCities[1].maxTemperature == tempWunsch) {
     scene.getObjectByName("CoverGate2").visible = true
-    punktzahl += 1;
+    mehrPunkte()
   }
   else {
     scene.getObjectByName("CoverGate2X").visible = true
-    punktzahl -= 1;
+    aktuellePunkteZahl -= 1;
   }
 
 }
 
+//Diese Funktion macht alle Charakter-Objekt unsichtbar oder aktiviert die Sichtbarkeit einzelner Charaktere
+function charakterSichtbarkeitaendern(sichtbarkeitswunsch, charakter = "alle") {
+  if (sichtbarkeitswunsch == "macheunsichtbar") {
+    scene.getObjectByName("Sunglasses_Jasun").visible = false;
+    scene.getObjectByName("Hair_Jasun").visible = false;
+    scene.getObjectByName("Body_Jasun").visible = false;
+    scene.getObjectByName("Body_Tiffany").visible = false;
+    scene.getObjectByName("Hair_Tiffany").visible = false;
+    scene.getObjectByName("Head_Tiffany").visible = false;
+    scene.getObjectByName("Body_Snovella").visible = false;
+    scene.getObjectByName("Hat_Snovella").visible = false;
+    scene.getObjectByName("Head_Snovella").visible = false;
+    scene.getObjectByName("Rollstuhl_Jason").visible = false;
+  }
 
+  else if (sichtbarkeitswunsch == "machesichtbar") {
+    if (charakter == Tiffany) {
+      scene.getObjectByName("Body_Tiffany").visible = true;
+      scene.getObjectByName("Hair_Tiffany").visible = true;
+      scene.getObjectByName("Head_Tiffany").visible = true;
+    }
+    else if (charakter == Jasun) {
+      scene.getObjectByName("Sunglasses_Jasun").visible = true;
+      scene.getObjectByName("Hair_Jasun").visible = true;
+      scene.getObjectByName("Body_Jasun").visible = true;
+      scene.getObjectByName("Rollstuhl_Jason").visible = true;
+    }
+    else if (charakter == Snovella) {
+      scene.getObjectByName("Body_Snovella").visible = true;
+      scene.getObjectByName("Hat_Snovella").visible = true;
+      scene.getObjectByName("Head_Snovella").visible = true;
+    }
+  }
+}
 // ================
 // Drehen des Cubes
 
@@ -617,7 +759,7 @@ animate();
 function animate() { //Accessibility Test: A3 Click
 
 
-  renderer.setAnimationLoop(animate); // Anzeige eines Bildes mit aktuellem Stand der Animation
+  requestAnimationFrame(animate); // Anzeige eines Bildes mit aktuellem Stand der Animation
   controls.update();
 
   if (importsfertig) {
@@ -636,6 +778,11 @@ function animate() { //Accessibility Test: A3 Click
     - exception: using render() inside an animation loop but -> animation loop must be defined with Renderer#setAnimationLoop
   */
 
+  mya3.updateBoxes(camera) //Accessibility Test: A3 Click
+
+  mya3.render(scene, camera) //Accessibility Test: A3 Click
+
+  //Aktion, falls Fenstergroesse veraendert wird
   window.addEventListener('resize', function () { //Ref "03"
     camera.aspect = window.innerWidth / window.innerHeight; //Ref "03"
     camera.updateProjectionMatrix(); //Ref "03",aktualisiert die Projection Matrix der Kamera, muss nach jeder Änderung der Kamera Properties aufgerufen werden.
@@ -644,9 +791,7 @@ function animate() { //Accessibility Test: A3 Click
   })
 
 
-  mya3.updateBoxes(camera) //Accessibility Test: A3 Click
 
-  mya3.render(scene, camera) //Accessibility Test: A3 Click
 
 };
 
@@ -716,24 +861,21 @@ function onMouseDown(event) {
     let Gate2 = scene.getObjectByName("Gate2")
     let Gate3 = scene.getObjectByName("Gate3")
 
-    if (selectedObject.name == "Gate1" || selectedObject.name == "UeberschriftGate1") {
-      console.log("Jetzt kann man eine Funktion für Gate1 ausführen!");
+    if (selectedObject.name == "Gate1" || selectedObject.name == "CoverGate1" || selectedObject.name == "UeberschriftGate1" || selectedObject.name == "TextSchildGate1") {
       gewaehltesGate = 'Gate1';
       scene.getObjectByName("Gate2").material.color.set(0.004776953478513362, 0, 0.8713671191959567); //Andere Gate-Farben zu Original-Farbe
       scene.getObjectByName("Gate3").material.color.set(0.004776953478513362, 0, 0.8713671191959567);
       scene.getObjectByName("Gate1").material.color.set(0xffffff) //Ausgewähltes Gate zu Weiss
     }
 
-    else if (selectedObject.name == "Gate2" || selectedObject.name == "UeberschriftGate2") {
-      console.log("Jetzt kann man eine Funktion für Gate2 ausführen!");
+    else if (selectedObject.name == "Gate2" | selectedObject.name == "CoverGate2" || selectedObject.name == "UeberschriftGate2" || selectedObject.name == "TextSchildGate2") {
       gewaehltesGate = 'Gate2';
       scene.getObjectByName("Gate1").material.color.set(0.004776953478513362, 0, 0.8713671191959567);
       scene.getObjectByName("Gate3").material.color.set(0.004776953478513362, 0, 0.8713671191959567);
       scene.getObjectByName("Gate2").material.color.set(0xffffff)
     }
 
-    else if (selectedObject.name == "Gate3" || selectedObject.name == "UeberschriftGate3") {
-      console.log("Jetzt kann man eine Funktion für Gate3 ausführen!");
+    else if (selectedObject.name == "Gate3" || selectedObject.name == "CoverGate3" || selectedObject.name == "UeberschriftGate3" || selectedObject.name == "TextSchildGate3") {
       gewaehltesGate = 'Gate3';
       scene.getObjectByName("Gate1").material.color.set(0.004776953478513362, 0, 0.8713671191959567);
       scene.getObjectByName("Gate2").material.color.set(0.004776953478513362, 0, 0.8713671191959567);
@@ -759,16 +901,15 @@ function changeColor(child) { // Accessibility Test: A3 Click
 
 }
 
-let funct2 = mya3.functWrapper(funct_for_flugzeug, "Flugzeug") // Wrapper wird benötigt, da funct_for_flugzeug ein Übergabeargument braucht.
-mya3.click("Flugzeug", funct2, 'Console Log wird jetzt etwas anzeigen') //Bei Klick auf das on-screen-Objekt mit Namen "Flugzeug", wird funct2 ausgeführt. Screenreader reads 'Console Log wird jetzt etwas anzeigen'
+let funct2 = mya3.functWrapper(funct_for_flugzeug, "Flugzeug1") // Wrapper wird benötigt, da funct_for_flugzeug ein Übergabeargument braucht.
+mya3.click("Flugzeug1", funct2, 'Console Log wird jetzt etwas anzeigen') //Bei Klick auf das on-screen-Objekt mit Namen "Flugzeug", wird funct2 ausgeführt. Screenreader reads 'Console Log wird jetzt etwas anzeigen'
 
 function funct_for_flugzeug(child) { // Accessibility Test: A3 Click 
 
-  console.log("Das Barrierefreiheit-Feld für das Flugzeug wurde angeklickt!") // Accessibility Test: A3 Click 
 
 }
 
-mya3.renderEffects(camera) // Ende Rest Accessibility Test: A3 Click 
+
 
 
 

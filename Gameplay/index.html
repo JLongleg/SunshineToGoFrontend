@@ -10,15 +10,7 @@
   <!-- Von https://threejs.org/manual/#en/installation -->
   <!-- SETUP Three.js -->
 
-<!-- MARKUS BEARBEITUNG ANFANG -->
-    
-<!-- Quellen -->
-    <script src="../JavaScript/localStorage.js"></script>
-    <script src="../JavaScript/dunkelModusAbfrage.js"></script>
-    <script src="../JavaScript/punkteStand.js"></script>
-    <link rel="stylesheet" href="../CSS/gameplayAnzeigeDunkelModus.css"></link>
 
-    <!-- MARKUS BEARBEITUNG ENDE -->
 
   <script type="importmap">
 {
@@ -32,45 +24,105 @@
 </script>
 
 
+  <!-- MARKUS BEARBEITUNG ANFANG -->
 
+  <!-- Quellen -->
+  <script type = "module" src="../JavaScript/localStorage.js"></script>
+  <script type = "module" src="../JavaScript/dunkelModusAbfrage.js"></script>
+  <link rel="stylesheet" href="../CSS/gameplayAnzeigeDunkelModus.css">
+  </link>
+
+  <!-- MARKUS BEARBEITUNG ENDE -->
 
 
   <!-- Accessibility Referenz-->
 
   <style>
-
-  /* Importing the a3model's (for accessibility) css file
+    /* Importing the a3model's (for accessibility) css file
   source: https://www.w3schools.com/cssref/atrule_import.php */
 
     @import url("https://cdn.jsdelivr.net/npm/a3model@1.0.8/src/index.css");
 
+    /* Ref '04'*/
+    .modal {
+      background-color: black;
+      opacity: 0;
+      position: fixed;
+      top: 0;
+      /*0: streched across whole page */
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transition: all 0.3s ease-in-out;
+      z-index: -1;
+      /* Element wird im Hintergrund (Layer -1) sein */
+
+      display: flex;
+      /*to keep innerbox in center */
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-inner {
+      background-color: yellow;
+      border-radius: 5px;
+      box-shadow: 0, 1px, 4px, black;
+      padding: 15px, 25px;
+      text-align: center;
+      width: 380px;
+    }
+
+    .modal.open {
+      opacity: 1;
+      z-index: 999;
+      /*  (Layer 999) Element wird im Vordergrund aller Layer sein*/
+
+    }
+
+    .modal-inner {
+      background-color: yellow;
+      border-radius: 5px;
+      box-shadow: 0, 1px, 4px, black;
+      padding: 15px, 25px;
+      text-align: center;
+      width: 380px;
+      background-image: url('Coffee_with_Sunshinelogo.jpg')
+    }
+
+    .punkteAnzeige {
+      background-color: black;
+      opacity: 80%;
+      color: white;
+      position: fixed;
+      font-size: 50px;
+    }
   </style>
 
 </head>
 
 <body>
 
-<!--MARKUS BEARBEITUNG ANFANG-->
+  <!--MARKUS BEARBEITUNG ANFANG-->
 
-    <dialog id="pausenMenu">
-        <h1>Pausen Menü</h1>
-        <section>
-            <!---Audioregler-->
-            <div class="slidecontainer">
-                <p>Soundregler:</p>
-                <input type="range" min="0" max="100" value="50" class="slider" id="myRange">
-            </div>
-        </section>
-        <a href="../html/sunshine_to_go_menu.html">
-            <button>Menu</button></a>
-    </dialog>
+  <dialog id="pausenMenu">
+    <h1>Pausen Menü</h1>
+    <section>
+      <!---Audioregler-->
+      <div class="slidecontainer">
+        <p>Soundregler:</p>
+        <input type="range" min="0" max="100" value="50" class="slider" id="myRange">
+      </div>
+    </section>
+    <a href="../html/sunshine_to_go_menu.html">
+      <button>Menu</button></a>
+  </dialog>
 
   <p class="punkteAnzeige">Punktestand:<span id="punkteZahl">0</span></p>
-   <button class="btnPauseMenu">Menu</button>
+  <button class="btnPauseMenu">Menu</button>
 
-<!--MARKUS BEARBEITUNG ENDE-->
+  <!--MARKUS BEARBEITUNG ENDE-->
 
-  <div id="a3canvas"> <!-- Accessibility -->
+  <div id="a3canvas"> <!-- Accessibility: Canvas-Element wird in Div-Element gepackt -->
 
     <canvas id="webgl"></canvas> <!-- Accessibility -->
 
@@ -84,11 +136,14 @@
 
   <!-- Ende Accessibility Teil 2-->
 
-  <!-- Muted für Accessibility Test 
-  Sunshine Game
-  <script type="module" src="main.js"></script>
-  -->
-
+  <!-- Result Pop-Up, modal Ref '04'-->
+  <div class="modal" , id="modal">
+    <div class="modal-inner">
+      <h2> Cool!</h2>
+      <p class="ResultatPopUp">Jedenfalls kam jeder irgendwohin! <span id="punkteZahlResultat">0</span></p>
+      <button id="closeModal">OK!</button>
+    </div>
+  </div>
 </body>
 
 </html>
