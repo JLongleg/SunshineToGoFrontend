@@ -5,7 +5,6 @@
     Import Speicherung / Basis
 ==========================================================
 */
-console.log("Test, ob die JS Dabei erfasst wird [x]")
 
 import { soundSpeicherung, ladeSound } from "./localStorage.js";
 

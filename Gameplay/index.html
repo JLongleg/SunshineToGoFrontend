@@ -5,12 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Title</title>
-  <!-- <link rel="stylesheet" href="style.css"> -->
 
   <!-- Von https://threejs.org/manual/#en/installation -->
   <!-- SETUP Three.js -->
-
-
 
   <script type="importmap">
 {
@@ -22,8 +19,6 @@
   }
 }
 </script>
-
-<!-- MARKUS BEARBEITUNG ANFANG -->
     
 <!-- Quellen -->
   <script type = "module" src="../JavaScript/allButtons_Options_Functions.js" defer></script>
@@ -36,10 +31,6 @@
   <link rel="stylesheet" href="../CSS/gameplayAnzeigeDunkelModus.css"></link>
   <link rel="stylesheet" href="../CSS/optionsfenster.css"></link>
 
-  <!-- MARKUS BEARBEITUNG ENDE -->
-
-
-  <!-- Accessibility Referenz-->
 
   <style>
     /* Importing the a3model's (for accessibility) css file
@@ -48,12 +39,12 @@
     @import url("https://cdn.jsdelivr.net/npm/a3model@1.0.8/src/index.css");
 
     /* Ref '04'*/
-    .modal {
+    .ErgebnisPopUpWrapper {
       background-color: black;
       opacity: 0;
       position: fixed;
       top: 0;
-      /*0: streched across whole page */
+      /* 0: streched across whole page */
       left: 0;
       right: 0;
       bottom: 0;
@@ -67,7 +58,7 @@
       justify-content: center;
     }
 
-    .modal-inner {
+    .ErgebnisPopUpWrapper-inner {
       background-color: yellow;
       border-radius: 5px;
       box-shadow: 0, 1px, 4px, black;
@@ -76,14 +67,14 @@
       width: 380px;
     }
 
-    .modal.open {
+    .ErgebnisPopUpWrapper.open {
       opacity: 1;
       z-index: 999;
       /*  (Layer 999) Element wird im Vordergrund aller Layer sein*/
 
     }
 
-    .modal-inner {
+    .ErgebnisPopUpWrapper-inner {
       background-color: yellow;
       border-radius: 5px;
       box-shadow: 0, 1px, 4px, black;
@@ -98,7 +89,7 @@
       opacity: 80%;
       color: white;
       position: fixed;
-      font-size: 50px;
+      font-size: 25px;
     }
   </style>
 
@@ -106,8 +97,7 @@
 
 <body>
 
-  <!-- MARKUS BEARBEITUNG ANFANG -->
-
+  
   <!-- PausenMenuButton -->
   <button id="btnPauseMenuId" class="btnPauseMenu"><img
                     src="../bilder/icons/reshot-icon-home-X27HUJS9EC.svg" alt="Home-Icon" width="42"
@@ -144,28 +134,26 @@
   <p>Punktestand:<span id="punkteZahl"> 0</span></p>
 </div>
 
-  <!--MARKUS BEARBEITUNG ENDE-->
+
 
   <div id="a3canvas"> <!-- Accessibility: Canvas-Element wird in Div-Element gepackt -->
 
-    <canvas id="webgl"></canvas> <!-- Accessibility -->
+    <canvas id="webgl"></canvas> 
 
-  </div> <!-- Accessibility -->
+  </div> 
 
-  <!-- Muted for Accessibility Test
-     <script type="module" src="main.js" defer></script> 
-     -->
+
 
   <script type="module" src="main.js" defer></script>
 
-  <!-- Ende Accessibility Teil 2-->
 
-  <!-- Result Pop-Up, modal Ref '04'-->
-  <div class="modal" , id="modal">
-    <div class="modal-inner">
+
+  <!-- Result Pop-Up, Ref '04'-->
+  <div class="ErgebnisPopUpWrapper" , id="ErgebnisPopUpWrapper">
+    <div class="ErgebnisPopUpWrapper-inner">
       <h2> Cool!</h2>
       <p class="ResultatPopUp">Jedenfalls kam jeder irgendwohin! <span id="punkteZahlResultat">0</span></p>
-      <button id="closeModal">OK!</button>
+      <button id="closeErgebnisPopUpWrapper">OK!</button>
     </div>
   </div>
 </body>
