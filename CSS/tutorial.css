@@ -1,10 +1,11 @@
- /*
+    /*
     ==============================================================
     Grundlagen und Basis
     ==============================================================
     */
 
- /* Farbwahl (Root -> var) sind Keywords
+    /* 
+    Farbwahl (Root -> var) sind Keywords
     Standartfarben
     */
 
@@ -120,8 +121,6 @@
    ========================================= */
 
  .btnHome {
-   background: var(--X);
-   border: var(--X);
    padding: 0;
    cursor: pointer;
    display: flex;

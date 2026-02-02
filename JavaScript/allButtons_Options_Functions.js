@@ -3,7 +3,9 @@
     Routing-Funktion zwischen Menu und Gameplay
 ==========================================================
 */
-// Die Paths sind dabei nur Strings:
+// Die Paths sind dabei nur Strings / Funktion es soll
+// verhindern, dass beim Abspielen von Script, Scripte
+// von fremd HTMLs verwendet werden:
 
 if (window.location.pathname.includes("sunshine_to_go_menu.html")) {
     console.log("Willkommen im Menubereich");
@@ -28,23 +30,13 @@ else if (window.location.pathname.includes("tutorial.html")) {
 
 function imMenu() {
 
-    /*
-    ============================================================
-        Universal Button um zurück zum Menu zu kommen
-    ============================================================
-    */
-
     // Hinweise
     // Ein Button für alle Bereiche, der nur einmal erstellt werden muss. 
     // benötigt eine Klasse, weil es häufiger verwendet wurde. 
 
     const alleMenuButtonsGoBack = document.querySelectorAll(".zumMenuButton");
 
-    function funcZumMenu() {
 
-        if (menuS) menuS.style.display = "block";
-        if (gameplayS) gameplayS.style.display = "none";
-    }
 
     alleMenuButtonsGoBack.forEach(einzelnerButton => {
         einzelnerButton.addEventListener("click", funcZumMenu);
@@ -85,7 +77,9 @@ function imMenu() {
     ==========================================================
     */
 
-    // Abspeicherung des Darkmode durch 0/1
+    // Abspeicherung des Darkmode durch localStorage.js => 0/1
+    // Sowie auf den einzelnen HTMLSeiten eine Verlinkung zu der
+    // dunkelModusAbfrage, um vorher den Wert für DM Abzurufen.
 
     const checkKasten = document.getElementById("checkbox");
 
@@ -112,12 +106,6 @@ function imGameplay() {
 // Kontrollinstanz mit Console:
 console.log("JS nähere Auswahl Gameplay");
 
-    // !Wichtiger Hinweis! Für meine JS Datei, da bei der Abfrage
-    // von zwei unterschiedlichen Dialogen in Menu und Gameplay ist
-    // es wichtig, dass die Dialoge aus der vorherigen Seite
-    // nicht = NULL ist, da sonst eine Fehlermeldung entsteht. 
-    // Wurde mit der Routingfunktion behoben S. oben [x]
-
     // Button für das PausenMenu
     const buttonPauseMenu = document.getElementById("btnPauseMenuId");
 
@@ -133,6 +121,7 @@ console.log("JS nähere Auswahl Gameplay");
         pausenMenuOp.showModal();
     });
 
+    // Optionsfenster schließen
     optionsfensterSchlie.addEventListener("click", () => {
         console.log("Optionsfenster geschlossen")
         pausenMenuOp.close();
@@ -151,8 +140,14 @@ function imTutorial() {
 
     const buttonHome = document.querySelectorAll(".btnHome");
 
+
+    // Eine query, die alle HomeIcons wieder nach Oben von der Seite
+    // führt, da mehrere Buttons mit der Gleichen ID nicht funktionieren
+    // benötigt man ein Class.
+
     buttonHome.forEach(btnHomeNav => {
         btnHomeNav.addEventListener("click", () => {
+            // Hochscrollfunktion
             window.scrollTo(0, 0);
         })
 
